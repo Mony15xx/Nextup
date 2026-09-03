@@ -33,8 +33,8 @@ html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
 button,input{font-family:inherit;color:inherit}
 a{color:var(--accent);text-decoration:none}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-#shell{display:flex;flex-direction:column;height:100vh;height:100dvh;align-items:center}
-#main{display:flex;flex-direction:column;min-height:0;flex:1;order:1;width:var(--page-width);max-width:100%;background:var(--bg)}
+#shell{display:flex;flex-direction:column;height:100vh;height:100dvh;align-items:center;gap:0}
+#main{display:flex;flex-direction:column;min-height:0;flex:1;order:1;width:var(--page-width);max-width:100%;background:var(--bg);margin:0}
 #topbar{min-height:56px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:10px 20px;gap:14px;flex-shrink:0}
 .topbar-search{flex:1;min-width:160px;max-width:460px;display:flex;align-items:center;position:relative}
 .topbar-search input{flex:1;min-width:0;padding-right:42px}
@@ -42,7 +42,7 @@ a{color:var(--accent);text-decoration:none}
 
 .search-btn:hover{border-color:var(--accent);color:var(--accent)}
 .search-btn svg{width:16px;height:16px}
-#bottomnav{order:2;flex-shrink:0;display:flex;align-items:stretch;justify-content:center;gap:7.25%;background:#000;border-top:1px solid var(--border);padding:6px 0 calc(6px + env(safe-area-inset-bottom));width:var(--page-width);max-width:100%;min-height:52px}
+#bottomnav{order:2;flex-shrink:0;display:flex;align-items:stretch;justify-content:center;gap:7.25%;background:#000;border-top:1px solid var(--border);padding:6px 0 calc(6px + env(safe-area-inset-bottom));width:var(--page-width);max-width:100%;min-height:52px;margin:0}
 .nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:none;border:none;border-radius:10px;padding:6px 4px;text-align:center;font-size:11px;font-weight:600;color:#5a5a5a;cursor:pointer;flex:0 0 15.94%;max-width:15.94%;min-height:40px;transition:color .15s ease}
 .nav-item:hover{color:#9a9a9a}
 .nav-item.active{background:none;color:#ffffff}
@@ -62,7 +62,7 @@ input[type=text]:focus,input[type=text]:focus-visible{outline:none}
 .conn.on .dot{background:var(--accent);box-shadow:0 0 0 3px var(--accent-dark)}
 .conn.err{border-color:var(--red);color:var(--red)}
 .conn.err .dot{background:var(--red)}
-#outlet{flex:1;overflow-y:auto;padding:28px 20px 60px;scrollbar-width:none;-ms-overflow-style:none}
+#outlet{flex:1;overflow-y:auto;padding:28px 20px;scrollbar-width:none;-ms-overflow-style:none}
 #outlet::-webkit-scrollbar{display:none}
 .sub{color:var(--text-dim);margin:0 0 24px;font-size:14px}
 .loading-row{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--text-dim);font-size:14px;margin:0 0 24px;padding:20px 0}
@@ -90,9 +90,8 @@ input[type=text]:focus,input[type=text]:focus-visible{outline:none}
 .msg:empty{margin-top:0}
 .msg.ok{color:var(--accent)} .msg.err{color:var(--red)}
 code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(184px,1fr));gap:8px}
-.poster{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:transform .12s}
-.poster:hover{transform:translateY(-4px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(184px,1fr));gap:4px}
+.poster{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;overflow:hidden;cursor:pointer}
 .poster-img-wrap{position:relative;aspect-ratio:2/3;background:var(--bg-elev)}
 .poster-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 .poster-overlay{position:absolute;inset:auto 0 0 0;padding:26px 10px 8px;background:linear-gradient(to top,rgba(0,0,0,.98),transparent)}
@@ -112,7 +111,7 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .fav-btn.on{color:var(--amber);border-color:var(--amber-dark);background:var(--amber-dark)}
 .rating-chip{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;border:1px solid var(--border)}
 .rating-chip.imdb{color:var(--imdb);background:#3d3d3d;border:1px solid rgba(255,255,255,.4);padding:8px 18px;font-size:13px}
-.feed-item{display:flex;align-items:stretch;background:#000;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;height:93px}
+.feed-item{display:flex;align-items:stretch;background:#000;border:1px solid var(--border);border-radius:8px;margin-bottom:10px;overflow:hidden;height:93px}
 .feed-thumb{width:276px;height:100%;align-self:stretch;object-fit:cover;background:var(--bg-elev);flex-shrink:0;border-radius:0 var(--radius) var(--radius) 0}
 .feed-content{display:flex;align-items:center;gap:14px;flex:1;min-width:0;padding:10px 12px}
 .feed-body{flex:1;min-width:0}
@@ -126,6 +125,8 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .pill.future{color:var(--amber);border-color:var(--amber-dark)}
 .rating-chip.sm{padding:3px 8px;font-size:10px}
 .section-h{font-family:'Poppins',sans-serif;font-weight:600;font-size:18px;color:var(--heading);margin:22px 0 12px}
+.section-h.profile-title{color:#fff;font-size:22px}
+.section-h.profile-title.sub-page-title{font-size:23px}
 .cat-box{display:inline-block;width:auto;background:#767676;border:none;border-radius:999px;padding:6px 16px;text-align:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:11px;line-height:1;letter-spacing:.04em;text-transform:uppercase;color:#ffffff;margin:0 auto 14px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .cat-box-wrap{text-align:center}
 .cat-section{margin-bottom:14px}
@@ -155,6 +156,11 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .profile-edit-overlay label.field-btn:hover{border-color:var(--accent);color:var(--accent)}
 .profile-edit-overlay input[type=text]{width:100%}
 .profile-edit-overlay .profile-edit-done{align-self:flex-end;font-size:12px;padding:7px 16px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px;max-width:360px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.modal-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:17px;color:#fff;margin-bottom:8px}
+.modal-message{font-size:14px;color:var(--text-dim);line-height:1.5;margin-bottom:18px}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px}
 
 .detail-view{padding:0 0 60px}
 #outlet.detail-view{padding-top:0;background:#202020}
@@ -232,21 +238,26 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .continue-watching-list .feed-thumb{width:152px}
 .continue-watching-list .rewatch-group{display:none}
 .feed-item-empty{background:transparent;border:1px dashed var(--border)}
-.upnext-caughtup{position:relative;border-radius:var(--radius);overflow:hidden;margin-bottom:20px;height:93px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#000 center/cover no-repeat;border:1px solid var(--border)}
+.upnext-caughtup{position:relative;border-radius:8px;overflow:hidden;margin-bottom:20px;height:93px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#000 center/cover no-repeat;border:1px solid var(--border)}
 .upnext-caughtup::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.25)}
 .upnext-caughtup-text{position:relative;z-index:1;font-family:'Poppins',sans-serif;font-weight:800;font-size:30px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
-.caughtup-mini{flex:1;min-width:0;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;background:#000 center/cover no-repeat}
+.caughtup-mini{flex:1;min-width:0;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:8px;border:1px solid var(--border);overflow:hidden;background:#000 center/cover no-repeat}
 .caughtup-mini::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45)}
 .caughtup-mini-text{position:relative;z-index:1;font-family:'Poppins',sans-serif;font-weight:800;font-size:15px;color:var(--accent);text-shadow:0 1px 6px rgba(0,0,0,.6);padding:10px}
-.shows-tabs{display:flex;border-bottom:1px solid var(--border);margin:-28px -20px 20px;padding:0}
-.shows-tab{flex:1;text-align:center;padding:12px 20px;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--text-dim);cursor:pointer;background:none;border:none;border-bottom:2px solid transparent}
+.shows-page{display:flex;flex-direction:column;min-height:100%}
+#shows-tab-body,#movies-tab-body{display:flex;flex-direction:column;flex:1;min-height:0}
+#outlet.shows-route{padding-top:0}
+#outlet.shows-route.upcoming-route{padding-bottom:0}
+.shows-tabs{display:flex;border-bottom:1px solid var(--border);margin:0 -20px 20px;padding:0;position:sticky;top:0;z-index:5;background:var(--bg)}
+.shows-tabs.upcoming-active{margin-bottom:0}
+.shows-tab{flex:1;text-align:center;padding:12px 20px 11px;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--text-dim);cursor:pointer;background:none;border:none;border-bottom:3px solid transparent}
 .shows-tab.active{color:var(--text);border-bottom-color:#fff}
 .upcoming-date-pill-wrap{text-align:center;margin:14px auto}
 .upcoming-date-pill-wrap:first-child{margin-top:2px}
 .upcoming-date-pill{display:inline-block;width:auto;background:#767676;border:none;border-radius:999px;padding:6px 16px;font-family:'Poppins',sans-serif;font-weight:700;font-size:11px;line-height:1;letter-spacing:.04em;text-transform:uppercase;color:#ffffff;box-shadow:0 2px 6px rgba(0,0,0,.35)}
-.upcoming-list{background:#202020;border:none;box-shadow:none;border-radius:var(--radius);padding:16px}
-.upcoming-row{display:flex;align-items:center;gap:12px;background:#000;border:1px solid var(--border);border-radius:14px;padding:10px;margin-bottom:10px;cursor:pointer}
-.upcoming-row:hover{border-color:var(--text-dim)}
+.upcoming-list{background:#202020;border:none;box-shadow:none;border-radius:0;margin:0 -20px;padding:20px;flex:1}
+.upcoming-row{display:flex;align-items:center;gap:12px;background:#000;border:none;border-radius:14px;padding:10px;margin-bottom:10px;cursor:pointer}
+.upcoming-row:hover{background:#0a0a0a}
 .upcoming-thumb{width:64px;height:64px;border-radius:10px;object-fit:cover;flex-shrink:0;background:var(--bg-elev)}
 .upcoming-body{flex:1;min-width:0}
 .upcoming-show{font-size:11px;font-weight:700;color:var(--text-dim);border:1px solid var(--border);border-radius:999px;padding:2px 8px;display:inline-block;margin-bottom:4px}
@@ -254,9 +265,43 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .upcoming-title{font-size:13px;color:var(--text-dim);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .upcoming-new{display:inline-block;background:var(--accent);color:#2b1200;font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px}
 .upcoming-show-pill{font-size:11px;font-weight:700;color:var(--text-dim);border:1px solid var(--border);border-radius:999px;padding:2px 8px;display:inline-block}
-.upcoming-feed-item{cursor:pointer}
-.upcoming-days-left{font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;color:#ffffff;flex-shrink:0;white-space:nowrap}
+.upcoming-feed-item{cursor:pointer;border:none}
+.upcoming-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:3px;flex-shrink:0;text-align:right}
+.upcoming-airtime{font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;color:var(--text);white-space:nowrap}
+.upcoming-channel{font-size:11px;color:var(--text-dim);white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis}
+.upcoming-days-left{font-family:'Poppins',sans-serif;font-weight:400;font-size:20px;color:#ffffff;flex-shrink:0;white-space:nowrap}
 .upcoming-check{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--text-dim)}
+.hscroll-section{margin:0 0 26px}
+.hscroll-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;cursor:pointer;background:none;border:none;padding:0;width:100%;text-align:left;color:inherit}
+.hscroll-head:hover .hscroll-title{color:var(--accent)}
+.hscroll-heart{color:var(--red);font-size:21px;line-height:1;flex-shrink:0}
+.hscroll-title{font-family:'Poppins',sans-serif;font-weight:600;font-size:22px;color:#fff;flex:1;min-width:0}
+.hscroll-chevron{width:18px;height:18px;color:var(--text-dim);flex-shrink:0}
+.hscroll-track{display:flex;gap:4px;overflow-x:auto;margin:0 -20px;padding:0 20px 4px;scrollbar-width:none;-ms-overflow-style:none}
+.hscroll-track::-webkit-scrollbar{display:none}
+.hscroll-item{flex:0 0 auto;width:118px;cursor:pointer}
+.hscroll-item img{width:118px;height:177px;object-fit:cover;border-radius:10px;background:var(--bg-elev);display:block}
+.hscroll-empty{color:var(--text-dim);font-size:13px}
+.search-results-list{display:flex;flex-direction:column}
+.search-row{display:flex;align-items:center;gap:14px;padding:3.5px 20px;margin:0 -20px;border-bottom:1px solid var(--border);cursor:pointer}
+.search-row:last-child{border-bottom:none}
+.search-row-thumb{width:45px;height:64px;border-radius:6px;object-fit:cover;flex-shrink:0;background:var(--bg-elev)}
+.search-row-body{flex:1;min-width:0}
+.search-row-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.search-row-meta{display:flex;align-items:center;gap:10px;margin-top:6px;font-size:12px;color:var(--text-dim)}
+.search-row-rating{display:flex;align-items:center;gap:3px;color:var(--imdb);font-weight:700}
+.search-row-type{display:flex;align-items:center;gap:5px}
+.search-row-type svg{width:14px;height:14px;stroke:currentColor;flex-shrink:0}
+.search-add-btn{width:38px;height:38px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;line-height:1;cursor:pointer;flex-shrink:0}
+.search-add-btn.on{background:var(--accent);color:#2b1200}
+.cast-track{display:flex;gap:12px;overflow-x:auto;margin:0 -20px 20px;padding:0 20px 4px;scrollbar-width:none;-ms-overflow-style:none}
+.cast-track::-webkit-scrollbar{display:none}
+.cast-item{flex:0 0 auto;width:90px;text-align:center}
+.cast-photo{width:90px;height:90px;border-radius:50%;object-fit:cover;background:var(--bg-elev);display:block;margin-bottom:8px}
+.cast-name{font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cast-role{font-size:11px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trailer-embed-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:8px;overflow:hidden;background:#000;margin-bottom:20px}
+.trailer-embed-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media(max-width:720px){:root{--page-width:88.6%}.hero{flex-direction:column}.hero img{width:140px;min-width:140px;height:210px;flex-basis:auto}.brand span:last-child{display:none}.nav-label{font-size:9px}.continue-watching-list{gap:6px}.continue-watching-list .feed-thumb{width:101px}.continue-watching-list .feed-content{padding:8px 6px;gap:4px}.continue-watching-list .feed-title{font-size:11px}.continue-watching-list .ep-meta{font-size:13px}.continue-watching-list .check{width:24px;height:24px;font-size:12px;margin-right:0}}
 </style>
 </head>
@@ -708,11 +753,9 @@ function calcLastWatchedAt(eps){
 function updatePosterProgress(card,{pct,complete,stopped}){
   const fill=card.querySelector('.poster-progress-fill');
   if(!fill)return;
-  const wasComplete=fill.classList.contains('complete');
   fill.style.width=`${pct}%`;
   fill.classList.toggle('complete',complete&&!stopped);
   fill.classList.toggle('stopped',Boolean(stopped));
-  if(complete&&!wasComplete&&!stopped)triggerConfetti();
 }
 function pickBannerUrl(artworks){
   if(!artworks?.length)return null;
@@ -740,6 +783,24 @@ function updateShowProgressBar(wrap,progress){
     fill.classList.toggle('uptodate',progress.upToDate);
     if(progress.complete&&!wasComplete)triggerConfetti();
   }
+}
+function showConfirmDialog({title,message,confirmLabel='Confirm',cancelLabel='Cancel',danger=false,onConfirm}){
+  const backdrop=document.createElement('div');
+  backdrop.className='modal-backdrop';
+  backdrop.innerHTML=`
+    <div class="modal-card">
+      <div class="modal-title">${title}</div>
+      <div class="modal-message">${message}</div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="modal-cancel">${cancelLabel}</button>
+        <button type="button" class="btn ${danger?'btn-disconnect':'btn-accent'}" id="modal-confirm">${confirmLabel}</button>
+      </div>
+    </div>`;
+  document.body.appendChild(backdrop);
+  function close(){backdrop.remove()}
+  backdrop.addEventListener('click',e=>{if(e.target===backdrop)close()});
+  backdrop.querySelector('#modal-cancel').addEventListener('click',close);
+  backdrop.querySelector('#modal-confirm').addEventListener('click',()=>{close();onConfirm()});
 }
 function backButton(route){
   const back=document.createElement('button');
@@ -822,7 +883,7 @@ function openLibPopup(btn,kind,item){
     Store.setStopped(kind,item.id,next);
     updateLibBtnUI(btn,kind,item.id);
     document.dispatchEvent(new CustomEvent('nx:stopchange',{detail:{kind,id:item.id,stopped:next}}));
-    if(kind==='show')bumpShowsCache();
+    if(kind==='show')bumpShowsCache();else if(kind==='movie')bumpMoviesCache();
     closeLibPopup();
   });
   pop.querySelector('.lib-pop-remove').addEventListener('click',e=>{
@@ -835,7 +896,7 @@ function openLibPopup(btn,kind,item){
     updateLibBtnUI(btn,kind,item.id);
     document.dispatchEvent(new CustomEvent('nx:stopchange',{detail:{kind,id:item.id,stopped:false}}));
     document.dispatchEvent(new CustomEvent('nx:libremoved',{detail:{kind,id:item.id}}));
-    if(kind==='show')bumpShowsCache();
+    if(kind==='show')bumpShowsCache();else if(kind==='movie')bumpMoviesCache();
     closeLibPopup();
   });
   setTimeout(()=>{
@@ -865,7 +926,7 @@ function wireTrackFav(heroEl,kind,item){
         Store.setStopped(kind,item.id,false);
         updateLibBtnUI(libBtn,kind,item.id);
         if(favBtn)updateFavBtnUI(favBtn,kind,item.id);
-        if(kind==='show')bumpShowsCache();
+        if(kind==='show')bumpShowsCache();else if(kind==='movie')bumpMoviesCache();
       }
     });
   }
@@ -981,8 +1042,15 @@ function wireRewatchGroup(container,{inc,dec}){
 }
 document.addEventListener('click',e=>{const l=e.target.closest('[data-link]');if(l)nav(l.dataset.link)});
 
-const routes={explore:renderExplore,shows:renderShows,movies:renderMovies,stats:renderStats,show:renderShow,movie:renderMovie};
+const routes={explore:renderExplore,shows:renderShows,movies:renderMovies,stats:renderStats,show:renderShow,movie:renderMovie,favshows:renderFavShows,favmovies:renderFavMovies,libshows:renderLibShows,libmovies:renderLibMovies};
+let currentRoute='shows';
+let showBackRoute='shows';
+let movieBackRoute='movies';
+const SHOW_LIST_ROUTES=['shows','libshows','favshows','explore'];
+const MOVIE_LIST_ROUTES=['movies','libmovies','favmovies','explore'];
 function nav(route,params={}){
+  if(route==='show')showBackRoute=SHOW_LIST_ROUTES.includes(currentRoute)?currentRoute:'shows';
+  if(route==='movie')movieBackRoute=MOVIE_LIST_ROUTES.includes(currentRoute)?currentRoute:'movies';
   document.querySelectorAll('.nav-item').forEach(b=>{
     const r=b.dataset.route;
     const active=r===route||(r==='shows'&&route==='show')||(r==='movies'&&route==='movie');
@@ -993,6 +1061,7 @@ function nav(route,params={}){
   outlet.innerHTML='';
   (routes[route]||renderExplore)(outlet,params);
   location.hash=params.id?`${route}/${params.id}`:route;
+  currentRoute=route;
 }
 function hashRoute(){
   const[r,id]=location.hash.replace('#','').split('/');
@@ -1002,6 +1071,18 @@ function hashRoute(){
 
 let exploreLastQuery=null;
 const explorePane=document.createElement('div');
+function resyncSearchRows(container){
+  container.querySelectorAll('.search-row').forEach(row=>{
+    const id=Number(row.dataset.id);
+    const kind=row.dataset.kind;
+    const on=Store.inLib(kind,id);
+    const btn=row.querySelector('.search-add-btn');
+    if(btn){
+      btn.classList.toggle('on',on);
+      btn.title=on?'Added':'Add';
+    }
+  });
+}
 function renderExplore(o){
   const gv=document.getElementById('global-search').value.trim();
   o.innerHTML='';
@@ -1011,7 +1092,10 @@ function renderExplore(o){
     return;
   }
   o.appendChild(explorePane);
-  if(gv===exploreLastQuery)return;
+  if(gv===exploreLastQuery){
+    resyncSearchRows(explorePane);
+    return;
+  }
   exploreLastQuery=gv;
   explorePane.innerHTML='';
   doExploreSearch(gv,explorePane);
@@ -1032,15 +1116,14 @@ async function doExploreSearch(q,el){
       if(seriesHits[i])combined.push({hit:seriesHits[i],kind:'series'});
       if(movieHits[i])combined.push({hit:movieHits[i],kind:'movie'});
     }
-    el.innerHTML='<div id="mixed-results" class="grid"></div>';
-    const grid=el.querySelector('#mixed-results');
+    el.innerHTML='<div id="mixed-results" class="search-results-list"></div>';
+    const list=el.querySelector('#mixed-results');
     combined.forEach(({hit:h,kind})=>{
       const id=numericId(h);
-      const card=posterCard({id,name:h.name,image:h.image_url,sub:h.year||h.status||'',kind,showType:true});
-      grid.appendChild(card);
-      if(kind==='series')loadPosterProgress(card,id);
+      const row=searchResultRow({id,name:h.name,image:h.image_url,kind});
+      list.appendChild(row);
       const imdbId=getImdbId(h);
-      attachPosterRating(card,imdbId);
+      attachSearchRowRating(row,imdbId);
     });
   }catch(err){el.innerHTML=emptyState(err.message)}
 }
@@ -1049,6 +1132,8 @@ const STALE_MS=7*24*60*60*1000;
 let showsTabState='watchlist';
 const watchlistPane=document.createElement('div');
 const upcomingPane=document.createElement('div');
+watchlistPane.style.cssText='flex:1;display:flex;flex-direction:column;min-height:0';
+upcomingPane.style.cssText='flex:1;display:flex;flex-direction:column;min-height:0';
 let watchlistLoaded=false,upcomingLoaded=false;
 function bumpShowsCache(){
   watchlistLoaded=false;upcomingLoaded=false;
@@ -1059,24 +1144,30 @@ function ensureShowsTabLoaded(){
   if(showsTabState==='upcoming'&&!upcomingLoaded){upcomingLoaded=true;renderUpcomingTab(upcomingPane);}
 }
 async function renderShows(o){
+  o.classList.add('shows-route');
+  o.classList.toggle('upcoming-route',showsTabState==='upcoming');
   o.innerHTML=`
-    <div class="shows-tabs">
-      <button type="button" class="shows-tab ${showsTabState==='watchlist'?'active':''}" data-tab="watchlist">WATCH LIST</button>
-      <button type="button" class="shows-tab ${showsTabState==='upcoming'?'active':''}" data-tab="upcoming">UPCOMING</button>
-    </div>
-    <div id="shows-tab-body"></div>`;
+    <div class="shows-page">
+      <div class="shows-tabs ${showsTabState==='upcoming'?'upcoming-active':''}">
+        <button type="button" class="shows-tab ${showsTabState==='watchlist'?'active':''}" data-tab="watchlist">WATCH LIST</button>
+        <button type="button" class="shows-tab ${showsTabState==='upcoming'?'active':''}" data-tab="upcoming">UPCOMING</button>
+      </div>
+      <div id="shows-tab-body"></div>
+    </div>`;
   const body=o.querySelector('#shows-tab-body');
   body.appendChild(watchlistPane);
   body.appendChild(upcomingPane);
   function updatePaneVisibility(){
-    watchlistPane.style.display=showsTabState==='watchlist'?'':'none';
-    upcomingPane.style.display=showsTabState==='upcoming'?'':'none';
+    watchlistPane.style.display=showsTabState==='watchlist'?'flex':'none';
+    upcomingPane.style.display=showsTabState==='upcoming'?'flex':'none';
   }
   updatePaneVisibility();
   o.querySelectorAll('.shows-tab').forEach(btn=>btn.addEventListener('click',()=>{
     if(showsTabState===btn.dataset.tab)return;
     showsTabState=btn.dataset.tab;
     o.querySelectorAll('.shows-tab').forEach(b=>b.classList.toggle('active',b===btn));
+    o.querySelector('.shows-tabs').classList.toggle('upcoming-active',showsTabState==='upcoming');
+    o.classList.toggle('upcoming-route',showsTabState==='upcoming');
     updatePaneVisibility();
     ensureShowsTabLoaded();
   }));
@@ -1101,9 +1192,10 @@ async function renderWatchListTab(o){
     dataList=allLib.map(s=>({show:s,progress:{pct:0,complete:false,watched:0,total:0},lastWatchedAt:0,imdbId:null}));
   }
   const now=Date.now();
-  const stoppedList=[],nextToWatch=[],staleList=[],notStarted=[];
+  const nextToWatch=[],staleList=[],notStarted=[];
   dataList.forEach(item=>{
-    if(Store.isStopped('show',item.show.id)){stoppedList.push(item);return}
+    if(Store.isStopped('show',item.show.id))return;
+    if(item.progress.complete||item.progress.upToDate)return;
     if(item.progress.watched===0){notStarted.push(item);return}
     if(now-item.lastWatchedAt>=STALE_MS){staleList.push(item);return}
     nextToWatch.push(item);
@@ -1112,7 +1204,7 @@ async function renderWatchListTab(o){
     if(!items.length)return'';
     return`<div class="cat-section"><div class="cat-box-wrap"><div class="cat-box">${title}</div></div><div class="grid" data-cat="${title}"></div></div>`;
   }
-  o.innerHTML=`${renderCategory('Next to watch',nextToWatch)}${renderCategory("HAVEN'T WATCHED FOR A WHILE",staleList)}${renderCategory("Haven't started",notStarted)}${renderCategory('Stopped watching',stoppedList)}`;
+  o.innerHTML=`${renderCategory('Next to watch',nextToWatch)}${renderCategory("HAVEN'T WATCHED FOR A WHILE",staleList)}${renderCategory("Haven't started",notStarted)}`;
   function fillCategory(title,items){
     const g=o.querySelector(`.grid[data-cat="${title}"]`);
     if(!g)return;
@@ -1120,13 +1212,11 @@ async function renderWatchListTab(o){
       const card=posterCard({id:s.id,name:s.name,image:s.image,sub:'Tracking',kind:'series'});
       g.appendChild(card);
       updatePosterProgress(card,{...progress,stopped:Store.isStopped('show',s.id)});
-      attachPosterRating(card,imdbId);
     });
   }
   fillCategory('Next to watch',nextToWatch);
   fillCategory("HAVEN'T WATCHED FOR A WHILE",staleList);
   fillCategory("Haven't started",notStarted);
-  fillCategory('Stopped watching',stoppedList);
 }
 async function renderUpcomingTab(o){
   const allLib=Object.values(Store.lib('show'));
@@ -1136,8 +1226,10 @@ async function renderUpcomingTab(o){
   try{
     const results=await Promise.all(allLib.map(async s=>{
       try{
-        const eps=await getEpisodes(s.id);
-        return eps.filter(e=>e.aired&&isFuture(e.aired)).map(e=>({show:s,ep:e}));
+        const[eps,series]=await Promise.all([getEpisodes(s.id),Api.seriesExtended(s.id).catch(()=>null)]);
+        const airtime=series?.airsTime||null;
+        const channel=series?.originalNetwork?.name||series?.latestNetwork?.name||null;
+        return eps.filter(e=>e.aired&&isFuture(e.aired)).map(e=>({show:s,ep:e,airtime,channel}));
       }catch{return[]}
     }));
     items=results.flat();
@@ -1148,9 +1240,7 @@ async function renderUpcomingTab(o){
   const wrap=document.createElement('div');
   wrap.className='upcoming-list';
   let lastDate=null;
-  const nowMs=Date.now();
-  let rowSeq=0;
-  items.forEach(({show:s,ep})=>{
+  items.forEach(({show:s,ep,airtime,channel})=>{
     if(ep.aired!==lastDate){
       lastDate=ep.aired;
       const pill=document.createElement('div');
@@ -1158,24 +1248,127 @@ async function renderUpcomingTab(o){
       pill.innerHTML=`<span class="upcoming-date-pill">${fmtRelativeDate(ep.aired).toUpperCase()}</span>`;
       wrap.appendChild(pill);
     }
-    rowSeq++;
-    wrap.appendChild(upcomingRow(s,ep,rowSeq));
+    wrap.appendChild(upcomingRow(s,ep,{airtime,channel}));
   });
   o.appendChild(wrap);
 }
 
-function renderMovies(o){
-  const lib=Object.values(Store.lib('movie'));
-  if(!lib.length){o.innerHTML=emptyState('You are not tracking any movies yet.','explore','Explore movies');return}
+let moviesTabState='watchlist';
+const movieWatchlistPane=document.createElement('div');
+const movieUpcomingPane=document.createElement('div');
+movieWatchlistPane.style.cssText='flex:1;display:flex;flex-direction:column;min-height:0';
+movieUpcomingPane.style.cssText='flex:1;display:flex;flex-direction:column;min-height:0';
+let movieWatchlistLoaded=false,movieUpcomingLoaded=false;
+function bumpMoviesCache(){
+  movieWatchlistLoaded=false;movieUpcomingLoaded=false;
+  movieWatchlistPane.innerHTML='';movieUpcomingPane.innerHTML='';
+}
+function ensureMoviesTabLoaded(){
+  if(moviesTabState==='watchlist'&&!movieWatchlistLoaded){movieWatchlistLoaded=true;renderMovieWatchlistTab(movieWatchlistPane);}
+  if(moviesTabState==='upcoming'&&!movieUpcomingLoaded){movieUpcomingLoaded=true;renderMovieUpcomingTab(movieUpcomingPane);}
+}
+async function renderMovies(o){
+  o.classList.add('shows-route');
+  o.classList.toggle('upcoming-route',moviesTabState==='upcoming');
+  o.innerHTML=`
+    <div class="shows-page">
+      <div class="shows-tabs ${moviesTabState==='upcoming'?'upcoming-active':''}">
+        <button type="button" class="shows-tab ${moviesTabState==='watchlist'?'active':''}" data-tab="watchlist">WATCH LIST</button>
+        <button type="button" class="shows-tab ${moviesTabState==='upcoming'?'active':''}" data-tab="upcoming">UPCOMING</button>
+      </div>
+      <div id="movies-tab-body"></div>
+    </div>`;
+  const body=o.querySelector('#movies-tab-body');
+  body.appendChild(movieWatchlistPane);
+  body.appendChild(movieUpcomingPane);
+  function updatePaneVisibility(){
+    movieWatchlistPane.style.display=moviesTabState==='watchlist'?'flex':'none';
+    movieUpcomingPane.style.display=moviesTabState==='upcoming'?'flex':'none';
+  }
+  updatePaneVisibility();
+  o.querySelectorAll('.shows-tab').forEach(btn=>btn.addEventListener('click',()=>{
+    if(moviesTabState===btn.dataset.tab)return;
+    moviesTabState=btn.dataset.tab;
+    o.querySelectorAll('.shows-tab').forEach(b=>b.classList.toggle('active',b===btn));
+    o.querySelector('.shows-tabs').classList.toggle('upcoming-active',moviesTabState==='upcoming');
+    o.classList.toggle('upcoming-route',moviesTabState==='upcoming');
+    updatePaneVisibility();
+    ensureMoviesTabLoaded();
+  }));
+  ensureMoviesTabLoaded();
+}
+function renderMovieWatchlistTab(o){
+  const lib=Object.values(Store.lib('movie')).filter(m=>!Store.isMovieWatched(m.id));
+  if(!lib.length){o.innerHTML=emptyState('You are not tracking any unwatched movies.','explore','Explore movies');return}
   o.innerHTML=`<div id="g" class="grid"></div>`;
   const g=o.querySelector('#g');
   lib.forEach(m=>{
     const card=posterCard({id:m.id,name:m.name,image:m.image,sub:'Tracking',kind:'movie'});
     g.appendChild(card);
-    if(Store.omdb()){
-      Api.movieExtended(m.id).then(mv=>attachPosterRating(card,getImdbId(mv))).catch(()=>{});
-    }
   });
+}
+async function renderMovieUpcomingTab(o){
+  const allLib=Object.values(Store.lib('movie')).filter(m=>!Store.isMovieWatched(m.id));
+  if(!allLib.length){o.innerHTML=emptyState('You are not tracking any movies yet.','explore','Explore movies');return}
+  o.innerHTML=loadingHtml('Loading…');
+  let items=[];
+  try{
+    const results=await Promise.all(allLib.map(async m=>{
+      try{
+        const ext=await Api.movieExtended(m.id);
+        const releaseDate=(ext.releases||[]).map(r=>r.date).filter(Boolean).sort()[0]||null;
+        if(!releaseDate||!isFuture(releaseDate))return null;
+        return{movie:m,date:releaseDate};
+      }catch{return null}
+    }));
+    items=results.filter(Boolean);
+  }catch{items=[]}
+  items.sort((a,b)=>a.date.localeCompare(b.date));
+  if(!items.length){o.innerHTML=emptyState('No upcoming releases for your tracked movies.');return}
+  o.innerHTML='';
+  const wrap=document.createElement('div');
+  wrap.className='upcoming-list';
+  let lastDate=null;
+  items.forEach(({movie:m,date})=>{
+    if(date!==lastDate){
+      lastDate=date;
+      const pill=document.createElement('div');
+      pill.className='upcoming-date-pill-wrap';
+      pill.innerHTML=`<span class="upcoming-date-pill">${fmtRelativeDate(date).toUpperCase()}</span>`;
+      wrap.appendChild(pill);
+    }
+    wrap.appendChild(upcomingMovieRow(m,date));
+  });
+  o.appendChild(wrap);
+}
+function upcomingMovieRow(m,date){
+  const el=document.createElement('div');
+  el.className='feed-item upcoming-feed-item';
+  const seq=_upcomingSeq++;
+  const nameId=`upcoming-movie-${seq}`;
+  const today=new Date();today.setHours(0,0,0,0);
+  const diffDays=Math.round((new Date(date+'T00:00:00')-today)/86400000);
+  const isNew=diffDays<=7;
+  const daysLabel=diffDays<=0?'Today':diffDays===1?'1d':`${diffDays}d`;
+  el.innerHTML=`
+    <img class="feed-thumb" src="${imgUrl(m.image)}" alt="" />
+    <div class="feed-content">
+      <div class="feed-body">
+        <div class="feed-meta-row">
+          <span class="upcoming-show-pill" id="${nameId}">${m.name}</span>
+          ${isNew?'<span class="upcoming-new">NEW</span>':''}
+        </div>
+        <div class="feed-meta-row">
+          <span class="ep-meta future">Movie</span>
+        </div>
+      </div>
+      <div class="upcoming-right">
+        <span class="upcoming-days-left">${daysLabel}</span>
+      </div>
+    </div>`;
+  wireTitleTranslate(el,nameId,m.name);
+  el.addEventListener('click',()=>nav('movie',{id:m.id}));
+  return el;
 }
 
 function renderStats(o){
@@ -1240,18 +1433,20 @@ function renderStats(o){
         <div class="stat-single">${moviesWatchedCount.toLocaleString()}</div>
       </div>
     </div>
-    <div class="section-h">Local Data File</div>
+    <div id="profile-lists"></div>
+    <div class="section-h profile-title">Local Data</div>
     <div class="card wide">
       <div class="field"><span id="fs-status">${FileSync.supported?'No data file connected yet. Choose or create a .txt file to keep your data auto-saved on this device.':"Your browser can't auto-save to a file, but you can still export/import a backup .txt file below."}</span></div>
       <div class="row" style="flex-wrap:wrap">
         ${FileSync.supported?`<button type="button" id="fs-choose" class="btn btn-accent">Choose / Create Data File</button><button type="button" id="fs-load" class="btn btn-ghost">Load From File</button>`:''}
         <button type="button" id="fs-download" class="btn">Download Backup (.txt)</button>
         <button type="button" id="fs-import" class="btn btn-ghost">Import Backup (.txt)</button>
+        <button type="button" id="fs-delete" class="btn btn-disconnect">Delete Local Data</button>
       </div>
       <input type="file" id="fs-import-input" accept=".txt" hidden />
       <p id="fsmsg" class="msg"></p>
     </div>
-    <div class="section-h">Connections</div>
+    <div class="section-h profile-title">Connections</div>
     <form id="f" class="card wide">
       <div class="field"><span>TVDB API Key — <a href="https://thetvdb.com/api-information" target="_blank">get one free</a></span>
         <div class="row conn-row"><input type="text" id="i-key" placeholder="e.g. 0a1b2c3d-..." /><button type="submit" id="tvdb-toggle" class="btn btn-accent">Connect</button></div>
@@ -1262,6 +1457,15 @@ function renderStats(o){
       </div>
       <p id="omsg" class="msg"></p>
     </form>`;
+  const listsHost=o.querySelector('#profile-lists');
+  const showItems=Object.values(Store.lib('show'));
+  const movieItems=Object.values(Store.lib('movie')).filter(m=>Store.isMovieWatched(m.id));
+  const favShowItems=Object.values(Store.fav('show'));
+  const favMovieItems=Object.values(Store.fav('movie'));
+  listsHost.appendChild(hscrollSection({title:'Shows',items:showItems,kind:'show',onHeaderClick:()=>nav('libshows')}));
+  listsHost.appendChild(hscrollSection({title:'Favorite shows',heart:true,items:favShowItems,kind:'show',onHeaderClick:()=>nav('favshows')}));
+  listsHost.appendChild(hscrollSection({title:'Movies',items:movieItems,kind:'movie',onHeaderClick:()=>nav('libmovies')}));
+  listsHost.appendChild(hscrollSection({title:'Favorite movies',heart:true,items:favMovieItems,kind:'movie',onHeaderClick:()=>nav('favmovies')}));
   o.querySelector('#i-key').value=Store.apikey();
   o.querySelector('#i-omdb').value=Store.omdb();
   const tvdbToggle=o.querySelector('#tvdb-toggle');
@@ -1408,6 +1612,21 @@ function renderStats(o){
       renderStats(o);
     }catch{fsmsg.textContent='That file could not be read.';fsmsg.className='msg err'}
   });
+  o.querySelector('#fs-delete').addEventListener('click',()=>{
+    showConfirmDialog({
+      title:'Delete local data?',
+      message:'This clears your library, watched history, favorites, and ratings on this device. This cannot be undone.',
+      confirmLabel:'Delete',
+      danger:true,
+      onConfirm:()=>{
+        Object.values(K).forEach(k=>localStorage.removeItem(k));
+        bumpShowsCache();
+        bumpMoviesCache();
+        fsmsg.textContent='Local data deleted.';fsmsg.className='msg ok';
+        renderStats(o);
+      }
+    });
+  });
 }
 
 let _posterNameSeq=0;
@@ -1417,6 +1636,54 @@ function attachPosterRating(card,imdbId){
     if(!r||!r.imdb)return;
     const chip=card.querySelector('.poster-rating');
     if(chip){chip.textContent=`★ ${r.imdb}`;chip.style.display='flex'}
+  });
+}
+function searchResultRow({id,name,image,kind}){
+  const el=document.createElement('div');
+  el.className='search-row';
+  const isMovie=kind==='movie';
+  const skind=isMovie?'movie':'show';
+  el.dataset.id=id;
+  el.dataset.kind=skind;
+  const tracked=Store.inLib(skind,id);
+  const typeIcon=isMovie
+    ?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 4v16M17 4v16M2 9h5M2 15h5M17 9h5M17 15h5"/></svg>'
+    :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M8 5V3M16 5V3M2 10h20"/></svg>';
+  const nameId=`search-name-${skind}-${id}-${_posterNameSeq++}`;
+  el.innerHTML=`
+    <img class="search-row-thumb" src="${imgUrl(image)}" alt="${name||''}" />
+    <div class="search-row-body">
+      <div class="search-row-name" id="${nameId}">${name||'Untitled'}</div>
+      <div class="search-row-meta">
+        <span class="search-row-type">${typeIcon}${isMovie?'Movie':'Show'}</span>
+        <span class="search-row-rating" style="display:none">★ <span class="rating-val"></span></span>
+      </div>
+    </div>
+    <button type="button" class="search-add-btn ${tracked?'on':''}" title="${tracked?'Added':'Add'}">+</button>`;
+  wireTitleTranslate(el,nameId,name);
+  const addBtn=el.querySelector('.search-add-btn');
+  addBtn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const nowTracked=Store.inLib(skind,id);
+    if(nowTracked){
+      Store.rmLib(skind,id);
+    }else{
+      Store.addLib(skind,{id,name,image});
+    }
+    const on=!nowTracked;
+    addBtn.classList.toggle('on',on);
+    addBtn.title=on?'Added':'Add';
+    if(skind==='movie')bumpMoviesCache();else bumpShowsCache();
+  });
+  el.addEventListener('click',()=>nav(isMovie?'movie':'show',{id}));
+  return el;
+}
+function attachSearchRowRating(el,imdbId){
+  if(!imdbId||!Store.omdb())return;
+  fetchRatings(imdbId).then(r=>{
+    if(!r||!r.imdb)return;
+    const chip=el.querySelector('.search-row-rating');
+    if(chip){chip.querySelector('.rating-val').textContent=r.imdb;chip.style.display='inline-flex'}
   });
 }
 function posterCard({id,name,image,sub,kind='series',showType=false}){
@@ -1439,6 +1706,130 @@ function posterCard({id,name,image,sub,kind='series',showType=false}){
   return el;
 }
 
+function hscrollSection({title,heart,items,kind,onHeaderClick}){
+  const wrap=document.createElement('div');
+  wrap.className='hscroll-section';
+  const chevron='<svg class="hscroll-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
+  const head=document.createElement('button');
+  head.type='button';
+  head.className='hscroll-head';
+  head.innerHTML=`${heart?'<span class="hscroll-heart">♥</span>':''}<span class="hscroll-title">${title}</span>${chevron}`;
+  head.addEventListener('click',onHeaderClick);
+  wrap.appendChild(head);
+  if(!items.length){
+    const empty=document.createElement('div');
+    empty.className='hscroll-empty';
+    empty.textContent=heart?`No favorite ${kind==='movie'?'movies':'shows'} yet.`:`You are not tracking any ${kind==='movie'?'movies':'shows'} yet.`;
+    wrap.appendChild(empty);
+    return wrap;
+  }
+  const track=document.createElement('div');
+  track.className='hscroll-track';
+  items.forEach(item=>{
+    const el=document.createElement('div');
+    el.className='hscroll-item';
+    el.innerHTML=`<img src="${imgUrl(item.image)}" alt="${item.name||''}" />`;
+    el.addEventListener('click',()=>nav(kind==='movie'?'movie':'show',{id:item.id}));
+    track.appendChild(el);
+  });
+  wrap.appendChild(track);
+  return wrap;
+}
+function renderGridPage(o,{title,items,kind,backRoute,emptyMsg,emptyRoute,emptyLabel}){
+  o.innerHTML='';
+  const titleRow=document.createElement('div');
+  titleRow.className='title-row';
+  const h=document.createElement('div');
+  h.className='section-h profile-title sub-page-title';
+  h.style.margin='0';
+  h.textContent=title;
+  titleRow.appendChild(h);
+  titleRow.appendChild(backButton(backRoute));
+  o.appendChild(titleRow);
+  if(!items.length){
+    o.insertAdjacentHTML('beforeend',emptyState(emptyMsg,emptyRoute,emptyLabel));
+    return;
+  }
+  const g=document.createElement('div');
+  g.className='grid';
+  o.appendChild(g);
+  items.forEach(item=>{
+    const card=posterCard({id:item.id,name:item.name,image:item.image,sub:kind==='movie'?'Tracking':undefined,kind});
+    g.appendChild(card);
+    if(kind!=='movie')loadPosterProgress(card,item.id);
+  });
+}
+function renderFavShows(o){renderGridPage(o,{title:'Favorite shows',items:Object.values(Store.fav('show')),kind:'show',backRoute:'stats',emptyMsg:"You haven't favorited any shows yet.",emptyRoute:'shows',emptyLabel:'Browse shows'})}
+function renderFavMovies(o){renderGridPage(o,{title:'Favorite movies',items:Object.values(Store.fav('movie')),kind:'movie',backRoute:'stats',emptyMsg:"You haven't favorited any movies yet.",emptyRoute:'movies',emptyLabel:'Browse movies'})}
+async function renderLibShows(o){
+  const allLib=Object.values(Store.lib('show'));
+  o.innerHTML='';
+  const titleRow=document.createElement('div');
+  titleRow.className='title-row';
+  const h=document.createElement('div');
+  h.className='section-h profile-title sub-page-title';
+  h.style.margin='0';
+  h.textContent='Shows';
+  titleRow.appendChild(h);
+  titleRow.appendChild(backButton('stats'));
+  o.appendChild(titleRow);
+  if(!allLib.length){
+    o.insertAdjacentHTML('beforeend',emptyState('You are not tracking any shows yet.','explore','Explore shows'));
+    return;
+  }
+  o.insertAdjacentHTML('beforeend',loadingHtml('Loading…'));
+  let dataList;
+  try{
+    dataList=await Promise.all(allLib.map(async s=>{
+      try{
+        const[eps,series]=await Promise.all([getEpisodes(s.id),Api.seriesExtended(s.id).catch(()=>null)]);
+        const ended=series?.status?.name==='Ended';
+        return{show:s,progress:calcShowProgress(eps,ended),lastWatchedAt:calcLastWatchedAt(eps),imdbId:series?getImdbId(series):null};
+      }catch{
+        return{show:s,progress:{pct:0,complete:false,watched:0,total:0},lastWatchedAt:0,imdbId:null};
+      }
+    }));
+  }catch{
+    dataList=allLib.map(s=>({show:s,progress:{pct:0,complete:false,watched:0,total:0},lastWatchedAt:0,imdbId:null}));
+  }
+  const loadingRow=o.querySelector('.loading-row');
+  if(loadingRow)loadingRow.remove();
+  const now=Date.now();
+  const stoppedList=[],nextToWatch=[],staleList=[],completedList=[],upToDateList=[];
+  dataList.forEach(item=>{
+    if(Store.isStopped('show',item.show.id)){stoppedList.push(item);return}
+    if(item.progress.watched===0)return;
+    if(item.progress.complete){completedList.push(item);return}
+    if(item.progress.upToDate){upToDateList.push(item);return}
+    if(now-item.lastWatchedAt>=STALE_MS){staleList.push(item);return}
+    nextToWatch.push(item);
+  });
+  if(!nextToWatch.length&&!staleList.length&&!stoppedList.length&&!completedList.length&&!upToDateList.length){
+    o.insertAdjacentHTML('beforeend',emptyState('Nothing to show here yet.'));
+    return;
+  }
+  function renderCategory(title,items){
+    if(!items.length)return'';
+    return`<div class="cat-section"><div class="cat-box-wrap"><div class="cat-box">${title}</div></div><div class="grid" data-cat="${title}"></div></div>`;
+  }
+  o.insertAdjacentHTML('beforeend',`${renderCategory('Next to watch',nextToWatch)}${renderCategory("HAVEN'T WATCHED FOR A WHILE",staleList)}${renderCategory('Up to date',upToDateList)}${renderCategory('Completed',completedList)}${renderCategory('Stopped watching',stoppedList)}`);
+  function fillCategory(title,items){
+    const g=o.querySelector(`.grid[data-cat="${title}"]`);
+    if(!g)return;
+    items.forEach(({show:s,progress,imdbId})=>{
+      const card=posterCard({id:s.id,name:s.name,image:s.image,sub:'Tracking',kind:'series'});
+      g.appendChild(card);
+      updatePosterProgress(card,{...progress,stopped:Store.isStopped('show',s.id)});
+    });
+  }
+  fillCategory('Next to watch',nextToWatch);
+  fillCategory("HAVEN'T WATCHED FOR A WHILE",staleList);
+  fillCategory('Stopped watching',stoppedList);
+  fillCategory('Completed',completedList);
+  fillCategory('Up to date',upToDateList);
+}
+function renderLibMovies(o){renderGridPage(o,{title:'Movies',items:Object.values(Store.lib('movie')).filter(m=>Store.isMovieWatched(m.id)),kind:'movie',backRoute:'stats',emptyMsg:"You haven't watched any tracked movies yet.",emptyRoute:'explore',emptyLabel:'Explore movies'})}
+
 function caughtUpCard(bannerUrl){
   const el=document.createElement('div');
   el.className='upnext-caughtup';
@@ -1454,7 +1845,17 @@ function caughtUpMiniCard(bannerUrl){
   return el;
 }
 let _upcomingSeq=0;
-function upcomingRow(s,ep){
+function fmtAirTime(t){
+  if(!t)return null;
+  const m=/^(\d{1,2}):(\d{2})/.exec(t);
+  if(!m)return t;
+  let h=parseInt(m[1],10);
+  const min=m[2];
+  const ampm=h>=12?'PM':'AM';
+  h=h%12;if(h===0)h=12;
+  return`${h}:${min} ${ampm}`;
+}
+function upcomingRow(s,ep,meta={}){
   const el=document.createElement('div');
   el.className='feed-item upcoming-feed-item';
   el.dataset.epId=ep.id;
@@ -1465,6 +1866,8 @@ function upcomingRow(s,ep){
   const diffDays=Math.round((new Date(ep.aired+'T00:00:00')-today)/86400000);
   const isNew=diffDays<=7;
   const daysLabel=diffDays<=0?'Today':diffDays===1?'1d':`${diffDays}d`;
+  const airtime=fmtAirTime(meta.airtime);
+  const channel=meta.channel||null;
   el.innerHTML=`
     <img class="feed-thumb" src="${imgUrl(ep.image||s.image)}" alt="" />
     <div class="feed-content">
@@ -1478,7 +1881,11 @@ function upcomingRow(s,ep){
         </div>
         <div class="feed-title" id="${titleId}">${ep.name||'TBA'}</div>
       </div>
-      <span class="upcoming-days-left">${daysLabel}</span>
+      <div class="upcoming-right">
+        ${airtime?`<span class="upcoming-airtime">${airtime}</span>`:''}
+        ${channel?`<span class="upcoming-channel">${channel}</span>`:''}
+        <span class="upcoming-days-left">${daysLabel}</span>
+      </div>
     </div>`;
   wireTitleTranslate(el,showNameId,s.name);
   wireTitleTranslate(el,titleId,ep.name);
@@ -1561,7 +1968,7 @@ async function renderShow(o,{id}){
     document.addEventListener('nx:stopchange',window._nxStopListener);
     content.style.paddingTop='';
     content.innerHTML='';
-    content.appendChild(detailHeroWrap({bannerUrl,backEl:backButton('shows'),heroEl:hero,progressEl}));
+    content.appendChild(detailHeroWrap({bannerUrl,backEl:backButton(showBackRoute),heroEl:hero,progressEl}));
     const body=document.createElement('div');
     body.className='detail-body';
     const showItem={id:series.id,name:series.name,image:series.image};
@@ -1616,7 +2023,7 @@ async function renderShow(o,{id}){
     o.className='';
     content.style.paddingTop='';
     content.innerHTML='';
-    content.appendChild(backButton('shows'));
+    content.appendChild(backButton(showBackRoute));
     content.insertAdjacentHTML('beforeend',emptyState(err.message));
   }
 }
@@ -1754,6 +2161,18 @@ function showHero(series,progress){
   return wrap;
 }
 
+function toYoutubeEmbed(url){
+  if(!url)return null;
+  try{
+    const u=new URL(url);
+    if(u.hostname.includes('youtu.be'))return`https://www.youtube.com/embed/${u.pathname.slice(1)}`;
+    if(u.hostname.includes('youtube.com')){
+      if(u.pathname==='/watch'&&u.searchParams.get('v'))return`https://www.youtube.com/embed/${u.searchParams.get('v')}`;
+      if(u.pathname.startsWith('/embed/'))return url;
+    }
+  }catch{}
+  return null;
+}
 async function renderMovie(o,{id}){
   o.className='detail-view';
   o.innerHTML=`<div id="content" style="padding-top:28px">${loadingHtml('Loading…')}</div>`;
@@ -1786,7 +2205,7 @@ async function renderMovie(o,{id}){
       </div>`;
     content.style.paddingTop='';
     content.innerHTML='';
-    content.appendChild(detailHeroWrap({bannerUrl,backEl:backButton('movies'),heroEl:hero}));
+    content.appendChild(detailHeroWrap({bannerUrl,backEl:backButton(movieBackRoute),heroEl:hero}));
     wireTrackFav(hero,'movie',{id:movie.id,name:movie.name,image:movie.image});
     wireOverview(hero,'overview-text-movie',movie.overview||'No overview available.');
     wireTitleTranslate(hero,'title-text-movie',movie.name);
@@ -1797,17 +2216,56 @@ async function renderMovie(o,{id}){
       b.classList.toggle('btn-accent',v);
       b.textContent=v?'✓ Watched':'Mark watched';
       hero.querySelector('.rewatch-group')?.classList.toggle('hidden',!v);
+      bumpMoviesCache();
     });
     wireRewatchGroup(hero.querySelector('.rewatch-group'),{
       inc:()=>Store.bumpRewatch('movie',movie.id),
       dec:()=>Store.decRewatch('movie',movie.id)
     });
     attachRatings(hero,movie);
+    const body=document.createElement('div');
+    body.className='detail-body';
+    const cast=(movie.characters||[]).filter(c=>c.personName||c.name);
+    if(cast.length){
+      const castH=document.createElement('div');
+      castH.className='section-h';
+      castH.textContent='Cast';
+      body.appendChild(castH);
+      const castTrack=document.createElement('div');
+      castTrack.className='cast-track';
+      cast.slice(0,25).forEach(c=>{
+        const item=document.createElement('div');
+        item.className='cast-item';
+        item.innerHTML=`
+          <img class="cast-photo" src="${imgUrl(c.image||c.personImgURL)}" alt="${c.personName||''}" />
+          <div class="cast-name">${c.personName||''}</div>
+          <div class="cast-role">${c.name||''}</div>`;
+        castTrack.appendChild(item);
+      });
+      body.appendChild(castTrack);
+    }
+    const trailer=(movie.trailers||[])[0];
+    if(trailer?.url){
+      const trailerH=document.createElement('div');
+      trailerH.className='section-h';
+      trailerH.textContent='Trailer';
+      body.appendChild(trailerH);
+      const embedUrl=toYoutubeEmbed(trailer.url);
+      if(embedUrl){
+        const wrap=document.createElement('div');
+        wrap.className='trailer-embed-wrap';
+        wrap.innerHTML=`<iframe src="${embedUrl}" title="Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        body.appendChild(wrap);
+      }else{
+        body.insertAdjacentHTML('beforeend',`<a class="btn" href="${trailer.url}" target="_blank" rel="noopener">▶ Watch trailer</a>`);
+      }
+    }
+    if(body.children.length)content.appendChild(body);
   }catch(err){
     o.className='';
     content.style.paddingTop='';
     content.innerHTML='';
-    content.appendChild(backButton('movies'));
+    content.appendChild(backButton(movieBackRoute));
     content.insertAdjacentHTML('beforeend',emptyState(err.message));
   }
 }

@@ -25,7 +25,7 @@
   --green:#66cc00; --red:#ff3f3f;
   --rw-inc:var(--green); --rw-dec:var(--red);
   --radius:16px;
-  --page-width:72%;
+  --page-width:720px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:#303030;color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;scrollbar-width:none;-ms-overflow-style:none}
@@ -34,7 +34,7 @@ button,input{font-family:inherit;color:inherit}
 a{color:var(--accent);text-decoration:none}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #shell{display:flex;flex-direction:column;height:100vh;height:100dvh;align-items:center;gap:0}
-#main{display:flex;flex-direction:column;min-height:0;flex:1;order:1;width:var(--page-width);max-width:100%;background:var(--bg);margin:0}
+#main{display:flex;flex-direction:column;min-height:0;flex:1;order:1;width:100%;max-width:var(--page-width);background:var(--bg);margin:0}
 #topbar{min-height:56px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:10px 20px;gap:14px;flex-shrink:0}
 .topbar-search{flex:1;min-width:160px;max-width:460px;display:flex;align-items:center;position:relative}
 .topbar-search input{flex:1;min-width:0;padding-right:42px}
@@ -42,7 +42,7 @@ a{color:var(--accent);text-decoration:none}
 
 .search-btn:hover{border-color:var(--accent);color:var(--accent)}
 .search-btn svg{width:16px;height:16px}
-#bottomnav{order:2;flex-shrink:0;display:flex;align-items:stretch;justify-content:center;gap:7.25%;background:#000;border-top:1px solid var(--border);padding:6px 0 calc(6px + env(safe-area-inset-bottom));width:var(--page-width);max-width:100%;min-height:52px;margin:0}
+#bottomnav{order:2;flex-shrink:0;display:flex;align-items:stretch;justify-content:center;gap:7.25%;background:#000;border-top:1px solid var(--border);padding:6px 0 calc(6px + env(safe-area-inset-bottom));width:100%;max-width:var(--page-width);min-height:52px;margin:0}
 .nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:none;border:none;border-radius:10px;padding:6px 4px;text-align:center;font-size:11px;font-weight:600;color:#5a5a5a;cursor:pointer;flex:0 0 15.94%;max-width:15.94%;min-height:40px;transition:color .15s ease}
 .nav-item:hover{color:#9a9a9a}
 .nav-item.active{background:none;color:#ffffff}
@@ -62,7 +62,7 @@ input[type=text]:focus,input[type=text]:focus-visible{outline:none}
 .conn.on .dot{background:var(--accent);box-shadow:0 0 0 3px var(--accent-dark)}
 .conn.err{border-color:var(--red);color:var(--red)}
 .conn.err .dot{background:var(--red)}
-#outlet{flex:1;overflow-y:auto;padding:28px 20px;scrollbar-width:none;-ms-overflow-style:none}
+#outlet{flex:1;overflow-y:auto;overflow-x:hidden;padding:28px 20px;scrollbar-width:none;-ms-overflow-style:none}
 #outlet::-webkit-scrollbar{display:none}
 .sub{color:var(--text-dim);margin:0 0 24px;font-size:14px}
 .loading-row{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--text-dim);font-size:14px;margin:0 0 24px;padding:20px 0}
@@ -101,6 +101,7 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .poster-progress{height:6px;background:var(--border)}
 .poster-progress-fill{height:100%;background:var(--progress);transition:width .25s ease,background .25s ease}
 .poster-progress-fill.complete{background:var(--complete)}
+.poster-progress-fill.uptodate{background:var(--green)}
 .poster-progress-fill.stopped{background:var(--rt)}
 .check{width:34px;height:34px;border-radius:50%;border:2px solid var(--border);background:var(--bg-elev);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:18px;color:transparent;margin-right:8px}
 .check.on{background:var(--green);border-color:var(--green);color:#0a1a00}
@@ -112,7 +113,7 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .rating-chip{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;border:1px solid var(--border)}
 .rating-chip.imdb{color:var(--imdb);background:#3d3d3d;border:1px solid rgba(255,255,255,.4);padding:8px 18px;font-size:13px}
 .feed-item{display:flex;align-items:stretch;background:#000;border:1px solid var(--border);border-radius:8px;margin-bottom:10px;overflow:hidden;height:93px}
-.feed-thumb{width:276px;height:100%;align-self:stretch;object-fit:cover;background:var(--bg-elev);flex-shrink:0;border-radius:0 var(--radius) var(--radius) 0}
+.feed-thumb{width:188px;height:100%;align-self:stretch;object-fit:cover;background:var(--bg-elev);flex-shrink:0;border-radius:0 var(--radius) var(--radius) 0}
 .feed-content{display:flex;align-items:center;gap:14px;flex:1;min-width:0;padding:10px 12px}
 .feed-body{flex:1;min-width:0}
 .feed-show{font-size:12px;color:var(--text);font-weight:600}
@@ -166,8 +167,8 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 #outlet.detail-view{padding-top:0;background:#202020}
 .detail-hero-wrap{position:relative;margin:0 -20px 8px;overflow:visible}
 .detail-banner{position:absolute;inset:0;background-size:cover;background-position:center 20%;z-index:0;filter:brightness(.85)}
-.detail-hero-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.16) 0%,rgba(0,0,0,.6) 92%);z-index:1;pointer-events:none}
-.detail-hero-inner{position:relative;z-index:3;padding:28px 20px 0}
+.detail-hero-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.78) 92%);z-index:1;pointer-events:none}
+.detail-hero-inner{position:relative;z-index:3;padding:28px 20px}
 .detail-progress-wrap{padding:14px 0 0;position:relative;z-index:2;max-width:none;width:100%}
 .detail-progress{height:10px;background:var(--border);border-radius:0;overflow:hidden;width:100%}
 .detail-progress-fill{height:100%;background:var(--progress);transition:width .25s ease,background .25s ease}
@@ -175,7 +176,7 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .detail-progress-fill.uptodate{background:var(--green)}
 .detail-progress-fill.stopped{background:var(--rt)}
 .detail-body{padding:0;background:#202020}
-.hero{display:flex;gap:26px;margin-bottom:18px}
+.hero{display:flex;gap:26px}
 .hero-info{flex:1;min-width:0}
 .hero img{width:190px;min-width:190px;height:285px;aspect-ratio:2/3;object-fit:cover;flex:0 0 190px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:0 10px 40px rgba(0,0,0,.45)}
 .hero-info h2{font-family:'Poppins',sans-serif;font-weight:700;font-size:26px;margin:0}
@@ -217,7 +218,7 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .toast.err{border-color:var(--red);color:var(--red)}
 .season-accordion{display:flex;flex-direction:column;gap:10px}
 .season-group{margin-bottom:0}
-.season-panel{background:#000;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.season-panel{background:#000;border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .season-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px 8px;cursor:pointer;text-align:left}
 .season-toggle:hover{background:rgba(255,255,255,.03)}
 .season-toggle-title{font-family:'Poppins',sans-serif;font-weight:600;font-size:18px;color:var(--text)}
@@ -246,6 +247,7 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .caughtup-mini-text{position:relative;z-index:1;font-family:'Poppins',sans-serif;font-weight:800;font-size:15px;color:var(--accent);text-shadow:0 1px 6px rgba(0,0,0,.6);padding:10px}
 .shows-page{display:flex;flex-direction:column;min-height:100%}
 #shows-tab-body,#movies-tab-body{display:flex;flex-direction:column;flex:1;min-height:0}
+#outlet.explore-route{padding:0}
 #outlet.shows-route{padding-top:0}
 #outlet.shows-route.upcoming-route{padding-bottom:0}
 .shows-tabs{display:flex;border-bottom:1px solid var(--border);margin:0 -20px 20px;padding:0;position:sticky;top:0;z-index:5;background:var(--bg)}
@@ -255,6 +257,7 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .upcoming-date-pill-wrap{text-align:center;margin:14px auto}
 .upcoming-date-pill-wrap:first-child{margin-top:2px}
 .upcoming-date-pill{display:inline-block;width:auto;background:#767676;border:none;border-radius:999px;padding:6px 16px;font-family:'Poppins',sans-serif;font-weight:700;font-size:11px;line-height:1;letter-spacing:.04em;text-transform:uppercase;color:#ffffff;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.upcoming-date-pill.today{background:var(--accent);color:#2b1200}
 .upcoming-list{background:#202020;border:none;box-shadow:none;border-radius:0;margin:0 -20px;padding:20px;flex:1}
 .upcoming-row{display:flex;align-items:center;gap:12px;background:#000;border:none;border-radius:14px;padding:10px;margin-bottom:10px;cursor:pointer}
 .upcoming-row:hover{background:#0a0a0a}
@@ -266,10 +269,17 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .upcoming-new{display:inline-block;background:var(--accent);color:#2b1200;font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px}
 .upcoming-show-pill{font-size:11px;font-weight:700;color:var(--text-dim);border:1px solid var(--border);border-radius:999px;padding:2px 8px;display:inline-block}
 .upcoming-feed-item{cursor:pointer;border:none}
-.upcoming-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:3px;flex-shrink:0;text-align:right}
+.upcoming-right{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:3px;flex-shrink:0;text-align:right}
 .upcoming-airtime{font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;color:var(--text);white-space:nowrap}
 .upcoming-channel{font-size:11px;color:var(--text-dim);white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis}
 .upcoming-days-left{font-family:'Poppins',sans-serif;font-weight:400;font-size:20px;color:#ffffff;flex-shrink:0;white-space:nowrap}
+.upcoming-movie-row{display:flex;align-items:stretch;background:#000;border:1px solid var(--border);border-radius:8px;margin-bottom:10px;overflow:hidden;height:170px;cursor:pointer}
+.upcoming-movie-thumb{width:110px;height:calc(100% - 20px);margin:10px 0 10px 10px;border-radius:10px;aspect-ratio:210/297;object-fit:cover;flex-shrink:0;background:var(--bg-elev)}
+.upcoming-movie-content{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;flex:1;min-width:0;padding:14px 16px;overflow:hidden;background:#000}
+.upcoming-movie-content::before{content:'';position:absolute;inset:0;background-image:var(--upcoming-bg,none);background-size:cover;background-position:center;opacity:.5;z-index:0}
+.upcoming-movie-content::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.6) 40%,rgba(0,0,0,.2) 100%);z-index:0}
+.upcoming-movie-body{position:relative;z-index:1;flex:1;min-width:0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.upcoming-movie-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:24px;line-height:1.2;color:#ffffff;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .upcoming-check{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--text-dim)}
 .hscroll-section{margin:0 0 26px}
 .hscroll-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;cursor:pointer;background:none;border:none;padding:0;width:100%;text-align:left;color:inherit}
@@ -283,7 +293,7 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .hscroll-item img{width:118px;height:177px;object-fit:cover;border-radius:10px;background:var(--bg-elev);display:block}
 .hscroll-empty{color:var(--text-dim);font-size:13px}
 .search-results-list{display:flex;flex-direction:column}
-.search-row{display:flex;align-items:center;gap:14px;padding:3.5px 20px;margin:0 -20px;border-bottom:1px solid var(--border);cursor:pointer}
+.search-row{display:flex;align-items:center;gap:14px;padding:7px 20px;margin:0;border-bottom:1px solid var(--border);cursor:pointer}
 .search-row:last-child{border-bottom:none}
 .search-row-thumb{width:45px;height:64px;border-radius:6px;object-fit:cover;flex-shrink:0;background:var(--bg-elev)}
 .search-row-body{flex:1;min-width:0}
@@ -292,17 +302,40 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .search-row-rating{display:flex;align-items:center;gap:3px;color:var(--imdb);font-weight:700}
 .search-row-type{display:flex;align-items:center;gap:5px}
 .search-row-type svg{width:14px;height:14px;stroke:currentColor;flex-shrink:0}
-.search-add-btn{width:38px;height:38px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;line-height:1;cursor:pointer;flex-shrink:0}
+.search-add-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:700;line-height:1;cursor:pointer;flex-shrink:0}
+.search-add-btn span{display:block;transform:translateY(-1px)}
 .search-add-btn.on{background:var(--accent);color:#2b1200}
-.cast-track{display:flex;gap:12px;overflow-x:auto;margin:0 -20px 20px;padding:0 20px 4px;scrollbar-width:none;-ms-overflow-style:none}
+.cast-track{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);column-gap:12px;row-gap:14px;overflow-x:auto;overflow-y:hidden;margin:0 -20px 20px;padding:0 20px 4px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
 .cast-track::-webkit-scrollbar{display:none}
-.cast-item{flex:0 0 auto;width:90px;text-align:center}
-.cast-photo{width:90px;height:90px;border-radius:50%;object-fit:cover;background:var(--bg-elev);display:block;margin-bottom:8px}
+.cast-item{width:100px;text-align:center}
+.cast-photo{width:100px;height:150px;border-radius:10px;object-fit:cover;background:var(--bg-elev);display:block;margin-bottom:8px}
 .cast-name{font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cast-role{font-size:11px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.trailer-embed-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:8px;overflow:hidden;background:#000;margin-bottom:20px}
+.trailer-thumb-wrap{position:relative;display:block;width:100%;padding-top:56.25%;border-radius:8px;overflow:hidden;background:#000;margin-bottom:20px;cursor:pointer}
+.trailer-thumb-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.trailer-play-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;transition:transform .15s ease,background .15s ease}
+.trailer-thumb-wrap:hover .trailer-play-badge{background:var(--rt);transform:translate(-50%,-50%) scale(1.08)}
+.trailer-embed-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:8px;overflow:hidden;background:#000;margin-bottom:8px}
 .trailer-embed-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-@media(max-width:720px){:root{--page-width:88.6%}.hero{flex-direction:column}.hero img{width:140px;min-width:140px;height:210px;flex-basis:auto}.brand span:last-child{display:none}.nav-label{font-size:9px}.continue-watching-list{gap:6px}.continue-watching-list .feed-thumb{width:101px}.continue-watching-list .feed-content{padding:8px 6px;gap:4px}.continue-watching-list .feed-title{font-size:11px}.continue-watching-list .ep-meta{font-size:13px}.continue-watching-list .check{width:24px;height:24px;font-size:12px;margin-right:0}}
+.trailer-fallback-link{display:inline-block;font-size:12px;color:var(--text-dim);margin-bottom:20px;text-decoration:none}
+.trailer-fallback-link:hover{color:var(--text)}
+.lazy-grid-sentinel{width:100%;height:1px}
+@media(max-width:720px){.hero{flex-direction:column}.hero img{width:140px;min-width:140px;height:210px;flex-basis:auto}.brand span:last-child{display:none}.nav-label{font-size:9px}.continue-watching-list{gap:6px}.continue-watching-list .feed-thumb{width:101px}.continue-watching-list .feed-content{padding:8px 6px;gap:4px}.continue-watching-list .feed-title{font-size:11px}.continue-watching-list .ep-meta{font-size:13px}.continue-watching-list .check{width:24px;height:24px;font-size:12px;margin-right:0}}
+@media(max-width:480px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:3px}
+  #topbar{padding:8px 12px;gap:8px}
+  .card{padding:14px}
+  .hero img{width:112px;min-width:112px;height:168px}
+  .hero-title-row h2{font-size:19px}
+  .cast-item{width:82px}
+  .cast-photo{width:82px;height:123px}
+  .upcoming-movie-row{height:140px}
+  .upcoming-movie-thumb{width:88px;margin:8px 0 8px 8px}
+  .upcoming-movie-title{font-size:18px}
+  .upcoming-movie-content{padding:10px 12px}
+  .modal-card{padding:16px}
+  .season-toggle{padding:10px 12px}
+}
 </style>
 </head>
 <body>
@@ -342,7 +375,7 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 </div>
 <div id="toasts"></div>
 <script>
-const K={apikey:'nx.apikey',omdb:'nx.omdb',token:'nx.token',exp:'nx.exp',lib:'nx.lib',movieLib:'nx.movieLib',watched:'nx.watched',movieWatched:'nx.movieWatched',favShows:'nx.favShows',favMovies:'nx.favMovies',rewatch:'nx.rewatch',epRewatch:'nx.epRewatch',seasonRewatch:'nx.seasonRewatch',profile:'nx.profile',stopped:'nx.stopped'};
+const K={apikey:'nx.apikey',omdb:'nx.omdb',token:'nx.token',exp:'nx.exp',lib:'nx.lib',movieLib:'nx.movieLib',watched:'nx.watched',movieWatched:'nx.movieWatched',favShows:'nx.favShows',favMovies:'nx.favMovies',rewatch:'nx.rewatch',epRewatch:'nx.epRewatch',seasonRewatch:'nx.seasonRewatch',profile:'nx.profile',stopped:'nx.stopped',showReg:'nx.showReg',movieReg:'nx.movieReg'};
 function lget(k,f){const r=localStorage.getItem(k);if(r===null)return f;try{return JSON.parse(r)}catch{return f}}
 function lset(k,v){localStorage.setItem(k,JSON.stringify(v));scheduleSync()}
 
@@ -374,21 +407,6 @@ async function idbSet(key,val){
       tx.onerror=()=>rej(tx.error);
     });
   }catch{return false}
-}
-function exportDataText(){
-  const data={};
-  Object.entries(K).forEach(([name,key])=>{
-    const raw=localStorage.getItem(key);
-    data[name]=raw!==null?JSON.parse(raw):null;
-  });
-  return JSON.stringify({app:'Nextup',exportedAt:new Date().toISOString(),data},null,2);
-}
-function importDataText(text){
-  const parsed=JSON.parse(text);
-  const data=parsed.data||parsed;
-  Object.entries(K).forEach(([name,key])=>{
-    if(data[name]!==undefined&&data[name]!==null)localStorage.setItem(key,JSON.stringify(data[name]));
-  });
 }
 let syncTimer=null;
 function scheduleSync(){
@@ -464,9 +482,28 @@ const Store={
 
   _libKey:kind=>kind==='movie'?K.movieLib:K.lib,
   lib:kind=>lget(Store._libKey(kind),{}),
-  addLib:(kind,item)=>{const k=Store._libKey(kind);const l=lget(k,{});l[item.id]={...item,addedAt:Date.now()};lset(k,l)},
+  addLib:(kind,item)=>{const k=Store._libKey(kind);const l=lget(k,{});l[item.id]={...item,addedAt:Date.now()};lset(k,l);Store.upsertReg(kind,item)},
   rmLib:(kind,id)=>{const k=Store._libKey(kind);const l=lget(k,{});delete l[id];lset(k,l)},
   inLib:(kind,id)=>Boolean(Store.lib(kind)[id]),
+
+  // Registry: a permanent record of every show/movie we've ever touched,
+  // keyed by id. Unlike `lib`, entries here are never removed, so the
+  // export/import feature can still name a show or movie whose "+ Add"
+  // entry was later removed from the library but that still has watched
+  // history (this matches the reference export file, where "Shows with
+  // episodes watched" can be larger than "Following" + "Stopped watching").
+  _regKey:kind=>kind==='movie'?K.movieReg:K.showReg,
+  reg:kind=>lget(Store._regKey(kind),{}),
+  upsertReg:(kind,item)=>{
+    if(!item||item.id==null)return;
+    const k=Store._regKey(kind);
+    const r=lget(k,{});
+    const prev=r[item.id]||{};
+    const clean={};
+    Object.entries(item).forEach(([key,val])=>{if(val!==undefined&&val!==null)clean[key]=val});
+    r[item.id]={...prev,...clean};
+    lset(k,r);
+  },
 
   _favKey:kind=>kind==='movie'?K.favMovies:K.favShows,
   fav:kind=>lget(Store._favKey(kind),{}),
@@ -476,12 +513,32 @@ const Store={
 
   watched:()=>lget(K.watched,{}),
   isWatched:id=>Boolean(Store.watched()[id]),
-  watchedAt:id=>{const v=Store.watched()[id];return typeof v==='number'?v:(v?Date.now():0)},
-  setWatched:(id,v)=>{const w=Store.watched();if(v)w[id]=Date.now();else delete w[id];lset(K.watched,w)},
+  // Old entries (from before per-episode metadata was tracked) are a plain
+  // timestamp number - keep reading those correctly.
+  watchedAt:id=>{const v=Store.watched()[id];if(v==null)return 0;return typeof v==='number'?v:(v.at||0)},
+  // `ctx` (optional) carries the extra detail the export/import format needs:
+  // {season, episode, runtime, showId, show:{id,name,image,aliases,averageRuntime}}.
+  // `show` (if given) is upserted into the show registry so its name/aliases
+  // survive even if the show is later removed from the library.
+  setWatched:(id,v,ctx={})=>{
+    const w=Store.watched();
+    if(v)w[id]={at:Date.now(),s:ctx.season??null,e:ctx.episode??null,r:ctx.runtime??null,showId:ctx.showId??null};
+    else delete w[id];
+    lset(K.watched,w);
+    if(v&&ctx.show)Store.upsertReg('show',ctx.show);
+  },
 
   movieWatched:()=>lget(K.movieWatched,{}),
   isMovieWatched:id=>Boolean(Store.movieWatched()[id]),
-  setMovieWatched:(id,v,extra={})=>{const w=Store.movieWatched();if(v)w[id]={runtime:extra.runtime||100,watchedAt:Date.now()};else delete w[id];lset(K.movieWatched,w)},
+  // `extra.movie` (optional), if given, is upserted into the movie registry
+  // for the same reason as `setWatched`'s `ctx.show` above.
+  setMovieWatched:(id,v,extra={})=>{
+    const w=Store.movieWatched();
+    if(v)w[id]={runtime:extra.runtime||100,watchedAt:Date.now()};
+    else delete w[id];
+    lset(K.movieWatched,w);
+    if(v&&extra.movie)Store.upsertReg('movie',extra.movie);
+  },
 
   rewatch:()=>lget(K.rewatch,{show:{},movie:{}}),
   getRewatch:(kind,id)=>(Store.rewatch()[kind]||{})[id]||0,
@@ -497,6 +554,7 @@ const Store={
   getSeasonRewatch:key=>Store.seasonRewatch()[key]||0,
   bumpSeasonRewatch:key=>{const r=Store.seasonRewatch();r[key]=(r[key]||0)+1;lset(K.seasonRewatch,r);return r[key]},
   decSeasonRewatch:key=>{const r=Store.seasonRewatch();r[key]=Math.max(0,(r[key]||0)-1);if(r[key]===0)delete r[key];lset(K.seasonRewatch,r);return r[key]||0},
+  setSeasonRewatchTo:(key,val)=>{const r=Store.seasonRewatch();if(val>0)r[key]=val;else delete r[key];lset(K.seasonRewatch,r);return r[key]||0},
 
   profile:()=>lget(K.profile,{name:'',avatar:'',banner:''}),
   setProfile:p=>lset(K.profile,{...Store.profile(),...p}),
@@ -505,7 +563,669 @@ const Store={
   isStopped:(kind,id)=>!!Store.stoppedMap()[`${kind}:${id}`],
   setStopped:(kind,id,v)=>{const m=Store.stoppedMap();const key=`${kind}:${id}`;if(v)m[key]=true;else delete m[key];lset(K.stopped,m)},
 };
+
+/* =====================================================================
+   DATA FILE FORMAT (export/import) — "Nextup_data.txt" style
+   =====================================================================
+   This replaces the old JSON localStorage dump entirely. The exact shape
+   was reverse-engineered from a reference file the user provided. See the
+   QUESTIONS/ASSUMPTIONS block near the bottom of this section for the
+   handful of details that file couldn't fully confirm - please read that
+   before relying on this in production.
+   ===================================================================== */
+const SEP='----------------------------------------------------------------------';
+
+function fmtYMD(ts){
+  if(!ts)return '';
+  const d=new Date(ts);
+  const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function parseYMD(s){
+  const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec((s||'').trim());
+  if(!m)return 0;
+  return new Date(+m[1],+m[2]-1,+m[3]).getTime();
+}
+// Right-aligned "  1." / " 10." numbering, matching the reference file.
+function numLabel(n){
+  return ' '+String(n).padStart(2,' ')+'.';
+}
+function firstAlias(item){
+  const list=item&&item.aliases;
+  if(!Array.isArray(list))return '';
+  const hit=list.find(a=>a&&a.name&&a.name!==item.name);
+  return hit?hit.name:'';
+}
+// "18d 55m" / "15d 8h 20m" style compact duration - distinct from the
+// formatDuration()/formatDurationParts() helpers used by the Profile page,
+// which are left untouched on purpose (see assumptions below).
+function formatWatchedDuration(totalMinutes){
+  const mins=Math.max(0,Math.round(totalMinutes||0));
+  const d=Math.floor(mins/1440);
+  const h=Math.floor((mins%1440)/60);
+  const m=mins%60;
+  const parts=[];
+  if(d)parts.push(`${d}d`);
+  if(h)parts.push(`${h}h`);
+  if(m||!parts.length)parts.push(`${m}m`);
+  return parts.join(' ');
+}
+
+// ---- export: build the grouped/derived data the text file needs ----
+
+function buildShowExportRows(){
+  const watched=Store.watched();
+  const reg=Store.reg('show');
+  const lib=Store.lib('show');
+  const groups=new Map();
+  Object.entries(watched).forEach(([epId,rec])=>{
+    if(!rec||typeof rec!=='object'||rec.showId==null)return; // legacy/unattributed entry - can't place it under a show
+    if(!groups.has(rec.showId))groups.set(rec.showId,[]);
+    groups.get(rec.showId).push({epId,s:rec.s,e:rec.e,r:rec.r,at:rec.at});
+  });
+  const rows=[];
+  groups.forEach((episodes,showId)=>{
+    const show=reg[showId]||lib[showId];
+    if(!show)return; // no known name for this id - nothing sensible to print
+    episodes.sort((a,b)=>(a.s===0?1:0)-(b.s===0?1:0)||(a.s-b.s)||(a.e-b.e));
+    const totalMin=episodes.reduce((sum,ep)=>{
+      const runtime=ep.r||show.averageRuntime||42;
+      const rw=Store.getEpRewatch(ep.epId);
+      return sum+runtime*(1+rw);
+    },0);
+    rows.push({show,episodes,totalMin});
+  });
+  rows.sort((a,b)=>b.episodes.length-a.episodes.length||a.show.name.localeCompare(b.show.name));
+  return rows;
+}
+
+function exportShowsSection(){
+  const rows=buildShowExportRows();
+  const lib=Store.lib('show');
+  let following=0,stopped=0;
+  Object.keys(lib).forEach(id=>{if(Store.isStopped('show',id))stopped++;else following++});
+  const favorites=Object.keys(Store.fav('show')).length;
+  const lines=[SEP,'SHOWS',SEP,
+    `  Shows with episodes watched: ${rows.length}`,
+    `  Following: ${following}`,
+    `  Stopped watching: ${stopped}`,
+    `  Favorites: ${favorites}`,
+    SEP];
+  rows.forEach((row,i)=>{
+    const {show,episodes,totalMin}=row;
+    const alt=firstAlias(show);
+    const parts=[`${numLabel(i+1)} ${show.name}`];
+    if(alt)parts.push(`[alt: ${alt}]`);
+    parts.push(`[tvdb:${show.id}]`);
+    if(Store.inLib('show',show.id))parts.push(Store.isStopped('show',show.id)?'[stopped watching]':'[following]');
+    parts.push(`[favorite:${Store.isFav('show',show.id)?1:0}]`);
+    parts.push(`[${episodes.length} eps watched]`);
+    parts.push(`[${formatWatchedDuration(totalMin)} watched]`);
+    lines.push(parts.join(' '));
+    episodes.forEach(ep=>{
+      const s=String(ep.s??0).padStart(2,'0'),e=String(ep.e??0).padStart(2,'0');
+      const runtime=ep.r||show.averageRuntime||42;
+      lines.push(`     S${s}E${e}  [id:${ep.epId}] [${runtime}min] [${fmtYMD(ep.at)}]`);
+    });
+    lines.push('');
+  });
+  return lines;
+}
+
+function buildMovieWatchedRows(){
+  const mw=Store.movieWatched();
+  const reg=Store.reg('movie');
+  const lib=Store.lib('movie');
+  const rows=Object.entries(mw).map(([id,rec])=>{
+    const movie=reg[id]||lib[id];
+    if(!movie)return null;
+    return {movie,runtime:rec.runtime||100,watchedAt:rec.watchedAt||0};
+  }).filter(Boolean);
+  rows.sort((a,b)=>b.watchedAt-a.watchedAt||a.movie.name.localeCompare(b.movie.name));
+  return rows;
+}
+
+function exportMoviesSections(){
+  const rows=buildMovieWatchedRows();
+  const libMovies=Store.lib('movie');
+  const watchlist=Object.values(libMovies).filter(m=>!Store.isMovieWatched(m.id));
+  const favorites=Object.keys(Store.fav('movie')).length;
+  const lines=[SEP,'MOVIES WATCHED',SEP,
+    `  Movies watched: ${rows.length}`,
+    `  Following (watchlist): ${watchlist.length}`,
+    `  Favorites: ${favorites}`,
+    SEP];
+  rows.forEach((row,i)=>{
+    const alt=firstAlias(row.movie);
+    const parts=[`${numLabel(i+1)} ${row.movie.name}`];
+    if(alt)parts.push(`[alt: ${alt}]`);
+    parts.push(`[tvdb:${row.movie.id}]`);
+    parts.push(`[${row.runtime}min]`);
+    parts.push(`[${fmtYMD(row.watchedAt)}]`);
+    lines.push(parts.join(' '));
+    lines.push('');
+  });
+  const sortedWatchlist=[...watchlist].sort((a,b)=>a.name.localeCompare(b.name));
+  lines.push(SEP,`MOVIE WATCHLIST (${sortedWatchlist.length})`,SEP);
+  sortedWatchlist.forEach((m,i)=>{
+    lines.push(`${numLabel(i+1)} ${m.name}  [tvdb:${m.id}]`);
+    lines.push('');
+  });
+  return lines;
+}
+
+function exportRewatchedEpisodesSection(){
+  const epRw=Store.epRewatch();
+  const watched=Store.watched();
+  const reg=Store.reg('show');
+  const lib=Store.lib('show');
+  const byShow=new Map();
+  Object.entries(epRw).forEach(([epId,count])=>{
+    if(!count)return;
+    const rec=watched[epId];
+    if(!rec||typeof rec!=='object'||rec.showId==null)return;
+    const show=reg[rec.showId]||lib[rec.showId];
+    if(!show)return;
+    if(!byShow.has(show.id))byShow.set(show.id,{show,eps:[]});
+    byShow.get(show.id).eps.push({epId,s:rec.s,e:rec.e,count});
+  });
+  const groups=[...byShow.values()].sort((a,b)=>a.show.name.localeCompare(b.show.name));
+  const lines=[SEP,'REWATCHED EPISODES',SEP];
+  groups.forEach(g=>{
+    lines.push(`  ${g.show.name}  [tvdb:${g.show.id}]`);
+    g.eps.sort((a,b)=>(a.s===0?1:0)-(b.s===0?1:0)||(a.s-b.s)||(a.e-b.e));
+    g.eps.forEach(ep=>{
+      const s=String(ep.s??0).padStart(2,'0'),e=String(ep.e??0).padStart(2,'0');
+      lines.push(`    S${s}E${e}  [TVDB ID:${ep.epId}] [${ep.count}]`);
+    });
+    lines.push('');
+  });
+  return lines;
+}
+
+function exportRewatchedMoviesSection(){
+  const rw=Store.rewatch().movie||{};
+  const reg=Store.reg('movie');
+  const lib=Store.lib('movie');
+  const rows=Object.entries(rw).filter(([,c])=>c>0).map(([id,count])=>{
+    const movie=reg[id]||lib[id];
+    return movie?{movie,count}:null;
+  }).filter(Boolean);
+  rows.sort((a,b)=>b.count-a.count||a.movie.name.localeCompare(b.movie.name));
+  const lines=[SEP,`REWATCHED MOVIES (${rows.length})`,SEP];
+  rows.forEach((row,i)=>{
+    lines.push(`${numLabel(i+1)} ${row.movie.name}  [TVDB ID:${row.movie.id}] [${row.count}]`);
+    lines.push('');
+  });
+  return lines;
+}
+
+function exportProfileSection(){
+  const username=Store.profile().name||'';
+  return [SEP,'PROFILE',SEP,`  Username: ${username}`,SEP,''];
+}
+function exportDataText(){
+  return [
+    ...exportProfileSection(),
+    ...exportShowsSection(),
+    ...exportMoviesSections(),
+    ...exportRewatchedEpisodesSection(),
+    ...exportRewatchedMoviesSection()
+  ].join('\n')+'\n';
+}
+
+// ---- import: parse the text format back into localStorage ----
+
+function importAliasStrings(hit){
+  const out=[hit&&hit.name];
+  const list=hit&&hit.aliases;
+  if(Array.isArray(list))list.forEach(a=>{if(typeof a==='string')out.push(a);else if(a&&a.name)out.push(a.name)});
+  return out.filter(Boolean);
+}
+// Picks the best search hit for a given (name, alt-name) pair: prefer an
+// exact name match, then use the alt name to break ties between several
+// exact matches, then fall back to matching the alt name directly.
+function pickBestSearchHit(hits,name,alt){
+  if(!Array.isArray(hits)||!hits.length)return null;
+  const norm=s=>(s||'').toLowerCase().trim();
+  const exact=hits.filter(h=>norm(h.name)===norm(name));
+  if(exact.length===1)return exact[0];
+  if(exact.length>1){
+    if(alt){
+      const withAlt=exact.filter(h=>importAliasStrings(h).some(a=>norm(a)===norm(alt)));
+      if(withAlt.length)return withAlt[0];
+    }
+    return exact[0];
+  }
+  if(alt){
+    const byAlt=hits.filter(h=>importAliasStrings(h).some(a=>norm(a)===norm(alt)));
+    if(byAlt.length)return byAlt[0];
+  }
+  return hits.length===1?hits[0]:null;
+}
+const _importShowCache=new Map(),_importMovieCache=new Map();
+// Resolution order: trust the file's [tvdb:ID] first (confirms it still
+// points at a real show); if that ID doesn't resolve, search by name; if
+// several shows share that name, use the [alt: ...] name to pick the right
+// one. If nothing can be confirmed (offline, deleted show, no match), fall
+// back to exactly what the file said so import still completes.
+async function resolveImportShow(fileId,name,alt){
+  const cacheKey=`${fileId??''}|${(name||'').toLowerCase()}`;
+  if(_importShowCache.has(cacheKey))return _importShowCache.get(cacheKey);
+  const p=(async()=>{
+    if(fileId!=null){
+      try{
+        const s=await Api.seriesExtended(fileId);
+        return{id:String(s.id),name:s.name,image:s.image,aliases:s.aliases,averageRuntime:s.averageRuntime};
+      }catch(_e){/* ID didn't resolve - fall through to name search */}
+    }
+    if(name){
+      try{
+        const hits=await Api.search(name,'series');
+        const hit=pickBestSearchHit(hits,name,alt);
+        if(hit){
+          const hid=numericId(hit);
+          try{
+            const s=await Api.seriesExtended(hid);
+            return{id:String(s.id),name:s.name,image:s.image,aliases:s.aliases,averageRuntime:s.averageRuntime};
+          }catch(_e){
+            return{id:String(hid),name:hit.name,image:hit.image_url};
+          }
+        }
+      }catch(_e){/* search unavailable (offline / no key) - fall through */}
+    }
+    return{id:fileId!=null?String(fileId):name,name};
+  })();
+  _importShowCache.set(cacheKey,p);
+  return p;
+}
+async function resolveImportMovie(fileId,name,alt){
+  const cacheKey=`${fileId??''}|${(name||'').toLowerCase()}`;
+  if(_importMovieCache.has(cacheKey))return _importMovieCache.get(cacheKey);
+  const p=(async()=>{
+    if(fileId!=null){
+      try{
+        const m=await Api.movieExtended(fileId);
+        return{id:String(m.id),name:m.name,image:m.image,aliases:m.aliases,runtime:m.runtime,year:m.year,releaseDate:firstReleaseDate(m)};
+      }catch(_e){}
+    }
+    if(name){
+      try{
+        const hits=await Api.search(name,'movie');
+        const hit=pickBestSearchHit(hits,name,alt);
+        if(hit){
+          const hid=numericId(hit);
+          try{
+            const m=await Api.movieExtended(hid);
+            return{id:String(m.id),name:m.name,image:m.image,aliases:m.aliases,runtime:m.runtime,year:m.year,releaseDate:firstReleaseDate(m)};
+          }catch(_e){
+            return{id:String(hid),name:hit.name,image:hit.image_url};
+          }
+        }
+      }catch(_e){}
+    }
+    return{id:fileId!=null?String(fileId):name,name};
+  })();
+  _importMovieCache.set(cacheKey,p);
+  return p;
+}
+async function mapLimit(items,limit,fn){
+  const out=new Array(items.length);
+  let next=0;
+  async function worker(){
+    while(next<items.length){
+      const cur=next++;
+      out[cur]=await fn(items[cur],cur);
+    }
+  }
+  await Promise.all(Array.from({length:Math.max(1,Math.min(limit,items.length))},worker));
+  return out;
+}
+
+async function importDataText(text){
+  const lines=(text||'').replace(/\r\n/g,'\n').split('\n');
+  const isSep=l=>/^-{10,}\s*$/.test(l||'');
+
+  function bracket(str,label){
+    const re=new RegExp('\\['+label+':\\s*([^\\]]*)\\]');
+    const m=re.exec(str);
+    return m?m[1].trim():null;
+  }
+  function flag(str,label){return new RegExp('\\['+label+'\\]').test(str)}
+  // Newer exports always carry an explicit [favorite:1]/[favorite:0] value.
+  // Older exports (from before this was added) only had a bare [favorite]
+  // tag present for favorited shows and nothing at all otherwise - keep
+  // reading those correctly too.
+  function parseFavoriteFlag(rest){
+    const v=bracket(rest,'favorite');
+    if(v!=null)return v.trim()==='1';
+    return flag(rest,'favorite');
+  }
+  function nameBeforeBrackets(rest){
+    const idxs=[rest.indexOf(' [alt:'),rest.indexOf(' [tvdb:')].filter(x=>x>=0);
+    const cut=idxs.length?Math.min(...idxs):rest.length;
+    return rest.slice(0,cut).trim();
+  }
+
+  function parseShowHeader(line){
+    const m=/^\s*\d+\.\s+(.*)$/.exec(line);
+    if(!m)return null;
+    const rest=m[1];
+    const id=bracket(rest,'tvdb');
+    if(id==null)return null;
+    return{
+      id,
+      name:nameBeforeBrackets(rest),
+      alt:bracket(rest,'alt'),
+      following:flag(rest,'following'),
+      stoppedFlag:flag(rest,'stopped watching'),
+      favorite:parseFavoriteFlag(rest)
+    };
+  }
+  function parseEpisodeLine(line){
+    const m=/^\s*S(\d+)E(\d+)\s+\[id:(\d+)\]\s+\[(\d+)min\]\s+\[([^\]]*)\]\s*$/.exec(line);
+    if(!m)return null;
+    return{s:+m[1],e:+m[2],epId:m[3],runtime:+m[4],date:m[5]};
+  }
+  function parseMovieHeader(line){
+    const m=/^\s*\d+\.\s+(.*)$/.exec(line);
+    if(!m)return null;
+    const rest=m[1];
+    const id=bracket(rest,'tvdb');
+    if(id==null)return null;
+    const runtimeM=/\[(\d+)min\]/.exec(rest);
+    const dateM=/\[(\d{4}-\d{2}-\d{2})\]/.exec(rest);
+    return{
+      id,
+      name:nameBeforeBrackets(rest),
+      alt:bracket(rest,'alt'),
+      runtime:runtimeM?+runtimeM[1]:null,
+      date:dateM?dateM[1]:null
+    };
+  }
+  function parseWatchlistLine(line){
+    const m=/^\s*\d+\.\s+(.*?)\s\s\[tvdb:(\d+)\]\s*$/.exec(line);
+    return m?{name:m[1].trim(),id:m[2]}:null;
+  }
+  function parseRewatchGroupHeader(line){
+    // 2-space indent, NOT a numbered line, ending in "  [tvdb:ID]"
+    if(/^\s*\d+\./.test(line))return null;
+    const m=/^\s\s(.*?)\s\s\[tvdb:(\d+)\]\s*$/.exec(line);
+    return m?{name:m[1].trim(),id:m[2]}:null;
+  }
+  function parseRewatchEpisodeLine(line){
+    const m=/^\s{3,}S(\d+)E(\d+)\s+\[TVDB ID:(\d+)\]\s+\[(\d+)\]\s*$/.exec(line);
+    return m?{s:+m[1],e:+m[2],epId:m[3],count:+m[4]}:null;
+  }
+  function parseRewatchMovieLine(line){
+    const m=/^\s*\d+\.\s+(.*?)\s\s\[TVDB ID:(\d+)\]\s+\[(\d+)\]\s*$/.exec(line);
+    return m?{name:m[1].trim(),id:m[2],count:+m[3]}:null;
+  }
+
+  // ---- Phase 1: parse the text into plain records (no network yet) ----
+  let importedUsername=null;
+  const showBlocks=[];       // {id,name,alt,following,stoppedFlag,favorite,episodes:[{s,e,epId,runtime,date}]}
+  const movieWatchedRows=[]; // {id,name,alt,runtime,date}
+  const watchlistRows=[];    // {id,name}
+  const rewatchGroups=[];    // {id,name,episodes:[{s,e,epId,count}]}
+  const rewatchMovieRows=[]; // {id,name,count}
+
+  let i=0;
+  while(i<lines.length){
+    if(!isSep(lines[i])){i++;continue}
+    const title=(lines[i+1]||'').trim();
+    if(!isSep(lines[i+2])){i++;continue}
+    i+=3;
+
+    if(title==='PROFILE'){
+      while(i<lines.length&&!isSep(lines[i])){
+        const m=/^\s*Username:\s?(.*)$/.exec(lines[i]);
+        if(m)importedUsername=m[1].trim();
+        i++;
+      }
+    }else if(title==='SHOWS'||title==='MOVIES WATCHED'){
+      // Skip the summary stat lines up to the next SEP - these are derived
+      // on export, not authoritative input.
+      while(i<lines.length&&!isSep(lines[i]))i++;
+      i++;
+      let curShow=null;
+      while(i<lines.length&&!isSep(lines[i])){
+        const line=lines[i];
+        if(title==='SHOWS'){
+          const ep=parseEpisodeLine(line);
+          if(ep&&curShow)curShow.episodes.push(ep);
+          else{
+            const h=parseShowHeader(line);
+            if(h){curShow={...h,episodes:[]};showBlocks.push(curShow)}
+          }
+        }else{
+          const h=parseMovieHeader(line);
+          if(h)movieWatchedRows.push(h);
+        }
+        i++;
+      }
+    }else if(/^MOVIE WATCHLIST/.test(title)){
+      while(i<lines.length&&!isSep(lines[i])){
+        const w=parseWatchlistLine(lines[i]);
+        if(w)watchlistRows.push(w);
+        i++;
+      }
+    }else if(title==='REWATCHED EPISODES'){
+      let curGroup=null;
+      while(i<lines.length&&!isSep(lines[i])){
+        const line=lines[i];
+        if(line.trim()===''){i++;continue}
+        const grp=parseRewatchGroupHeader(line);
+        if(grp){curGroup={...grp,episodes:[]};rewatchGroups.push(curGroup);i++;continue}
+        const ep=parseRewatchEpisodeLine(line);
+        if(ep&&curGroup)curGroup.episodes.push(ep);
+        // NOTE: season-level rewatch counters aren't in this file format,
+        // so they're intentionally left alone here - see assumptions below.
+        i++;
+      }
+    }else if(/^REWATCHED MOVIES/.test(title)){
+      while(i<lines.length&&!isSep(lines[i])){
+        const m=parseRewatchMovieLine(lines[i]);
+        if(m)rewatchMovieRows.push(m);
+        i++;
+      }
+    }
+    // loop continues; `i` now sits on the next SEP (or EOF)
+  }
+
+  // ---- Phase 2: resolve every show/movie against TheTVDB -----------------
+  // ID first (confirms the file's id still points at the right show/movie),
+  // then a name search, then the [alt: ...] name to pick between several
+  // same-named results. If TheTVDB can't be reached at all (no API key, no
+  // connection) every lookup fails fast and we fall back to the file's own
+  // id/name, so import still works offline - just without verification.
+  const CONCURRENCY=4;
+  const resolvedShowBlocks=await mapLimit(showBlocks,CONCURRENCY,async b=>({b,r:await resolveImportShow(b.id,b.name,b.alt)}));
+  const resolvedRewatchGroups=await mapLimit(rewatchGroups,CONCURRENCY,async g=>({g,r:await resolveImportShow(g.id,g.name,null)}));
+  const resolvedMovieWatched=await mapLimit(movieWatchedRows,CONCURRENCY,async m=>({m,r:await resolveImportMovie(m.id,m.name,m.alt)}));
+  const resolvedWatchlist=await mapLimit(watchlistRows,CONCURRENCY,async m=>({m,r:await resolveImportMovie(m.id,m.name,null)}));
+  const resolvedRewatchMovies=await mapLimit(rewatchMovieRows,CONCURRENCY,async m=>({m,r:await resolveImportMovie(m.id,m.name,null)}));
+
+  // ---- Phase 3: commit using the resolved (verified) ids ------------------
+  const newShowLib={},newMovieLib={},newWatched={},newMovieWatched={},
+    newFavShows={},newFavMovies={},newStopped={},
+    newShowReg={...Store.reg('show')},newMovieReg={...Store.reg('movie')},
+    newEpRewatch={},newMovieRewatch={};
+
+  function regItem(resolved,fallbackAlt){
+    const item={id:resolved.id,name:resolved.name};
+    if(resolved.image)item.image=resolved.image;
+    if(resolved.averageRuntime)item.averageRuntime=resolved.averageRuntime;
+    if(resolved.runtime)item.runtime=resolved.runtime;
+    if(resolved.year)item.year=resolved.year;
+    if(resolved.releaseDate)item.releaseDate=resolved.releaseDate;
+    if(Array.isArray(resolved.aliases)&&resolved.aliases.length)item.aliases=resolved.aliases;
+    else if(fallbackAlt)item.aliases=[{language:'',name:fallbackAlt}];
+    return item;
+  }
+
+  resolvedShowBlocks.forEach(({b,r})=>{
+    const item=regItem(r,b.alt);
+    newShowReg[r.id]={...newShowReg[r.id],...item};
+    if(b.following||b.stoppedFlag)newShowLib[r.id]={...item,addedAt:Date.now()};
+    if(b.stoppedFlag)newStopped[`show:${r.id}`]=true;
+    if(b.favorite)newFavShows[r.id]={...item,favAt:Date.now()};
+    b.episodes.forEach(ep=>{
+      newWatched[ep.epId]={at:parseYMD(ep.date)||Date.now(),s:ep.s,e:ep.e,r:ep.runtime,showId:r.id};
+    });
+  });
+
+  resolvedMovieWatched.forEach(({m,r})=>{
+    const item=regItem(r,m.alt);
+    newMovieReg[r.id]={...newMovieReg[r.id],...item};
+    newMovieLib[r.id]={...item,addedAt:Date.now()};
+    newMovieWatched[r.id]={runtime:m.runtime||r.runtime||100,watchedAt:parseYMD(m.date)||Date.now()};
+  });
+
+  resolvedWatchlist.forEach(({m,r})=>{
+    const item=regItem(r,null);
+    newMovieReg[r.id]={...newMovieReg[r.id],...item};
+    if(!newMovieLib[r.id])newMovieLib[r.id]={...item,addedAt:Date.now()};
+  });
+
+  // A rewatched show/movie may not appear in the SHOWS / MOVIES WATCHED
+  // sections at all in a given file (e.g. removed from the library while
+  // its rewatch history was kept). Register it and, if it has no base
+  // "watched" record yet, synthesize a minimal one - it must have been
+  // watched at least once to have been rewatched - so it still shows up
+  // correctly (and isn't silently dropped) on the next export.
+  resolvedRewatchGroups.forEach(({g,r})=>{
+    const item=regItem(r,null);
+    newShowReg[r.id]={...newShowReg[r.id],...item};
+    g.episodes.forEach(ep=>{
+      newEpRewatch[ep.epId]=ep.count;
+      if(!newWatched[ep.epId])newWatched[ep.epId]={at:Date.now(),s:ep.s,e:ep.e,r:null,showId:r.id};
+    });
+  });
+  resolvedRewatchMovies.forEach(({m,r})=>{
+    const item=regItem(r,null);
+    newMovieReg[r.id]={...newMovieReg[r.id],...item};
+    newMovieRewatch[r.id]=m.count;
+    if(!newMovieWatched[r.id])newMovieWatched[r.id]={runtime:r.runtime||100,watchedAt:Date.now()};
+    if(!newMovieLib[r.id])newMovieLib[r.id]={...item,addedAt:Date.now()};
+  });
+
+  // Derive each season's rewatch count from its episodes: a season counts
+  // as rewatched N times once every episode we know about in it has been
+  // individually rewatched at least N times (same rule the live season
+  // page uses). This can only see episodes that appear somewhere in the
+  // file (watched or rewatched) - it has no way to know about episodes the
+  // file never mentioned, so a season split across multiple non-exported
+  // episodes may undercount until the show's page is opened again.
+  const newSeasonRewatch={};
+  const seasonEpCounts={};
+  Object.entries(newWatched).forEach(([epId,rec])=>{
+    if(!rec||rec.showId==null||rec.s==null)return;
+    const key=`${rec.showId}:${rec.s}`;
+    (seasonEpCounts[key]=seasonEpCounts[key]||[]).push(newEpRewatch[epId]||0);
+  });
+  Object.entries(seasonEpCounts).forEach(([key,counts])=>{
+    const minCount=Math.min(...counts);
+    if(minCount>0)newSeasonRewatch[key]=minCount;
+  });
+
+  // A full import replaces the show/movie/watched state wholesale so the
+  // app matches the imported file exactly (registries are merged on top of
+  // whatever is already known, rather than wiped, so unrelated history
+  // already on this device isn't lost).
+  lset(K.lib,newShowLib);
+  lset(K.movieLib,newMovieLib);
+  lset(K.watched,newWatched);
+  lset(K.movieWatched,newMovieWatched);
+  lset(K.favShows,newFavShows);
+  lset(K.favMovies,newFavMovies);
+  lset(K.stopped,newStopped);
+  lset(K.showReg,newShowReg);
+  lset(K.movieReg,newMovieReg);
+  lset(K.epRewatch,newEpRewatch);
+  lset(K.seasonRewatch,newSeasonRewatch);
+  const rw=Store.rewatch();
+  rw.movie=newMovieRewatch;
+  lset(K.rewatch,rw);
+  if(importedUsername!=null)Store.setProfile({name:importedUsername});
+}
+
+/* ---------------------------------------------------------------------
+   QUESTIONS / ASSUMPTIONS - please check these against your real file
+   before relying on this:
+
+   1. RUNTIME & DATE SOURCE: your reference file shows a real per-episode
+      runtime and a per-episode date. The app never stored either before
+      (only a flat 42min/episode guess, and no per-episode date at all).
+      I made the app start recording the real episode runtime (from
+      TheTVDB) and the date *you mark it watched* (not its air date -
+      that's why every episode watched in one sitting shares one date in
+      your sample file). Episodes watched before this update won't have
+      this data and will be skipped by export (can't be attributed to a
+      show at all, since even the show link wasn't stored before). Is
+      "date watched" the correct field, or did you intend the episode's
+      original air date?
+
+   2. "154 shows" vs "115 following + 35 stopped": these don't add up in
+      your sample (154 ≠ 150), so I'm treating "shows with episodes
+      watched" as including shows that were later fully removed from your
+      library while keeping their watch history (a "[following]"/
+      "[stopped watching]" tag is only added when the show is still in
+      your library). Let me know if that's wrong.
+
+   3. "[favorite:1]"/"[favorite:0]" is now always present on every show
+      line (placed right after [following]/[stopped watching]), reading
+      1/0 explicitly. Older export files that only had a bare [favorite]
+      tag (present only when favorited) still import correctly too.
+
+   4. TOTAL WATCHED TIME per show: computed as
+      Σ(episode runtime × (1 + times rewatched)). This is a guess based on
+      how the existing Profile page folds rewatches into its total time;
+      the reference file's numbers weren't precise enough for me to
+      confirm the exact formula.
+
+   5. ALIAS ("[alt: ...]"): pulled from TheTVDB's `aliases` list on the
+      show/movie. Only shows/movies added or watched *after this update*
+      will have this saved - existing library entries won't show an alt
+      until you revisit them.
+
+   6. SORT ORDER for "REWATCHED EPISODES" (by show name, then by
+      season/episode) and "REWATCHED MOVIES" (by rewatch count, then
+      name): your sample's order didn't look sorted at all, so I picked
+      the most predictable ordering rather than trying to match it
+      exactly.
+
+   7. SEASON-level rewatch counters aren't stored directly in the file
+      format (there's no "season rewatch" section), so on import each
+      season's count is derived: it's counted as rewatched once every
+      episode of that season mentioned anywhere in the file has an equal
+      or higher per-episode rewatch count. This matches the live app's own
+      rule for syncing the two, but it can only see episodes the file
+      actually mentions.
+
+   8. Movies: unlike shows, marking a movie "watched" now also registers
+      it in your movie library on import (since the file has no separate
+      "orphaned movie" concept to preserve).
+
+   9. USERNAME: exported under a new "PROFILE" section at the top of the
+      file and restored to your profile name on import (only when that
+      section is present - importing an older file without it leaves your
+      current profile name untouched).
+   --------------------------------------------------------------------- */
+
 class ApiErr extends Error{constructor(m,s){super(m);this.status=s}}
+// Per-id caches for TVDB lookups that don't change within a session: without
+// these, visiting the shows/movies library (which looks every item up),
+// then opening one item's detail page, then going back, re-fetched the
+// exact same data from the network three separate times. Like epCache
+// below, these are intentionally simple (no TTL, cleared only on a full
+// page reload) - within one sitting, a show's extended info/artwork isn't
+// expected to change.
+function cachedApiCall(map,key,fetcher){
+  if(map.has(key))return Promise.resolve(map.get(key));
+  return fetcher().then(d=>{map.set(key,d);return d});
+}
+const _seriesExtCache=new Map(),_movieExtCache=new Map(),_seriesArtCache=new Map(),_movieArtCache=new Map(),_movieTrCache=new Map();
 const Api={
   base:'https://api4.thetvdb.com/v4',
   async login(apikey){
@@ -532,10 +1252,11 @@ const Api={
     return j;
   },
   search(q,type='series'){return this._get(`/search?query=${encodeURIComponent(q)}&type=${type}`)},
-  seriesExtended(id){return this._get(`/series/${id}/extended`)},
-  movieExtended(id){return this._get(`/movies/${id}/extended`)},
-  seriesArtworks(id,type){return this._get(`/series/${id}/artworks${type!=null?`?type=${type}`:''}`)},
-  movieArtworks(id,type){return this._get(`/movies/${id}/artworks${type!=null?`?type=${type}`:''}`)},
+  seriesExtended(id){return cachedApiCall(_seriesExtCache,id,()=>this._get(`/series/${id}/extended`))},
+  movieExtended(id){return cachedApiCall(_movieExtCache,id,()=>this._get(`/movies/${id}/extended`))},
+  movieTranslations(id,lang='eng'){return cachedApiCall(_movieTrCache,`${id}:${lang}`,()=>this._get(`/movies/${id}/translations/${lang}`))},
+  seriesArtworks(id,type){return cachedApiCall(_seriesArtCache,`${id}:${type??''}`,()=>this._get(`/series/${id}/artworks${type!=null?`?type=${type}`:''}`))},
+  movieArtworks(id,type){return cachedApiCall(_movieArtCache,`${id}:${type??''}`,()=>this._get(`/movies/${id}/artworks${type!=null?`?type=${type}`:''}`))},
   seriesEpisodes(id,page=0){return this._get(`/series/${id}/episodes/default?page=${page}`)},
 };
 const ratingsCache=new Map();
@@ -555,6 +1276,7 @@ function omdbEnqueue(fn){
     _omdbPump();
   });
 }
+let _omdbFatalWarned=false;
 async function omdbFetch(params){
   const key=(Store.omdb()||'').trim();
   if(!key)return null;
@@ -563,43 +1285,55 @@ async function omdbFetch(params){
     const res=await fetch(`https://www.omdbapi.com/?${qs.toString()}`,{method:'GET'});
     if(!res.ok){
       console.error('[nextup] OMDb request failed',res.status,res.statusText);
-      throw new Error(`OMDb HTTP ${res.status}`);
+      const err=new Error(`OMDb HTTP ${res.status}`);
+      err.status=res.status;
+      throw err;
     }
     const j=await res.json();
     if(j.Response==='False'){
-      console.warn('[nextup] OMDb error:',j.Error);
-      const err=new Error(j.Error||'OMDb error');
-      err.omdbError=j.Error||'';
+      // OMDb's free API returns HTTP 200 even for a bad key or an exhausted
+      // daily quota - the only way to tell those apart from a genuine
+      // "no such title" miss is this message string. Mark them so callers
+      // know retrying (or waiting) won't help right now.
+      const msg=j.Error||'';
+      const err=new Error(msg||'OMDb error');
+      err.omdbError=msg;
+      err.quotaExceeded=/limit reached/i.test(msg);
+      err.badKey=/invalid api key/i.test(msg);
+      if((err.quotaExceeded||err.badKey)&&!_omdbFatalWarned){
+        _omdbFatalWarned=true;
+        console.error(`[nextup] OMDb ratings disabled for this session: ${msg}`+(err.quotaExceeded?' (free-tier daily limit - ratings will resume once it resets)':' (check the key in Profile settings)'));
+      }else if(!err.quotaExceeded&&!err.badKey){
+        console.warn('[nextup] OMDb error:',msg);
+      }
       throw err;
     }
     return j;
   });
 }
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+async function withOneRetry(fn){
+  try{
+    return await fn();
+  }catch(err){
+    if(err.status===401||err.quotaExceeded||err.badKey)throw err; // retrying won't help
+    await sleep(700);
+    return await fn();
+  }
+}
 async function fetchRatings(imdbId){
   if(!imdbId||!Store.omdb())return null;
   if(ratingsCache.has(imdbId))return ratingsCache.get(imdbId);
   try{
-    const j=await omdbFetch({i:imdbId});
+    const j=await withOneRetry(()=>omdbFetch({i:imdbId}));
     const out={imdb:j.imdbRating&&j.imdbRating!=='N/A'?j.imdbRating:null};
     ratingsCache.set(imdbId,out);
     return out;
   }catch(err){
-    if(!/limit/i.test(err.omdbError||''))ratingsCache.set(imdbId,null);
-    return null;
-  }
-}
-const epRatingsCache=new Map();
-async function fetchEpisodeRating(seriesImdbId,season,episode){
-  if(!seriesImdbId||!season||!episode||!Store.omdb())return null;
-  const ck=`${seriesImdbId}:${season}:${episode}`;
-  if(epRatingsCache.has(ck))return epRatingsCache.get(ck);
-  try{
-    const j=await omdbFetch({i:seriesImdbId,Season:season,Episode:episode});
-    const out={imdb:j.imdbRating&&j.imdbRating!=='N/A'?j.imdbRating:null};
-    epRatingsCache.set(ck,out);
-    return out;
-  }catch(err){
-    if(!/limit/i.test(err.omdbError||''))epRatingsCache.set(ck,null);
+    // Don't cache failures (network hiccups, timeouts, transient OMDb errors) —
+    // caching them made ratings permanently blank for the rest of the session
+    // even after the underlying issue was gone. Only genuine "no rating" results
+    // (handled above) get cached.
     return null;
   }
 }
@@ -624,6 +1358,7 @@ function attachRatings(container,item){
     if(box)box.innerHTML=`<span class="rating-chip imdb">IMDb ${r.imdb||'—'}</span>`;
   });
 }
+
 function imgUrl(p){
   if(!p)return placeholder();
   if(p.startsWith('http'))return p;
@@ -661,6 +1396,26 @@ function fmtRelativeDate(d){
   return fmtDate(d);
 }
 function isFuture(d){if(!d)return true;return new Date(d+'T00:00:00')>new Date()}
+// Upcoming lists should include items airing/releasing *today*, not just
+// strictly-future ones - isFuture() alone excludes "today" once any time
+// has passed since midnight, which is most of the day.
+function isTodayOrFuture(d){
+  if(!d)return true;
+  const dt=new Date(d+'T00:00:00');
+  if(isNaN(dt))return true;
+  const today=new Date();today.setHours(0,0,0,0);
+  return dt>=today;
+}
+function upcomingDatePill(date){
+  const wrap=document.createElement('div');
+  wrap.className='upcoming-date-pill-wrap';
+  const label=fmtRelativeDate(date).toUpperCase();
+  wrap.innerHTML=`<span class="upcoming-date-pill${label==='TODAY'?' today':''}">${label}</span>`;
+  return wrap;
+}
+function firstReleaseDate(movieExt){
+  return (movieExt?.releases||[]).map(r=>r.date).filter(Boolean).sort()[0]||null;
+}
 function toast(msg,err){const root=document.getElementById('toasts');const el=document.createElement('div');el.className=`toast ${err?'err':''}`;el.textContent=msg;root.appendChild(el);setTimeout(()=>el.remove(),4000)}
 function numericId(hit){if(hit.tvdb_id)return hit.tvdb_id;const m=String(hit.id||'').match(/(\d+)$/);return m?m[1]:hit.id}
 
@@ -737,8 +1492,15 @@ function triggerConfetti(){
   document.head.appendChild(style);
 })();
 
+function hasRealName(e){
+  const n=(e?.name||'').trim();
+  return Boolean(n)&&n.toUpperCase()!=='TBA';
+}
 function calcShowProgress(eps,ended){
-  const counted=eps.filter(e=>e.seasonNumber>0);
+  // Specials (season 0), episodes with no real title yet (blank or "TBA"),
+  // and anything that hasn't aired yet are excluded from the total - a show
+  // is "done" once every *real, already-aired* episode has been watched.
+  const counted=eps.filter(e=>e.seasonNumber>0&&hasRealName(e)&&!isFuture(e.aired));
   if(!counted.length)return{pct:0,complete:false,upToDate:false,watched:0,total:0};
   const total=counted.length;
   const watched=counted.filter(e=>Store.isWatched(e.id)).length;
@@ -750,27 +1512,30 @@ function calcLastWatchedAt(eps){
   eps.forEach(e=>{const t=Store.watchedAt(e.id);if(t>max)max=t});
   return max;
 }
-function updatePosterProgress(card,{pct,complete,stopped}){
+function updatePosterProgress(card,{pct,complete,upToDate,stopped}){
   const fill=card.querySelector('.poster-progress-fill');
   if(!fill)return;
   fill.style.width=`${pct}%`;
-  fill.classList.toggle('complete',complete&&!stopped);
+  fill.classList.toggle('complete',Boolean(complete)&&!stopped);
+  fill.classList.toggle('uptodate',Boolean(upToDate)&&!stopped);
   fill.classList.toggle('stopped',Boolean(stopped));
 }
-function pickBannerUrl(artworks){
+function pickBannerUrl(artworks,kind){
   if(!artworks?.length)return null;
   const byScore=(a,b)=>(b.score||0)-(a.score||0);
-  const bg=artworks.filter(a=>a.type===3).sort(byScore);
-  const banner=artworks.filter(a=>a.type===1).sort(byScore);
+  const bgType=kind==='movie'?15:3;
+  const bannerType=kind==='movie'?14:1;
+  const bg=artworks.filter(a=>a.type===bgType).sort(byScore);
+  const banner=artworks.filter(a=>a.type===bannerType).sort(byScore);
   const pick=bg[0]||banner[0];
   return pick?imgUrl(pick.image):null;
 }
 async function getBannerUrl(kind,id,extended){
-  const fromExtended=pickBannerUrl(extended?.artworks);
+  const fromExtended=pickBannerUrl(extended?.artworks,kind);
   if(fromExtended)return fromExtended;
   try{
     const d=kind==='movie'?await Api.movieArtworks(id):await Api.seriesArtworks(id);
-    return pickBannerUrl(d.artworks||d)||null;
+    return pickBannerUrl(d.artworks||d,kind)||null;
   }catch{return null}
 }
 function updateShowProgressBar(wrap,progress){
@@ -847,7 +1612,7 @@ async function loadPosterProgress(card,showId){
   try{
     const[eps,series]=await Promise.all([getEpisodes(showId),Api.seriesExtended(showId).catch(()=>null)]);
     const ended=series?.status?.name==='Ended';
-    updatePosterProgress(card,calcShowProgress(eps,ended));
+    updatePosterProgress(card,{...calcShowProgress(eps,ended),stopped:Store.isStopped('show',showId)});
   }catch{}
 }
 function emptyState(msg,route,label){
@@ -874,10 +1639,10 @@ function openLibPopup(btn,kind,item){
   const removeLabel=kind==='movie'?'Remove Movie':'Remove Show';
   const stopped=Store.isStopped(kind,item.id);
   pop.innerHTML=`
-    <button type="button" class="lib-pop-stop">${stopped?'Resume Watching':'Stop watching'}</button>
+    ${kind==='movie'?'':`<button type="button" class="lib-pop-stop">${stopped?'Resume Watching':'Stop watching'}</button>`}
     <button type="button" class="lib-pop-remove">${removeLabel}</button>`;
   btn.appendChild(pop);
-  pop.querySelector('.lib-pop-stop').addEventListener('click',e=>{
+  pop.querySelector('.lib-pop-stop')?.addEventListener('click',e=>{
     e.stopPropagation();
     const next=!Store.isStopped(kind,item.id);
     Store.setStopped(kind,item.id,next);
@@ -905,14 +1670,15 @@ function openLibPopup(btn,kind,item){
     });
   },0);
 }
-function updateFavBtnUI(favBtn,kind,id){
-  const inLib=Store.inLib(kind,id);
-  favBtn.style.display=inLib?'':'none';
+function updateFavBtnUI(favBtn,kind,id,visibleFn){
+  const visible=(visibleFn||Store.inLib)(kind,id);
+  favBtn.style.display=visible?'':'none';
   const on=Store.isFav(kind,id);
   favBtn.classList.toggle('btn-accent',on);
   favBtn.textContent=on?'★ Favorited':'☆ Favorite';
 }
-function wireTrackFav(heroEl,kind,item){
+function wireTrackFav(heroEl,kind,item,visibleFn){
+  visibleFn=visibleFn||Store.inLib;
   const libBtn=heroEl.querySelector('#lib-btn');
   const favBtn=heroEl.querySelector('#fav-btn');
   if(libBtn){
@@ -925,7 +1691,7 @@ function wireTrackFav(heroEl,kind,item){
         Store.addLib(kind,item);
         Store.setStopped(kind,item.id,false);
         updateLibBtnUI(libBtn,kind,item.id);
-        if(favBtn)updateFavBtnUI(favBtn,kind,item.id);
+        if(favBtn)updateFavBtnUI(favBtn,kind,item.id,visibleFn);
         if(kind==='show')bumpShowsCache();else if(kind==='movie')bumpMoviesCache();
       }
     });
@@ -939,7 +1705,7 @@ function wireTrackFav(heroEl,kind,item){
     document.addEventListener('nx:libremoved',e=>{
       if(e.detail.kind===kind&&e.detail.id===item.id){
         Store.rmFav(kind,item.id);
-        updateFavBtnUI(favBtn,kind,item.id);
+        updateFavBtnUI(favBtn,kind,item.id,visibleFn);
       }
     });
   }
@@ -1084,6 +1850,7 @@ function resyncSearchRows(container){
   });
 }
 function renderExplore(o){
+  o.classList.add('explore-route');
   const gv=document.getElementById('global-search').value.trim();
   o.innerHTML='';
   if(!gv){
@@ -1122,8 +1889,6 @@ async function doExploreSearch(q,el){
       const id=numericId(h);
       const row=searchResultRow({id,name:h.name,image:h.image_url,kind});
       list.appendChild(row);
-      const imdbId=getImdbId(h);
-      attachSearchRowRating(row,imdbId);
     });
   }catch(err){el.innerHTML=emptyState(err.message)}
 }
@@ -1179,7 +1944,7 @@ async function renderWatchListTab(o){
   o.innerHTML=loadingHtml('Loading…');
   let dataList;
   try{
-    dataList=await Promise.all(allLib.map(async s=>{
+    dataList=await mapLimit(allLib,6,async s=>{
       try{
         const[eps,series]=await Promise.all([getEpisodes(s.id),Api.seriesExtended(s.id).catch(()=>null)]);
         const ended=series?.status?.name==='Ended';
@@ -1187,7 +1952,7 @@ async function renderWatchListTab(o){
       }catch{
         return{show:s,progress:{pct:0,complete:false,watched:0,total:0},lastWatchedAt:0,imdbId:null};
       }
-    }));
+    });
   }catch{
     dataList=allLib.map(s=>({show:s,progress:{pct:0,complete:false,watched:0,total:0},lastWatchedAt:0,imdbId:null}));
   }
@@ -1202,36 +1967,36 @@ async function renderWatchListTab(o){
   });
   function renderCategory(title,items){
     if(!items.length)return'';
-    return`<div class="cat-section"><div class="cat-box-wrap"><div class="cat-box">${title}</div></div><div class="grid" data-cat="${title}"></div></div>`;
+    return`<div class="cat-section"><div class="cat-box-wrap"><div class="cat-box">${title}</div></div><div class="cat-grid-host" data-cat="${title}"></div></div>`;
   }
   o.innerHTML=`${renderCategory('Next to watch',nextToWatch)}${renderCategory("HAVEN'T WATCHED FOR A WHILE",staleList)}${renderCategory("Haven't started",notStarted)}`;
-  function fillCategory(title,items){
-    const g=o.querySelector(`.grid[data-cat="${title}"]`);
-    if(!g)return;
-    items.forEach(({show:s,progress,imdbId})=>{
-      const card=posterCard({id:s.id,name:s.name,image:s.image,sub:'Tracking',kind:'series'});
-      g.appendChild(card);
-      updatePosterProgress(card,{...progress,stopped:Store.isStopped('show',s.id)});
+  function fillCategory(title,items,cacheSuffix){
+    const host=o.querySelector(`.cat-grid-host[data-cat="${title}"]`);
+    if(!host)return;
+    renderLazyPosterGrid(host,items,'series',`watchlist:${cacheSuffix}`,{
+      sub:'Tracking',
+      mapItem:({show:s})=>s,
+      onCard:(card,{show:s,progress})=>updatePosterProgress(card,{...progress,stopped:Store.isStopped('show',s.id)})
     });
   }
-  fillCategory('Next to watch',nextToWatch);
-  fillCategory("HAVEN'T WATCHED FOR A WHILE",staleList);
-  fillCategory("Haven't started",notStarted);
+  fillCategory('Next to watch',nextToWatch,'next');
+  fillCategory("HAVEN'T WATCHED FOR A WHILE",staleList,'stale');
+  fillCategory("Haven't started",notStarted,'notstarted');
 }
 async function renderUpcomingTab(o){
-  const allLib=Object.values(Store.lib('show'));
+  const allLib=Object.values(Store.lib('show')).filter(s=>!Store.isStopped('show',s.id));
   if(!allLib.length){o.innerHTML=emptyState('You are not tracking any shows yet.','explore','Explore shows');return}
   o.innerHTML=loadingHtml('Loading…');
   let items=[];
   try{
-    const results=await Promise.all(allLib.map(async s=>{
+    const results=await mapLimit(allLib,6,async s=>{
       try{
         const[eps,series]=await Promise.all([getEpisodes(s.id),Api.seriesExtended(s.id).catch(()=>null)]);
         const airtime=series?.airsTime||null;
         const channel=series?.originalNetwork?.name||series?.latestNetwork?.name||null;
-        return eps.filter(e=>e.aired&&isFuture(e.aired)).map(e=>({show:s,ep:e,airtime,channel}));
+        return eps.filter(e=>e.aired&&isTodayOrFuture(e.aired)).map(e=>({show:s,ep:e,airtime,channel}));
       }catch{return[]}
-    }));
+    });
     items=results.flat();
   }catch{items=[]}
   items.sort((a,b)=>(a.ep.aired||'').localeCompare(b.ep.aired||''));
@@ -1243,10 +2008,7 @@ async function renderUpcomingTab(o){
   items.forEach(({show:s,ep,airtime,channel})=>{
     if(ep.aired!==lastDate){
       lastDate=ep.aired;
-      const pill=document.createElement('div');
-      pill.className='upcoming-date-pill-wrap';
-      pill.innerHTML=`<span class="upcoming-date-pill">${fmtRelativeDate(ep.aired).toUpperCase()}</span>`;
-      wrap.appendChild(pill);
+      wrap.appendChild(upcomingDatePill(ep.aired));
     }
     wrap.appendChild(upcomingRow(s,ep,{airtime,channel}));
   });
@@ -1297,15 +2059,25 @@ async function renderMovies(o){
   }));
   ensureMoviesTabLoaded();
 }
-function renderMovieWatchlistTab(o){
-  const lib=Object.values(Store.lib('movie')).filter(m=>!Store.isMovieWatched(m.id));
-  if(!lib.length){o.innerHTML=emptyState('You are not tracking any unwatched movies.','explore','Explore movies');return}
-  o.innerHTML=`<div id="g" class="grid"></div>`;
-  const g=o.querySelector('#g');
-  lib.forEach(m=>{
-    const card=posterCard({id:m.id,name:m.name,image:m.image,sub:'Tracking',kind:'movie'});
-    g.appendChild(card);
-  });
+async function renderMovieWatchlistTab(o){
+  const allUnwatched=Object.values(Store.lib('movie')).filter(m=>!Store.isMovieWatched(m.id));
+  if(!allUnwatched.length){o.innerHTML=emptyState('You are not tracking any unwatched movies.','explore','Explore movies');return}
+  o.innerHTML=loadingHtml('Loading…');
+  let lib=allUnwatched;
+  try{
+    const withDates=await mapLimit(allUnwatched,6,async m=>{
+      try{
+        const ext=await Api.movieExtended(m.id);
+        const releaseDate=firstReleaseDate(ext);
+        if(releaseDate)Store.upsertReg('movie',{id:m.id,releaseDate,year:ext.year});
+        return{m:{...m,releaseDate,year:ext.year??m.year},released:!(!releaseDate||isFuture(releaseDate))};
+      }catch{return{m,released:true}}
+    });
+    lib=withDates.filter(x=>x.released).map(x=>x.m);
+  }catch{}
+  if(!lib.length){o.innerHTML=emptyState('You are not tracking any released movies.','explore','Explore movies');return}
+  o.innerHTML='';
+  renderLazyPosterGrid(o,sortMoviesByReleaseDate(lib),'movie','movies:watchlist',{sub:'Tracking'});
 }
 async function renderMovieUpcomingTab(o){
   const allLib=Object.values(Store.lib('movie')).filter(m=>!Store.isMovieWatched(m.id));
@@ -1313,14 +2085,15 @@ async function renderMovieUpcomingTab(o){
   o.innerHTML=loadingHtml('Loading…');
   let items=[];
   try{
-    const results=await Promise.all(allLib.map(async m=>{
+    const results=await mapLimit(allLib,6,async m=>{
       try{
         const ext=await Api.movieExtended(m.id);
-        const releaseDate=(ext.releases||[]).map(r=>r.date).filter(Boolean).sort()[0]||null;
-        if(!releaseDate||!isFuture(releaseDate))return null;
-        return{movie:m,date:releaseDate};
+        const releaseDate=firstReleaseDate(ext);
+        if(!releaseDate||!isTodayOrFuture(releaseDate))return null;
+        const bannerUrl=await getBannerUrl('movie',m.id,ext).catch(()=>null);
+        return{movie:m,date:releaseDate,bannerUrl};
       }catch{return null}
-    }));
+    });
     items=results.filter(Boolean);
   }catch{items=[]}
   items.sort((a,b)=>a.date.localeCompare(b.date));
@@ -1329,21 +2102,18 @@ async function renderMovieUpcomingTab(o){
   const wrap=document.createElement('div');
   wrap.className='upcoming-list';
   let lastDate=null;
-  items.forEach(({movie:m,date})=>{
+  items.forEach(({movie:m,date,bannerUrl})=>{
     if(date!==lastDate){
       lastDate=date;
-      const pill=document.createElement('div');
-      pill.className='upcoming-date-pill-wrap';
-      pill.innerHTML=`<span class="upcoming-date-pill">${fmtRelativeDate(date).toUpperCase()}</span>`;
-      wrap.appendChild(pill);
+      wrap.appendChild(upcomingDatePill(date));
     }
-    wrap.appendChild(upcomingMovieRow(m,date));
+    wrap.appendChild(upcomingMovieRow(m,date,bannerUrl));
   });
   o.appendChild(wrap);
 }
-function upcomingMovieRow(m,date){
+function upcomingMovieRow(m,date,bannerUrl){
   const el=document.createElement('div');
-  el.className='feed-item upcoming-feed-item';
+  el.className='upcoming-movie-row';
   const seq=_upcomingSeq++;
   const nameId=`upcoming-movie-${seq}`;
   const today=new Date();today.setHours(0,0,0,0);
@@ -1351,16 +2121,11 @@ function upcomingMovieRow(m,date){
   const isNew=diffDays<=7;
   const daysLabel=diffDays<=0?'Today':diffDays===1?'1d':`${diffDays}d`;
   el.innerHTML=`
-    <img class="feed-thumb" src="${imgUrl(m.image)}" alt="" />
-    <div class="feed-content">
-      <div class="feed-body">
-        <div class="feed-meta-row">
-          <span class="upcoming-show-pill" id="${nameId}">${m.name}</span>
-          ${isNew?'<span class="upcoming-new">NEW</span>':''}
-        </div>
-        <div class="feed-meta-row">
-          <span class="ep-meta future">Movie</span>
-        </div>
+    <img class="upcoming-movie-thumb" src="${imgUrl(m.image)}" alt="" />
+    <div class="upcoming-movie-content"${bannerUrl?` style="--upcoming-bg:url('${bannerUrl}')"`:''}>
+      <div class="upcoming-movie-body">
+        <div class="upcoming-movie-title" id="${nameId}">${m.name}</div>
+        ${isNew?'<span class="upcoming-new">NEW</span>':''}
       </div>
       <div class="upcoming-right">
         <span class="upcoming-days-left">${daysLabel}</span>
@@ -1504,7 +2269,7 @@ function renderStats(o){
     if(Store.omdb()){
       Store.setOmdb('');
       o.querySelector('#i-omdb').value='';
-      ratingsCache.clear();epRatingsCache.clear();
+      ratingsCache.clear();
       m.textContent='';m.className='msg';
       updateOmdbConn();syncOmdbToggle();
       return;
@@ -1514,7 +2279,7 @@ function renderStats(o){
     // Save immediately so ratings work even if this validation ping has trouble —
     // a failed check here shouldn't block a key that's actually fine.
     Store.setOmdb(v);
-    ratingsCache.clear();epRatingsCache.clear();
+    ratingsCache.clear();
     m.textContent='';m.className='msg';
     updateOmdbConn();syncOmdbToggle();
     omdbToggle.disabled=true;
@@ -1592,7 +2357,8 @@ function renderStats(o){
     o.querySelector('#fs-load').addEventListener('click',async()=>{
       const text=await FileSync.load();
       if(!text){fsmsg.textContent='No connected data file to load from. Choose one first.';fsmsg.className='msg err';return}
-      try{importDataText(text);fsmsg.textContent='Data loaded from file.';fsmsg.className='msg ok';renderStats(o)}
+      fsmsg.textContent='Importing… matching shows/movies against TheTVDB, this can take a bit.';fsmsg.className='msg';
+      try{await importDataText(text);fsmsg.textContent='Data loaded from file.';fsmsg.className='msg ok';renderStats(o)}
       catch{fsmsg.textContent='That file could not be read.';fsmsg.className='msg err'}
     });
   }
@@ -1607,7 +2373,8 @@ function renderStats(o){
     if(!file)return;
     try{
       const text=await file.text();
-      importDataText(text);
+      fsmsg.textContent='Importing… matching shows/movies against TheTVDB, this can take a bit.';fsmsg.className='msg';
+      await importDataText(text);
       fsmsg.textContent='Data imported from backup.';fsmsg.className='msg ok';
       renderStats(o);
     }catch{fsmsg.textContent='That file could not be read.';fsmsg.className='msg err'}
@@ -1656,10 +2423,9 @@ function searchResultRow({id,name,image,kind}){
       <div class="search-row-name" id="${nameId}">${name||'Untitled'}</div>
       <div class="search-row-meta">
         <span class="search-row-type">${typeIcon}${isMovie?'Movie':'Show'}</span>
-        <span class="search-row-rating" style="display:none">★ <span class="rating-val"></span></span>
       </div>
     </div>
-    <button type="button" class="search-add-btn ${tracked?'on':''}" title="${tracked?'Added':'Add'}">+</button>`;
+    <button type="button" class="search-add-btn ${tracked?'on':''}" title="${tracked?'Added':'Add'}"><span>+</span></button>`;
   wireTitleTranslate(el,nameId,name);
   const addBtn=el.querySelector('.search-add-btn');
   addBtn.addEventListener('click',e=>{
@@ -1677,14 +2443,6 @@ function searchResultRow({id,name,image,kind}){
   });
   el.addEventListener('click',()=>nav(isMovie?'movie':'show',{id}));
   return el;
-}
-function attachSearchRowRating(el,imdbId){
-  if(!imdbId||!Store.omdb())return;
-  fetchRatings(imdbId).then(r=>{
-    if(!r||!r.imdb)return;
-    const chip=el.querySelector('.search-row-rating');
-    if(chip){chip.querySelector('.rating-val').textContent=r.imdb;chip.style.display='inline-flex'}
-  });
 }
 function posterCard({id,name,image,sub,kind='series',showType=false}){
   const el=document.createElement('div');
@@ -1704,6 +2462,70 @@ function posterCard({id,name,image,sub,kind='series',showType=false}){
   el.querySelector('.poster-img-wrap').addEventListener('click',()=>nav(isMovie?'movie':'show',{id}));
   wireTitleTranslate(el,nameId,name);
   return el;
+}
+
+// A page is re-rendered from scratch every time its route is visited (see
+// nav()), so without this, scrolling back into a big grid would re-render
+// every poster from item 1 again. This in-memory map (cleared only on a
+// full page reload, not on navigation) remembers how many items were
+// showing last time so re-opening the page can jump straight back there
+// instead of starting over. It's intentionally not persisted to
+// localStorage - it's just a "don't redo work this session" cache, not
+// data worth keeping across visits to the site.
+const _lazyGridState=new Map();
+const LAZY_GRID_BATCH=18;
+// Renders `items` into `container` in batches of 18, appending the next 18
+// as the user scrolls near the bottom. `extra.sub` is passed through to
+// posterCard; `extra.onCard(card,item)` (optional) runs after each card is
+// added, e.g. to kick off a progress-bar fetch or apply precomputed
+// progress data.
+function renderLazyPosterGrid(container,items,kind,cacheKey,extra={}){
+  const grid=document.createElement('div');
+  grid.className='grid';
+  container.appendChild(grid);
+  const sentinel=document.createElement('div');
+  sentinel.className='lazy-grid-sentinel';
+  container.appendChild(sentinel);
+  let shown=0;
+  function loadMore(){
+    if(shown>=items.length)return;
+    items.slice(shown,shown+LAZY_GRID_BATCH).forEach(item=>{
+      const p=extra.mapItem?extra.mapItem(item):item;
+      const card=posterCard({id:p.id,name:p.name,image:p.image,sub:extra.sub,kind});
+      grid.appendChild(card);
+      extra.onCard?.(card,item);
+    });
+    shown=Math.min(shown+LAZY_GRID_BATCH,items.length);
+    if(cacheKey)_lazyGridState.set(cacheKey,shown);
+    if(shown>=items.length){observer.disconnect();sentinel.remove();}
+  }
+  const observer=new IntersectionObserver(entries=>{
+    if(entries.some(en=>en.isIntersecting))loadMore();
+  },{rootMargin:'150px'});
+  const resumeAt=cacheKey?Math.min(_lazyGridState.get(cacheKey)||0,items.length):0;
+  if(resumeAt>0)while(shown<resumeAt)loadMore();
+  else loadMore();
+  if(shown<items.length)observer.observe(sentinel);
+  return grid;
+}
+// Best available sort key for "release date" ordering: an exact release
+// date if we have one, otherwise just the year, otherwise null (sorted to
+// the end). Only movies added/watched/imported after this feature was
+// added will have this data - older library entries fall back to null
+// until the movie page is revisited.
+function movieReleaseKey(item){
+  if(item.releaseDate)return item.releaseDate;
+  if(item.year)return `${item.year}-01-01`;
+  return null;
+}
+function sortMoviesByReleaseDate(items,dir=-1){
+  return [...items].sort((a,b)=>{
+    const ka=movieReleaseKey(a),kb=movieReleaseKey(b);
+    if(ka==null&&kb==null)return 0;
+    if(ka==null)return 1;
+    if(kb==null)return -1;
+    return dir*ka.localeCompare(kb);
+  });
 }
 
 function hscrollSection({title,heart,items,kind,onHeaderClick}){
@@ -1735,7 +2557,7 @@ function hscrollSection({title,heart,items,kind,onHeaderClick}){
   wrap.appendChild(track);
   return wrap;
 }
-function renderGridPage(o,{title,items,kind,backRoute,emptyMsg,emptyRoute,emptyLabel}){
+function renderGridPage(o,{title,items,kind,backRoute,emptyMsg,emptyRoute,emptyLabel,cacheKey}){
   o.innerHTML='';
   const titleRow=document.createElement('div');
   titleRow.className='title-row';
@@ -1750,17 +2572,14 @@ function renderGridPage(o,{title,items,kind,backRoute,emptyMsg,emptyRoute,emptyL
     o.insertAdjacentHTML('beforeend',emptyState(emptyMsg,emptyRoute,emptyLabel));
     return;
   }
-  const g=document.createElement('div');
-  g.className='grid';
-  o.appendChild(g);
-  items.forEach(item=>{
-    const card=posterCard({id:item.id,name:item.name,image:item.image,sub:kind==='movie'?'Tracking':undefined,kind});
-    g.appendChild(card);
-    if(kind!=='movie')loadPosterProgress(card,item.id);
+  const sorted=kind==='movie'?sortMoviesByReleaseDate(items):items;
+  renderLazyPosterGrid(o,sorted,kind,cacheKey,{
+    sub:kind==='movie'?'Tracking':undefined,
+    onCard:kind!=='movie'?(card,item)=>loadPosterProgress(card,item.id):undefined
   });
 }
-function renderFavShows(o){renderGridPage(o,{title:'Favorite shows',items:Object.values(Store.fav('show')),kind:'show',backRoute:'stats',emptyMsg:"You haven't favorited any shows yet.",emptyRoute:'shows',emptyLabel:'Browse shows'})}
-function renderFavMovies(o){renderGridPage(o,{title:'Favorite movies',items:Object.values(Store.fav('movie')),kind:'movie',backRoute:'stats',emptyMsg:"You haven't favorited any movies yet.",emptyRoute:'movies',emptyLabel:'Browse movies'})}
+function renderFavShows(o){renderGridPage(o,{title:'Favorite shows',items:Object.values(Store.fav('show')),kind:'show',backRoute:'stats',emptyMsg:"You haven't favorited any shows yet.",emptyRoute:'shows',emptyLabel:'Browse shows',cacheKey:'favshows'})}
+function renderFavMovies(o){renderGridPage(o,{title:'Favorite movies',items:Object.values(Store.fav('movie')),kind:'movie',backRoute:'stats',emptyMsg:"You haven't favorited any movies yet.",emptyRoute:'movies',emptyLabel:'Browse movies',cacheKey:'favmovies'})}
 async function renderLibShows(o){
   const allLib=Object.values(Store.lib('show'));
   o.innerHTML='';
@@ -1780,7 +2599,7 @@ async function renderLibShows(o){
   o.insertAdjacentHTML('beforeend',loadingHtml('Loading…'));
   let dataList;
   try{
-    dataList=await Promise.all(allLib.map(async s=>{
+    dataList=await mapLimit(allLib,6,async s=>{
       try{
         const[eps,series]=await Promise.all([getEpisodes(s.id),Api.seriesExtended(s.id).catch(()=>null)]);
         const ended=series?.status?.name==='Ended';
@@ -1788,7 +2607,7 @@ async function renderLibShows(o){
       }catch{
         return{show:s,progress:{pct:0,complete:false,watched:0,total:0},lastWatchedAt:0,imdbId:null};
       }
-    }));
+    });
   }catch{
     dataList=allLib.map(s=>({show:s,progress:{pct:0,complete:false,watched:0,total:0},lastWatchedAt:0,imdbId:null}));
   }
@@ -1810,25 +2629,25 @@ async function renderLibShows(o){
   }
   function renderCategory(title,items){
     if(!items.length)return'';
-    return`<div class="cat-section"><div class="cat-box-wrap"><div class="cat-box">${title}</div></div><div class="grid" data-cat="${title}"></div></div>`;
+    return`<div class="cat-section"><div class="cat-box-wrap"><div class="cat-box">${title}</div></div><div class="cat-grid-host" data-cat="${title}"></div></div>`;
   }
   o.insertAdjacentHTML('beforeend',`${renderCategory('Next to watch',nextToWatch)}${renderCategory("HAVEN'T WATCHED FOR A WHILE",staleList)}${renderCategory('Up to date',upToDateList)}${renderCategory('Completed',completedList)}${renderCategory('Stopped watching',stoppedList)}`);
-  function fillCategory(title,items){
-    const g=o.querySelector(`.grid[data-cat="${title}"]`);
-    if(!g)return;
-    items.forEach(({show:s,progress,imdbId})=>{
-      const card=posterCard({id:s.id,name:s.name,image:s.image,sub:'Tracking',kind:'series'});
-      g.appendChild(card);
-      updatePosterProgress(card,{...progress,stopped:Store.isStopped('show',s.id)});
+  function fillCategory(title,items,cacheSuffix){
+    const host=o.querySelector(`.cat-grid-host[data-cat="${title}"]`);
+    if(!host)return;
+    renderLazyPosterGrid(host,items,'series',`libshows:${cacheSuffix}`,{
+      sub:'Tracking',
+      mapItem:({show:s})=>s,
+      onCard:(card,{show:s,progress})=>updatePosterProgress(card,{...progress,stopped:Store.isStopped('show',s.id)})
     });
   }
-  fillCategory('Next to watch',nextToWatch);
-  fillCategory("HAVEN'T WATCHED FOR A WHILE",staleList);
-  fillCategory('Stopped watching',stoppedList);
-  fillCategory('Completed',completedList);
-  fillCategory('Up to date',upToDateList);
+  fillCategory('Next to watch',nextToWatch,'next');
+  fillCategory("HAVEN'T WATCHED FOR A WHILE",staleList,'stale');
+  fillCategory('Stopped watching',stoppedList,'stopped');
+  fillCategory('Completed',completedList,'completed');
+  fillCategory('Up to date',upToDateList,'uptodate');
 }
-function renderLibMovies(o){renderGridPage(o,{title:'Movies',items:Object.values(Store.lib('movie')).filter(m=>Store.isMovieWatched(m.id)),kind:'movie',backRoute:'stats',emptyMsg:"You haven't watched any tracked movies yet.",emptyRoute:'explore',emptyLabel:'Explore movies'})}
+function renderLibMovies(o){renderGridPage(o,{title:'Movies',items:Object.values(Store.lib('movie')).filter(m=>Store.isMovieWatched(m.id)),kind:'movie',backRoute:'stats',emptyMsg:"You haven't watched any tracked movies yet.",emptyRoute:'explore',emptyLabel:'Explore movies',cacheKey:'libmovies'})}
 
 function caughtUpCard(bannerUrl){
   const el=document.createElement('div');
@@ -1892,12 +2711,12 @@ function upcomingRow(s,ep,meta={}){
   el.addEventListener('click',()=>nav('show',{id:s.id}));
   return el;
 }
-function episodeRow(ep,onToggle,seriesImdbId,showItem){
+function episodeRow(ep,onToggle,seriesImdbId,showItem,onRewatchChange){
   const el=document.createElement('div');
   el.className='feed-item';
   el.dataset.epId=ep.id;
   const epRw=Store.getEpRewatch(ep.id);
-  const unaired=isFuture(ep.aired)||!ep.name;
+  const unaired=isFuture(ep.aired)||!hasRealName(ep);
   el.innerHTML=`
     <img class="feed-thumb" src="${imgUrl(ep.image)}" alt="" />
     <div class="feed-content">
@@ -1905,7 +2724,6 @@ function episodeRow(ep,onToggle,seriesImdbId,showItem){
         <div class="feed-meta-row">
           <span class="ep-meta ${isFuture(ep.aired)?'future':''}">${timecode(ep.seasonNumber,ep.number)}</span>
           ${ep.seasonNumber===0?'<span class="ep-special-badge">Special</span>':''}
-          <span class="rating-chip imdb sm ep-rating" style="display:none"></span>
         </div>
         <div class="feed-title" id="ep-title-${ep.id}">${ep.name||'TBA'}</div>
       </div>
@@ -1916,7 +2734,7 @@ function episodeRow(ep,onToggle,seriesImdbId,showItem){
   const btn=el.querySelector('.check');
   if(btn)btn.addEventListener('click',()=>{
     const v=!Store.isWatched(ep.id);
-    Store.setWatched(ep.id,v);
+    Store.setWatched(ep.id,v,{season:ep.seasonNumber,episode:ep.number,runtime:ep.runtime,showId:showItem?.id,show:showItem});
     btn.classList.toggle('on',v);
     el.querySelector('.rewatch-group')?.classList.toggle('hidden',!v);
     if(v&&showItem&&!Store.inLib('show',showItem.id)){
@@ -1930,18 +2748,9 @@ function episodeRow(ep,onToggle,seriesImdbId,showItem){
     onToggle?.();
   });
   wireRewatchGroup(el.querySelector('.rewatch-group'),{
-    inc:()=>Store.bumpEpRewatch(ep.id),
-    dec:()=>Store.decEpRewatch(ep.id)
+    inc:()=>{const v=Store.bumpEpRewatch(ep.id);onRewatchChange?.();return v},
+    dec:()=>{const v=Store.decEpRewatch(ep.id);onRewatchChange?.();return v}
   });
-  if(seriesImdbId&&Store.omdb()){
-    fetchEpisodeRating(seriesImdbId,ep.seasonNumber,ep.number).then(r=>{
-      if(!r||!r.imdb)return;
-      const chip=el.querySelector('.ep-rating');
-      if(!chip)return;
-      chip.textContent=`IMDb ${r.imdb}`;
-      chip.style.display='inline-flex';
-    });
-  }
   return el;
 }
 
@@ -1971,7 +2780,7 @@ async function renderShow(o,{id}){
     content.appendChild(detailHeroWrap({bannerUrl,backEl:backButton(showBackRoute),heroEl:hero,progressEl}));
     const body=document.createElement('div');
     body.className='detail-body';
-    const showItem={id:series.id,name:series.name,image:series.image};
+    const showItem={id:series.id,name:series.name,image:series.image,aliases:series.aliases,averageRuntime:series.averageRuntime};
     const seasonRefreshers=new Map();
     const epSeasonMap=new Map(eps.map(e=>[e.id,e.seasonNumber]));
     const continueWrap=document.createElement('div');
@@ -1982,10 +2791,19 @@ async function renderShow(o,{id}){
       h.textContent='Continue Watching';
       continueWrap.appendChild(h);
       const seq=eps.filter(e=>e.seasonNumber>0).sort((a,b)=>a.seasonNumber-b.seasonNumber||a.number-b.number);
-      const idx=seq.findIndex(e=>!Store.isWatched(e.id));
+      // Find the LAST watched episode in air order, then resume right after
+      // it - not the first unwatched gap, which could sit earlier in the
+      // series if an episode was skipped. If nothing has been watched yet
+      // (lastWatchedIdx stays -1), idx naturally comes out to 0 - the first
+      // episode - unchanged from before.
+      let lastWatchedIdx=-1;
+      for(let k=seq.length-1;k>=0;k--){
+        if(Store.isWatched(seq[k].id)){lastWatchedIdx=k;break}
+      }
+      const idx=lastWatchedIdx+1;
       const list=document.createElement('div');
       list.className='continue-watching-list';
-      const allCaughtUp=idx===-1;
+      const allCaughtUp=idx>=seq.length;
       const slots=allCaughtUp
         ?[seq.length>1?seq[seq.length-2]:null,seq[seq.length-1]||null,'END']
         :[idx>0?seq[idx-1]:null,seq[idx],idx+1<seq.length?seq[idx+1]:'END'];
@@ -2084,6 +2902,22 @@ function seasonEpisodesSection(eps,showId,onProgressChange,seriesImdbId,showItem
         group.classList.toggle('hidden',!Store.isWatched(ep.id));
       });
     }
+    // If every episode in this season has individually been rewatched the
+    // same number of times (at least once more than the season counter
+    // currently reads), bump the season's own rewatch count to match -
+    // watching every episode of a season once more counts as rewatching
+    // the season, even if it was done episode-by-episode rather than via
+    // the season's own "rewatch" button.
+    function syncSeasonRewatchFromEpisodes(){
+      if(!seasonEps.length)return;
+      const minCount=Math.min(...seasonEps.map(ep=>Store.getEpRewatch(ep.id)));
+      if(minCount>Store.getSeasonRewatch(seasonRwKey))Store.setSeasonRewatchTo(seasonRwKey,minCount);
+      const cur=Store.getSeasonRewatch(seasonRwKey);
+      const incBtn=seasonRwGroup?.querySelector('.rewatch-inc');
+      const decBtn=seasonRwGroup?.querySelector('.rewatch-dec');
+      if(incBtn)incBtn.textContent=`+${cur}`;
+      if(decBtn)decBtn.classList.toggle('hidden',cur<1);
+    }
     function refreshSeasonMeta(){
       const w=seasonEps.filter(ep=>Store.isWatched(ep.id)).length;
       panel.querySelector('.season-count').textContent=`${w}/${seasonEps.length}`;
@@ -2095,8 +2929,9 @@ function seasonEpisodesSection(eps,showId,onProgressChange,seriesImdbId,showItem
       markBtn.classList.toggle('on',allWatched);
       seasonRwGroup?.classList.toggle('hidden',!allWatched);
     }
-    seasonEps.forEach(e=>list.appendChild(episodeRow(e,()=>{onProgressChange?.();refreshSeasonMeta()},seriesImdbId,showItem)));
+    seasonEps.forEach(e=>list.appendChild(episodeRow(e,()=>{onProgressChange?.();refreshSeasonMeta()},seriesImdbId,showItem,syncSeasonRewatchFromEpisodes)));
     seasonRefreshers?.set(sn,refreshSeasonMeta);
+    syncSeasonRewatchFromEpisodes();
     wireRewatchGroup(seasonRwGroup,{
       inc:()=>{
         const v=Store.bumpSeasonRewatch(seasonRwKey);
@@ -2118,11 +2953,12 @@ function seasonEpisodesSection(eps,showId,onProgressChange,seriesImdbId,showItem
     });
     markBtn.addEventListener('click',e=>{
       e.stopPropagation();
-      const airedEps=seasonEps.filter(ep=>ep.name&&!isFuture(ep.aired));
+      const airedEps=seasonEps.filter(ep=>hasRealName(ep)&&!isFuture(ep.aired));
       if(!airedEps.length)return;
       const allWatched=airedEps.every(ep=>Store.isWatched(ep.id));
-      airedEps.forEach(ep=>Store.setWatched(ep.id,!allWatched));
+      airedEps.forEach(ep=>Store.setWatched(ep.id,!allWatched,{season:ep.seasonNumber,episode:ep.number,runtime:ep.runtime,showId:showItem?.id,show:showItem}));
       list.querySelectorAll('.check').forEach(chk=>chk.classList.toggle('on',!allWatched));
+      refreshEpisodeRewatchDisplay();
       refreshSeasonMeta();
       bumpShowsCache();
       onProgressChange?.();
@@ -2154,21 +2990,21 @@ function showHero(series,progress){
         <button class="btn ${inFav?'btn-accent':''}" id="fav-btn" style="${inLib?'':'display:none'}">${inFav?'★ Favorited':'☆ Favorite'}</button>
       </div>
     </div>`;
-  wireTrackFav(wrap,'show',{id:series.id,name:series.name,image:series.image});
+  wireTrackFav(wrap,'show',{id:series.id,name:series.name,image:series.image,aliases:series.aliases,averageRuntime:series.averageRuntime});
   wireOverview(wrap,'overview-text-show',series.overview||'No overview available.');
   wireTitleTranslate(wrap,'title-text-show',series.name);
   attachRatings(wrap,series);
   return wrap;
 }
 
-function toYoutubeEmbed(url){
+function youtubeVideoId(url){
   if(!url)return null;
   try{
     const u=new URL(url);
-    if(u.hostname.includes('youtu.be'))return`https://www.youtube.com/embed/${u.pathname.slice(1)}`;
+    if(u.hostname.includes('youtu.be'))return u.pathname.slice(1)||null;
     if(u.hostname.includes('youtube.com')){
-      if(u.pathname==='/watch'&&u.searchParams.get('v'))return`https://www.youtube.com/embed/${u.searchParams.get('v')}`;
-      if(u.pathname.startsWith('/embed/'))return url;
+      if(u.pathname==='/watch'&&u.searchParams.get('v'))return u.searchParams.get('v');
+      if(u.pathname.startsWith('/embed/'))return u.pathname.slice('/embed/'.length)||null;
     }
   }catch{}
   return null;
@@ -2179,6 +3015,17 @@ async function renderMovie(o,{id}){
   const content=o.querySelector('#content');
   try{
     const movie=await Api.movieExtended(id);
+    // TVDB's movie endpoint doesn't reliably include `overview` at the top
+    // level the way the series endpoint does - some movies have it, some
+    // don't, even when TVDB has an overview on file. Fall back to the
+    // dedicated translations endpoint when it's missing.
+    let movieOverview=movie.overview;
+    if(!movieOverview){
+      try{
+        const tr=await Api.movieTranslations(movie.id,'eng');
+        if(tr?.overview)movieOverview=tr.overview;
+      }catch{}
+    }
     const bannerUrl=await getBannerUrl('movie',id,movie);
     const inLib=Store.inLib('movie',movie.id);
     const stopped=Store.isStopped('movie',movie.id);
@@ -2195,27 +3042,31 @@ async function renderMovie(o,{id}){
           <div class="hero-ratings" id="ratings"><span class="rating-chip imdb">IMDb —</span></div>
         </div>
         <p class="meta-line">${movie.year?`<strong>${movie.year}</strong>`:''}${movie.runtime?` · ${movie.runtime} min`:''}</p>
-        ${overviewHtml(movie.overview,'overview-text-movie')}
+        ${overviewHtml(movieOverview,'overview-text-movie')}
         <div class="row" style="margin-top:4px;flex-wrap:wrap">
           <button class="btn ${stopped?'btn-stopped':(inLib?'btn-accent':'')}" id="lib-btn">${stopped?'Stopped watching':(inLib?'✓ Added':'+ Add')}</button>
-          <button class="btn ${inFav?'btn-accent':''}" id="fav-btn" style="${inLib?'':'display:none'}">${inFav?'★ Favorited':'☆ Favorite'}</button>
           <button class="btn ${isWatched?'btn-accent':''}" id="watched-btn">${isWatched?'✓ Watched':'Mark watched'}</button>
           ${rewatchGroupHtml(rw,isWatched)}
+          <button class="btn ${inFav?'btn-accent':''}" id="fav-btn" style="${isWatched?'':'display:none'}">${inFav?'★ Favorited':'☆ Favorite'}</button>
         </div>
       </div>`;
     content.style.paddingTop='';
     content.innerHTML='';
     content.appendChild(detailHeroWrap({bannerUrl,backEl:backButton(movieBackRoute),heroEl:hero}));
-    wireTrackFav(hero,'movie',{id:movie.id,name:movie.name,image:movie.image});
-    wireOverview(hero,'overview-text-movie',movie.overview||'No overview available.');
+    const movieFavVisible=()=>Store.isMovieWatched(movie.id);
+    const movieItem={id:movie.id,name:movie.name,image:movie.image,aliases:movie.aliases,runtime:movie.runtime,year:movie.year,releaseDate:firstReleaseDate(movie)};
+    wireTrackFav(hero,'movie',movieItem,movieFavVisible);
+    wireOverview(hero,'overview-text-movie',movieOverview||'No overview available.');
     wireTitleTranslate(hero,'title-text-movie',movie.name);
     hero.querySelector('#watched-btn').addEventListener('click',e=>{
       const b=e.target;
       const v=!Store.isMovieWatched(movie.id);
-      Store.setMovieWatched(movie.id,v,{runtime:movie.runtime});
+      Store.setMovieWatched(movie.id,v,{runtime:movie.runtime,movie:movieItem});
       b.classList.toggle('btn-accent',v);
       b.textContent=v?'✓ Watched':'Mark watched';
       hero.querySelector('.rewatch-group')?.classList.toggle('hidden',!v);
+      const favBtn=hero.querySelector('#fav-btn');
+      if(favBtn)updateFavBtnUI(favBtn,'movie',movie.id,movieFavVisible);
       bumpMoviesCache();
     });
     wireRewatchGroup(hero.querySelector('.rewatch-group'),{
@@ -2233,13 +3084,17 @@ async function renderMovie(o,{id}){
       body.appendChild(castH);
       const castTrack=document.createElement('div');
       castTrack.className='cast-track';
-      cast.slice(0,25).forEach(c=>{
+      cast.slice(0,40).forEach(c=>{
         const item=document.createElement('div');
         item.className='cast-item';
+        // Actors get their character name as the "role" line; crew (director,
+        // writer, producer, etc.) don't have a character name, so fall back
+        // to their job title from TVDB instead of leaving it blank.
+        const role=c.name||c.peopleType||'';
         item.innerHTML=`
           <img class="cast-photo" src="${imgUrl(c.image||c.personImgURL)}" alt="${c.personName||''}" />
           <div class="cast-name">${c.personName||''}</div>
-          <div class="cast-role">${c.name||''}</div>`;
+          <div class="cast-role">${role}</div>`;
         castTrack.appendChild(item);
       });
       body.appendChild(castTrack);
@@ -2250,11 +3105,21 @@ async function renderMovie(o,{id}){
       trailerH.className='section-h';
       trailerH.textContent='Trailer';
       body.appendChild(trailerH);
-      const embedUrl=toYoutubeEmbed(trailer.url);
-      if(embedUrl){
+      const vid=youtubeVideoId(trailer.url);
+      if(vid){
         const wrap=document.createElement('div');
-        wrap.className='trailer-embed-wrap';
-        wrap.innerHTML=`<iframe src="${embedUrl}" title="Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        wrap.className='trailer-thumb-wrap';
+        wrap.innerHTML=`<img src="https://img.youtube.com/vi/${vid}/hqdefault.jpg" alt="Trailer thumbnail" /><span class="trailer-play-badge">▶</span>`;
+        wrap.addEventListener('click',()=>{
+          // Swap the thumbnail for a playing embed right here, instead of
+          // sending the person to youtube.com. If this particular video
+          // can't be embedded (disabled by the uploader), the fallback link
+          // underneath still gets them to it on YouTube.
+          wrap.outerHTML=`<div class="trailer-embed-wrap">
+            <iframe src="https://www.youtube.com/embed/${vid}?autoplay=1" title="Trailer" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <a class="trailer-fallback-link" href="${trailer.url}" target="_blank" rel="noopener">Trouble playing? Watch on YouTube ↗</a>`;
+        });
         body.appendChild(wrap);
       }else{
         body.insertAdjacentHTML('beforeend',`<a class="btn" href="${trailer.url}" target="_blank" rel="noopener">▶ Watch trailer</a>`);

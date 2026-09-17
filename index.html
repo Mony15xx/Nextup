@@ -25,7 +25,7 @@
   --green:#66cc00; --red:#ff3f3f;
   --rw-inc:var(--green); --rw-dec:var(--red);
   --radius:16px;
-  --page-width:720px;
+  --page-width:1152px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:#303030;color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;scrollbar-width:none;-ms-overflow-style:none}
@@ -35,7 +35,7 @@ a{color:var(--accent);text-decoration:none}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #shell{display:flex;flex-direction:column;height:100vh;height:100dvh;align-items:center;gap:0}
 #main{display:flex;flex-direction:column;min-height:0;flex:1;order:1;width:100%;max-width:var(--page-width);background:var(--bg);margin:0}
-#topbar{min-height:56px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:10px 20px;gap:14px;flex-shrink:0}
+#topbar{min-height:56px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:10px 20px;gap:14px;flex-shrink:0;container-type:inline-size;container-name:topbar-cq}
 .topbar-search{flex:1;min-width:160px;max-width:460px;display:flex;align-items:center;position:relative}
 .topbar-search input{flex:1;min-width:0;padding-right:42px}
 .search-btn{position:absolute;right:4px;top:50%;transform:translateY(-50%);flex-shrink:0;width:32px;height:32px;border-radius:50%;border:none;background:transparent;color:var(--text-dim);display:flex;align-items:center;justify-content:center;cursor:pointer}
@@ -56,6 +56,8 @@ input[type=text]:focus{border-color:var(--accent)}
 input[type=text]:focus,input[type=text]:focus-visible{outline:none}
 .topbar-search input:focus,.topbar-search input:focus-visible{outline:none}
 .conn-group{display:flex;align-items:center;gap:8px;flex-shrink:0}
+@container topbar-cq (max-width:600px){.conn-group{display:none}}
+@media(max-width:600px){.conn-group{display:none}}
 .conn{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;padding:7px 12px;border-radius:999px;border:1px solid var(--border);white-space:nowrap}
 .conn .dot{width:8px;height:8px;border-radius:50%;background:var(--text-dim)}
 .conn.on{border-color:var(--accent-dark);color:var(--accent)}
@@ -238,6 +240,8 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .continue-watching-list .feed-item{flex:1;min-width:0;margin-bottom:0}
 .continue-watching-list .feed-thumb{width:152px}
 .continue-watching-list .rewatch-group{display:none}
+@media(max-width:720px){.continue-watching-list>:nth-child(3){display:none}}
+@media(max-width:480px){.continue-watching-list>:nth-child(1){display:none}}
 .feed-item-empty{background:transparent;border:1px dashed var(--border)}
 .upnext-caughtup{position:relative;border-radius:8px;overflow:hidden;margin-bottom:20px;height:93px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#000 center/cover no-repeat;border:1px solid var(--border)}
 .upnext-caughtup::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.25)}
@@ -305,9 +309,10 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .search-add-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:700;line-height:1;cursor:pointer;flex-shrink:0}
 .search-add-btn span{display:block;transform:translateY(-1px)}
 .search-add-btn.on{background:var(--accent);color:#2b1200}
-.cast-track{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);column-gap:12px;row-gap:14px;overflow-x:auto;overflow-y:hidden;margin:0 -20px 20px;padding:0 20px 4px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+.cast-track{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:6px;overflow-x:auto;overflow-y:hidden;margin:0 -20px 20px;padding:0 20px 4px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
 .cast-track::-webkit-scrollbar{display:none}
-.cast-item{width:100px;text-align:center}
+.cast-track.two-rows{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:100px;column-gap:6px;row-gap:7px;justify-content:flex-start}
+.cast-item{flex:0 0 auto;width:100px;text-align:center}
 .cast-photo{width:100px;height:150px;border-radius:10px;object-fit:cover;background:var(--bg-elev);display:block;margin-bottom:8px}
 .cast-name{font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cast-role{font-size:11px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -573,7 +578,7 @@ const Store={
    handful of details that file couldn't fully confirm - please read that
    before relying on this in production.
    ===================================================================== */
-const SEP='----------------------------------------------------------------------';
+const SEP='------------------------------';
 
 function fmtYMD(ts){
   if(!ts)return '';
@@ -762,11 +767,37 @@ function exportRewatchedMoviesSection(){
 
 function exportProfileSection(){
   const username=Store.profile().name||'';
-  return [SEP,'PROFILE',SEP,`  Username: ${username}`,SEP,''];
+  const apikey=Store.apikey()||'';
+  const omdbkey=Store.omdb()||'';
+  return [SEP,'PROFILE',SEP,
+    `  Username: ${username}`,
+    `  TVDB API Key: ${apikey}`,
+    `  OMDB API Key: ${omdbkey}`,
+    ''];
+}
+// Mirrors the exact same numbers/formula shown on the Profile page's stat
+// cards, so the export always matches what's on screen.
+function exportStatsSection(){
+  const baseWatchedEpCount=Object.keys(Store.watched()).length;
+  const epRewatchTotal=Object.values(Store.epRewatch()).reduce((a,b)=>a+b,0);
+  const watchedEpCount=baseWatchedEpCount+epRewatchTotal;
+  const movieWatchedEntries=Object.values(Store.movieWatched());
+  const moviesWatchedCount=movieWatchedEntries.length;
+  const showMins=watchedEpCount*42;
+  const movieMins=movieWatchedEntries.reduce((sum,m)=>sum+(m.runtime||100),0);
+  const showTime=formatDurationParts(showMins);
+  const movieTime=formatDurationParts(movieMins);
+  return [SEP,'STATS',SEP,
+    `  TV time: ${showTime.months} months, ${showTime.days} days, ${showTime.hours} hours`,
+    `  Episodes watched: ${watchedEpCount}`,
+    `  Movie time: ${movieTime.months} months, ${movieTime.days} days, ${movieTime.hours} hours`,
+    `  Movies watched: ${moviesWatchedCount}`,
+    ''];
 }
 function exportDataText(){
   return [
     ...exportProfileSection(),
+    ...exportStatsSection(),
     ...exportShowsSection(),
     ...exportMoviesSections(),
     ...exportRewatchedEpisodesSection(),
@@ -963,7 +994,7 @@ async function importDataText(text){
   }
 
   // ---- Phase 1: parse the text into plain records (no network yet) ----
-  let importedUsername=null;
+  let importedUsername=null,importedApiKey=null,importedOmdbKey=null;
   const showBlocks=[];       // {id,name,alt,following,stoppedFlag,favorite,episodes:[{s,e,epId,runtime,date}]}
   const movieWatchedRows=[]; // {id,name,alt,runtime,date}
   const watchlistRows=[];    // {id,name}
@@ -979,10 +1010,18 @@ async function importDataText(text){
 
     if(title==='PROFILE'){
       while(i<lines.length&&!isSep(lines[i])){
-        const m=/^\s*Username:\s?(.*)$/.exec(lines[i]);
-        if(m)importedUsername=m[1].trim();
+        const u=/^\s*Username:\s?(.*)$/.exec(lines[i]);
+        if(u)importedUsername=u[1].trim();
+        const k=/^\s*TVDB API Key:\s?(.*)$/.exec(lines[i]);
+        if(k)importedApiKey=k[1].trim();
+        const o=/^\s*OMDB API Key:\s?(.*)$/.exec(lines[i]);
+        if(o)importedOmdbKey=o[1].trim();
         i++;
       }
+    }else if(title==='STATS'){
+      // Fully derived from other data (episode/movie counts and rewatch
+      // totals) - nothing here is authoritative input, so just skip past it.
+      while(i<lines.length&&!isSep(lines[i]))i++;
     }else if(title==='SHOWS'||title==='MOVIES WATCHED'){
       // Skip the summary stat lines up to the next SEP - these are derived
       // on export, not authoritative input.
@@ -1148,6 +1187,11 @@ async function importDataText(text){
   rw.movie=newMovieRewatch;
   lset(K.rewatch,rw);
   if(importedUsername!=null)Store.setProfile({name:importedUsername});
+  if(importedOmdbKey)Store.setOmdb(importedOmdbKey);
+  if(importedApiKey){
+    Store.setApikey(importedApiKey);
+    try{await Api.login(importedApiKey)}catch(_e){/* key saved either way - user can retry Connect in Profile */}
+  }
 }
 
 /* ---------------------------------------------------------------------
@@ -1211,6 +1255,18 @@ async function importDataText(text){
       file and restored to your profile name on import (only when that
       section is present - importing an older file without it leaves your
       current profile name untouched).
+
+   10. API KEYS: your TVDB and OMDb API keys are now exported in plain text
+       in the "PROFILE" section too - worth keeping that in mind about who
+       you share an export file with. On import, the TVDB key also
+       attempts to log in automatically; if that fails (expired/invalid
+       key, offline), the key is still saved so you can hit Connect
+       yourself in Profile settings.
+
+   11. STATS section: purely informational (TV time, episodes watched,
+       movie time, movies watched) - it mirrors the Profile page's own
+       numbers exactly but isn't read back on import, since every value
+       in it is fully derived from your shows/movies/rewatch data anyway.
    --------------------------------------------------------------------- */
 
 class ApiErr extends Error{constructor(m,s){super(m);this.status=s}}
@@ -1965,6 +2021,8 @@ async function renderWatchListTab(o){
     if(now-item.lastWatchedAt>=STALE_MS){staleList.push(item);return}
     nextToWatch.push(item);
   });
+  const byRecency=(a,b)=>(b.lastWatchedAt||b.show.addedAt||0)-(a.lastWatchedAt||a.show.addedAt||0);
+  nextToWatch.sort(byRecency);staleList.sort(byRecency);notStarted.sort(byRecency);
   function renderCategory(title,items){
     if(!items.length)return'';
     return`<div class="cat-section"><div class="cat-box-wrap"><div class="cat-box">${title}</div></div><div class="cat-grid-host" data-cat="${title}"></div></div>`;
@@ -2204,7 +2262,7 @@ function renderStats(o){
       <div class="field"><span id="fs-status">${FileSync.supported?'No data file connected yet. Choose or create a .txt file to keep your data auto-saved on this device.':"Your browser can't auto-save to a file, but you can still export/import a backup .txt file below."}</span></div>
       <div class="row" style="flex-wrap:wrap">
         ${FileSync.supported?`<button type="button" id="fs-choose" class="btn btn-accent">Choose / Create Data File</button><button type="button" id="fs-load" class="btn btn-ghost">Load From File</button>`:''}
-        <button type="button" id="fs-download" class="btn">Download Backup (.txt)</button>
+        <button type="button" id="fs-download" class="btn">Export Backup (.txt)</button>
         <button type="button" id="fs-import" class="btn btn-ghost">Import Backup (.txt)</button>
         <button type="button" id="fs-delete" class="btn btn-disconnect">Delete Local Data</button>
       </div>
@@ -2527,6 +2585,14 @@ function sortMoviesByReleaseDate(items,dir=-1){
     return dir*ka.localeCompare(kb);
   });
 }
+// For lists that only ever contain watched movies (the movies library, and
+// favorites - favoriting is only available after watching), "newest to
+// oldest" means the date the movie was *watched*, not released - the same
+// principle used for shows (sorted by when you last watched them).
+function sortMoviesByWatchedDate(items){
+  const mw=Store.movieWatched();
+  return [...items].sort((a,b)=>(mw[b.id]?.watchedAt||0)-(mw[a.id]?.watchedAt||0));
+}
 
 function hscrollSection({title,heart,items,kind,onHeaderClick}){
   const wrap=document.createElement('div');
@@ -2572,7 +2638,7 @@ function renderGridPage(o,{title,items,kind,backRoute,emptyMsg,emptyRoute,emptyL
     o.insertAdjacentHTML('beforeend',emptyState(emptyMsg,emptyRoute,emptyLabel));
     return;
   }
-  const sorted=kind==='movie'?sortMoviesByReleaseDate(items):items;
+  const sorted=kind==='movie'?sortMoviesByWatchedDate(items):items;
   renderLazyPosterGrid(o,sorted,kind,cacheKey,{
     sub:kind==='movie'?'Tracking':undefined,
     onCard:kind!=='movie'?(card,item)=>loadPosterProgress(card,item.id):undefined
@@ -2623,6 +2689,8 @@ async function renderLibShows(o){
     if(now-item.lastWatchedAt>=STALE_MS){staleList.push(item);return}
     nextToWatch.push(item);
   });
+  const byRecency=(a,b)=>(b.lastWatchedAt||b.show.addedAt||0)-(a.lastWatchedAt||a.show.addedAt||0);
+  [stoppedList,nextToWatch,staleList,completedList,upToDateList].forEach(list=>list.sort(byRecency));
   if(!nextToWatch.length&&!staleList.length&&!stoppedList.length&&!completedList.length&&!upToDateList.length){
     o.insertAdjacentHTML('beforeend',emptyState('Nothing to show here yet.'));
     return;
@@ -2910,8 +2978,14 @@ function seasonEpisodesSection(eps,showId,onProgressChange,seriesImdbId,showItem
     // the season's own "rewatch" button.
     function syncSeasonRewatchFromEpisodes(){
       if(!seasonEps.length)return;
+      // The season is "rewatched N times" only once every one of its
+      // episodes has individually been rewatched at least N times - so
+      // the season count is always the minimum across its episodes. This
+      // has to be recalculated (not just bumped) any time an episode's
+      // count changes, since a decrease can pull the season count back
+      // down just as much as an increase can push it up.
       const minCount=Math.min(...seasonEps.map(ep=>Store.getEpRewatch(ep.id)));
-      if(minCount>Store.getSeasonRewatch(seasonRwKey))Store.setSeasonRewatchTo(seasonRwKey,minCount);
+      Store.setSeasonRewatchTo(seasonRwKey,minCount);
       const cur=Store.getSeasonRewatch(seasonRwKey);
       const incBtn=seasonRwGroup?.querySelector('.rewatch-inc');
       const decBtn=seasonRwGroup?.querySelector('.rewatch-dec');
@@ -3083,7 +3157,7 @@ async function renderMovie(o,{id}){
       castH.textContent='Cast';
       body.appendChild(castH);
       const castTrack=document.createElement('div');
-      castTrack.className='cast-track';
+      castTrack.className='cast-track'+(cast.length>10?' two-rows':'');
       cast.slice(0,40).forEach(c=>{
         const item=document.createElement('div');
         item.className='cast-item';
@@ -3112,13 +3186,15 @@ async function renderMovie(o,{id}){
         wrap.innerHTML=`<img src="https://img.youtube.com/vi/${vid}/hqdefault.jpg" alt="Trailer thumbnail" /><span class="trailer-play-badge">▶</span>`;
         wrap.addEventListener('click',()=>{
           // Swap the thumbnail for a playing embed right here, instead of
-          // sending the person to youtube.com. If this particular video
-          // can't be embedded (disabled by the uploader), the fallback link
-          // underneath still gets them to it on YouTube.
+          // sending the person to youtube.com. youtube-nocookie.com + an
+          // explicit origin param avoids some embed-init failures; it
+          // can't do anything about a video whose owner has disabled
+          // embedding entirely (YouTube error 153) — there's no client-side
+          // workaround for that specific case.
+          const originParam=(location.origin&&location.origin!=='null')?`&origin=${encodeURIComponent(location.origin)}`:'';
           wrap.outerHTML=`<div class="trailer-embed-wrap">
-            <iframe src="https://www.youtube.com/embed/${vid}?autoplay=1" title="Trailer" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <a class="trailer-fallback-link" href="${trailer.url}" target="_blank" rel="noopener">Trouble playing? Watch on YouTube ↗</a>`;
+            <iframe src="https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&rel=0&modestbranding=1&playsinline=1${originParam}" title="Trailer" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>`;
         });
         body.appendChild(wrap);
       }else{

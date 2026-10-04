@@ -80,7 +80,7 @@ input[type=text]:focus,input[type=text]:focus-visible{outline:none}
 .row{display:flex;gap:10px}
 .conn-row input{flex:1}
 .conn-row .btn{flex-shrink:0}
-.btn{border:1px solid var(--border);background:var(--bg-elev);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer}
+.btn{border:1px solid var(--border);background:var(--bg-elev);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;color:var(--text)}
 .btn:hover{border-color:var(--text-dim)}
 .btn-accent{background:var(--accent);border-color:var(--accent);color:#2b1200}
 .btn-stopped{background:var(--red);border-color:var(--red);color:#2a0500}
@@ -155,10 +155,10 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .profile-id-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:20px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
 .profile-edit-btn{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.03em;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;cursor:pointer;backdrop-filter:blur(4px)}
 .profile-edit-btn:hover{background:rgba(255,255,255,.2)}
-.profile-edit-overlay{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:91;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:16px;width:548px;max-width:calc(100vw - 40px);max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px);overflow-y:auto;scrollbar-width:thin;box-shadow:0 12px 32px rgba(0,0,0,.5);display:none;flex-direction:column;gap:10px}
-.profile-edit-overlay.open{display:flex}
-.settings-backdrop{display:none;position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
-.profile-edit-overlay.open + .settings-backdrop{display:block}
+.profile-edit-overlay{position:fixed;left:50%;top:50%;z-index:91;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:16px;width:548px;max-width:calc(100vw - 40px);max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px);overflow-y:auto;scrollbar-width:thin;box-shadow:0 12px 32px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:10px;opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,-46%) scale(.95);transition:opacity .22s ease,transform .32s cubic-bezier(.2,.9,.25,1.05),visibility 0s linear .32s}
+.profile-edit-overlay.open{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,-50%) scale(1);transition-delay:0s}
+.settings-backdrop{display:block;position:fixed;inset:0;z-index:90;visibility:hidden;opacity:0;background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);transition:opacity .3s ease,backdrop-filter .3s ease,-webkit-backdrop-filter .3s ease,visibility 0s linear .3s}
+.profile-edit-overlay.open + .settings-backdrop{visibility:visible;opacity:1;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);transition-delay:0s}
 .profile-edit-overlay label.field-btn{display:block;font-size:12px;font-weight:600;padding:9px 12px;border-radius:8px;background:var(--bg-elev);border:1px solid var(--border);cursor:pointer;text-align:center}
 .profile-edit-overlay label.field-btn:hover{border-color:var(--accent);color:var(--accent)}
 .profile-edit-overlay input[type=text]{width:100%}
@@ -347,16 +347,9 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
 .profile-edit-overlay select{width:100%;background:var(--bg-elev);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px 10px;font-size:12px;font-family:inherit}
 .profile-edit-overlay select:focus{outline:none;border-color:var(--accent)}
 .profile-edit-overlay select:disabled{opacity:.5}
-.switch{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;cursor:pointer}
-.switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:1}
-.switch .slider{position:absolute;inset:0;background:var(--bg-elev);border:1px solid var(--border);border-radius:999px;transition:background .2s ease,border-color .2s ease}
-.switch .slider::before{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--text-dim);transition:transform .2s ease,background .2s ease}
-.switch input:checked + .slider{background:var(--accent);border-color:var(--accent)}
-.switch input:checked + .slider::before{transform:translateX(20px);background:#2b1200}
-.switch input:focus-visible + .slider{outline:2px solid var(--accent);outline-offset:2px}
 
 /* ===== Settings overlay sections ===== */
-.profile-edit-overlay .setting-cat{font-family:'Poppins',sans-serif;font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);padding-bottom:6px;border-bottom:1px solid var(--border);margin-top:8px}
+.profile-edit-overlay .setting-cat{font-family:'Poppins',sans-serif;font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--cat-color);padding-bottom:6px;border-bottom:1px solid var(--border);margin-top:8px}
 .profile-edit-overlay .setting-cat:first-child{margin-top:0}
 .profile-edit-overlay .setting-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .profile-edit-overlay .setting-pair>*{min-width:0}
@@ -371,16 +364,149 @@ code{background:var(--bg-elev);padding:1px 6px;border-radius:4px;font-family:'Je
   .profile-banner{height:151px}
 }
 
+/* ===== v77 additions ===== */
+:root{--btn-gray:#2a2a2a;--cat-color:#c3cad8}
+.profile-edit-overlay label.field-btn,
+.profile-edit-overlay .btn:not(.btn-accent):not(.btn-connect):not(.btn-disconnect){background:var(--btn-gray);border:1px solid var(--border)}
+.no-upcoming-text{font-size:20px;padding:0 16px}
+@media(max-width:480px){.no-upcoming-text{font-size:15px}}
+.cast-toggle{display:block;margin:-8px 0 20px}
+
+/* ===== v78: profile page ===== */
+/* segmented photo / banner buttons */
+.profile-edit-overlay .setting-pair.seg{gap:2px}
+.profile-edit-overlay label.field-btn{padding:10px 12px}
+.profile-edit-overlay label.fb-left{border-radius:999px 0 0 999px}
+.profile-edit-overlay label.fb-right{border-radius:0 999px 999px 0}
+/* roomier selects, wider connect / disconnect */
+.profile-edit-overlay select{border-radius:14px;padding:11px 12px;font-size:13px}
+.profile-edit-overlay .conn-row .btn{min-width:128px}
+/* theme switch */
+/* "?" help tips */
+.help-tip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:6px;border-radius:50%;border:1px solid currentColor;font:700 10px/1 'Inter',sans-serif;color:var(--text-dim);cursor:help;vertical-align:middle;transition:color .15s ease}
+.help-tip:hover,.help-tip:focus-visible{color:var(--accent-text);outline:none}
+.help-tip::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 8px);transform:translate(-50%,4px);width:max-content;max-width:230px;padding:8px 10px;border-radius:10px;background:#262b36;color:#eef0f3;border:1px solid #3a3f4c;font:500 11px/1.45 'Inter',sans-serif;text-align:left;white-space:normal;box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:0;visibility:hidden;pointer-events:none;z-index:5;transition:opacity .16s ease,transform .18s ease,visibility 0s linear .18s}
+.help-tip:hover::after,.help-tip:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0);transition-delay:0s}
+/* profile lists: Shows | Favorite shows, Movies | Favorite movies */
+.profile-list-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.profile-list-pair .hscroll-section{margin:0;min-width:0;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:14px 14px 12px}
+.profile-list-pair .hscroll-head{margin-bottom:12px}
+.profile-list-pair .hscroll-title{font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:520px){.profile-list-pair .hscroll-title,.profile-list-pair .hscroll-heart{font-size:13px}.profile-list-pair .hscroll-chevron{width:14px;height:14px}.profile-list-pair .hscroll-head{gap:6px}.profile-list-pair .hscroll-count{display:none}}
+.profile-list-pair .hscroll-heart{font-size:17px}
+.hscroll-count{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--text-dim);background:var(--bg-elev);border:1px solid var(--border);border-radius:999px;padding:2px 8px;flex-shrink:0}
+.profile-list-pair .hscroll-track{margin:0 -14px;padding:0 14px 4px;gap:8px}
+.profile-list-pair .hscroll-item{width:88px}
+.profile-list-pair .hscroll-item img{width:88px;height:132px;border-radius:8px}
+.profile-list-pair .hscroll-empty{font-size:12px;line-height:1.4}
+/* press animations - profile page only */
+.profile-route .btn,.profile-route .profile-edit-btn,.profile-route label.field-btn,.profile-route .hscroll-item,.profile-route .hscroll-head,.profile-route .see-more-btn{transition:transform .15s cubic-bezier(.3,.7,.4,1),background-color .2s ease,border-color .2s ease,color .2s ease,filter .2s ease}
+.profile-route .btn:active,.profile-route .profile-edit-btn:active,.profile-route label.field-btn:active{transform:scale(.94)}
+.profile-route .hscroll-item:active{transform:scale(.95)}
+.profile-route .hscroll-head:active{transform:scale(.985)}
+
+/* ===== v79 ===== */
+/* overlay header */
+.profile-edit-overlay .overlay-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:2px}
+.profile-edit-overlay .overlay-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:24px;line-height:1.2;color:var(--text)}
+.profile-edit-overlay .overlay-head + .setting-cat{margin-top:4px}
+/* more space between photo / banner */
+.profile-edit-overlay .setting-pair.seg{gap:8px}
+/* full-width theme switch */
+.profile-edit-overlay .setting-row{display:block}
+.switch{position:relative;display:block;width:100%;height:40px;cursor:pointer}
+.switch input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:2}
+.switch .slider{position:absolute;inset:0;border-radius:999px;background:var(--bg-elev);border:1px solid var(--border);transition:background-color .4s ease,border-color .4s ease}
+.switch .thumb{position:absolute;top:3px;left:3px;width:26%;height:32px;border-radius:999px;background:#8b93a3;color:#14171c;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.3);transition:transform .55s cubic-bezier(.34,1.35,.5,1),background-color .4s ease,color .4s ease}
+.switch .thumb svg{position:absolute;width:18px;height:18px;transition:opacity .3s ease,transform .6s cubic-bezier(.34,1.45,.5,1)}
+.switch .ico-moon{opacity:1;transform:rotate(0) scale(1)}
+.switch .ico-sun{opacity:0;transform:rotate(-90deg) scale(.4)}
+.switch input:checked + .slider{background:var(--accent);border-color:var(--accent)}
+.switch input:checked + .slider .thumb{transform:translateX(calc(284.6% - 6px));background:#2b1200;color:#ffffff}
+.switch input:checked + .slider .ico-moon{opacity:0;transform:rotate(90deg) scale(.4)}
+.switch input:checked + .slider .ico-sun{opacity:1;transform:rotate(0) scale(1)}
+.switch:active .thumb{transform:scale(1.05,.9)}
+.switch:active input:checked + .slider .thumb{transform:translateX(calc(284.6% - 6px)) scale(1.05,.9)}
+.switch input:focus-visible + .slider{outline:2px solid var(--accent);outline-offset:2px}
+/* hover: neutral buttons pick up a hint of the accent colour */
+.btn:not(.btn-accent):not(.btn-connect):not(.btn-disconnect):not(.btn-stopped):not(.rewatch-inc):not(.rewatch-dec):hover,
+.profile-edit-overlay label.field-btn:hover,
+.profile-edit-btn:hover{background:rgba(255,212,0,.14);border-color:var(--accent);color:var(--accent-text)}
+/* tooltip: own dark + light looks */
+html[data-theme="light"] .help-tip::after{background:#fffffe;color:#161b27;border-color:#dde1e8;box-shadow:0 8px 24px rgba(30,40,60,.16)}
+/* list icons */
+.hscroll-icon{display:flex;color:var(--accent-text);font-size:21px;flex-shrink:0}
+.hscroll-icon svg{width:1em;height:1em}
+.profile-list-pair .hscroll-icon{font-size:17px}
+@media(max-width:520px){.profile-list-pair .hscroll-icon{font-size:13px}}
+/* cast dropdown */
+.cast-group{margin:22px 0 14px}
+.cast-group .cast-track{padding-top:4px}
+/* overlay entrance: stronger pop + staggered sections */
+.profile-edit-overlay{transform:translate(-50%,-43%) scale(.92);transition:opacity .28s ease,transform .45s cubic-bezier(.2,.9,.25,1.08),visibility 0s linear .45s}
+@keyframes settingsItemIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.profile-edit-overlay.open > *{animation:settingsItemIn .45s cubic-bezier(.2,.8,.25,1) both}
+.profile-edit-overlay.open > *:nth-child(1){animation-delay:0.095s}
+.profile-edit-overlay.open > *:nth-child(2){animation-delay:0.130s}
+.profile-edit-overlay.open > *:nth-child(3){animation-delay:0.165s}
+.profile-edit-overlay.open > *:nth-child(4){animation-delay:0.200s}
+.profile-edit-overlay.open > *:nth-child(5){animation-delay:0.235s}
+.profile-edit-overlay.open > *:nth-child(6){animation-delay:0.270s}
+.profile-edit-overlay.open > *:nth-child(7){animation-delay:0.305s}
+.profile-edit-overlay.open > *:nth-child(8){animation-delay:0.340s}
+.profile-edit-overlay.open > *:nth-child(9){animation-delay:0.375s}
+.profile-edit-overlay.open > *:nth-child(10){animation-delay:0.410s}
+.profile-edit-overlay.open > *:nth-child(11){animation-delay:0.445s}
+.profile-edit-overlay.open > *:nth-child(12){animation-delay:0.480s}
+.profile-edit-overlay.open > *:nth-child(13){animation-delay:0.515s}
+.profile-edit-overlay.open > *:nth-child(14){animation-delay:0.550s}
+/* light / dark transition (only while the switch is flipped) */
+html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:background-color .5s ease,color .5s ease,border-color .5s ease,box-shadow .5s ease,fill .5s ease,stroke .5s ease}
+.profile-route .back{transition:transform .15s cubic-bezier(.3,.7,.4,1),background-color .2s ease,border-color .2s ease,color .2s ease}
+.profile-route .back:active{transform:scale(.94)}
+
+/* ===== v80 ===== */
+.profile-edit-overlay{color:var(--text)}
+html[data-theme="light"] .stat-num,
+html[data-theme="light"] .conn.on,
+html[data-theme="light"] .search-btn:hover,
+html[data-theme="light"] .back:hover,
+html[data-theme="light"] .profile-edit-overlay label.field-btn:hover,
+html[data-theme="light"] .btn:not(.btn-accent):not(.btn-connect):not(.btn-disconnect):not(.btn-stopped):hover{color:var(--accent-text)}
+html[data-theme="light"] .btn-accent,html[data-theme="light"] .btn-connect{color:#2b1200}
+html[data-theme="light"] .btn-disconnect{color:var(--red)}
+
+/* ===== v81: list overlays ===== */
+.list-backdrop{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.list-overlay{position:fixed;left:20px;top:20px;width:calc(100vw - 40px);height:calc(100dvh - 40px);z-index:91;background:var(--bg-card);border:1px solid var(--border);border-radius:18px;box-shadow:0 12px 32px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden;color:var(--text)}
+.list-ov-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 20px 16px;flex-shrink:0}
+.list-ov-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:24px;height:36px;line-height:36px;color:var(--text);min-width:0}
+.list-ov-head .back{height:36px;padding:0 20px;font-size:14px}
+.list-ov-sep{height:1px;background:var(--border);margin:0 20px;flex-shrink:0}
+.list-ov-body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:16px 20px 20px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+.list-ov-body::-webkit-scrollbar{display:none}
+.lp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+.lp{position:relative;aspect-ratio:2/3;border-radius:8px;overflow:hidden;background:var(--bg-elev);border:1px solid var(--border);cursor:pointer;transition:transform .15s cubic-bezier(.3,.7,.4,1);contain:layout paint}
+.lp:active{transform:scale(.95)}
+.lp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .3s ease}
+.lp img.loaded{opacity:1}
+.lp .poster-progress{position:absolute;left:0;right:0;bottom:0;z-index:2}
+.lp.has-prog .lp-name{bottom:6px;padding-bottom:4px}
+.list-ov-body .cat-section{margin-bottom:18px}
+.list-ov-body .cat-box{margin-bottom:12px}
+.lp-name{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:22px 8px 6px;font-size:11px;font-weight:700;line-height:1.25;color:#fff;background:linear-gradient(to top,rgba(0,0,0,.9),transparent);overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.list-overlay .empty{margin:0}
+
 /* ===== Light mode =====
    Dark is the default (the :root variables above). Light mode swaps the
    variables and overrides the few hard-coded dark colours. The hero
    banners (show/movie/profile) sit on photos, so they stay dark. */
 :root{--accent-text:var(--accent)}
 html[data-theme="light"],html[data-theme="light"] .profile-edit-overlay{
-  --bg:#fffffe; --bg-card:#f6f7f9; --bg-elev:#eceef2; --border:#d5d9e0;
-  --text:#14171c; --text-dim:#5d6676; --heading:#2a303b;
+  --bg:#f6f8fb; --bg-card:#fafbfd; --bg-elev:#eff1f5; --border:#dde1e8;
+  --text:#161b27; --text-dim:#5a6477; --heading:#343c4e;
   --accent-text:#8a6a00; --accent-dark:#f0dc8a;
-  --amber:#b86e00; --amber-dark:#ffe9bd; --imdb:#a8820a;
+  --amber:#b86e00; --amber-dark:#ffe9bd; --imdb:#a8820a; --btn-gray:#e8ebf0; --cat-color:#2a3142;
 }
 html[data-theme="light"]{color-scheme:light}
 html[data-theme="light"] .detail-hero-wrap,
@@ -391,7 +517,8 @@ html[data-theme="light"] .profile-hero{
   --amber:#ffc247; --amber-dark:#4a3512; --imdb:#f5c518;
 }
 html[data-theme="light"] .detail-hero-wrap{background:#1a1a1a}
-html[data-theme="light"],html[data-theme="light"] body{background:#dfe2e8}
+html[data-theme="light"] .detail-hero-wrap,html[data-theme="light"] .profile-hero{color:#eef0f3}
+html[data-theme="light"],html[data-theme="light"] body{background:#e6e9ef}
 html[data-theme="light"] #bottomnav{background:#fffffe}
 html[data-theme="light"] .nav-item{color:#8a909c}
 html[data-theme="light"] .nav-item:hover{color:#4a505c}
@@ -414,11 +541,11 @@ html[data-theme="light"] .stat-card2{background:#fffffe}
 html[data-theme="light"] .season-toggle:hover{background:rgba(0,0,0,.03)}
 html[data-theme="light"] #outlet.detail-view,
 html[data-theme="light"] .detail-body,
-html[data-theme="light"] .upcoming-list{background:#eceef2}
-html[data-theme="light"] .shows-tab.active{border-bottom-color:#111111}
+html[data-theme="light"] .upcoming-list{background:#eef1f6}
+html[data-theme="light"] .shows-tab.active{border-bottom-color:#161b27}
 html[data-theme="light"] .section-h.profile-title,
 html[data-theme="light"] .hscroll-title,
-html[data-theme="light"] .modal-title{color:#111111}
+html[data-theme="light"] .modal-title{color:#161b27}
 html[data-theme="light"] .upcoming-feed-item .upcoming-days-left{color:var(--text)}
 html[data-theme="light"] .back{background:#fffffe;border-color:var(--border);color:var(--text);box-shadow:0 2px 10px rgba(0,0,0,.12)}
 html[data-theme="light"] .detail-hero-wrap .back{background:#3d3d3d;border-color:rgba(255,255,255,.4);color:#eef0f3}
@@ -431,6 +558,14 @@ html[data-theme="light"] .toast,
 html[data-theme="light"] .profile-edit-overlay{box-shadow:0 12px 32px rgba(0,0,0,.18)}
 html[data-theme="light"] .rating-chip.imdb,
 html[data-theme="light"] .rating-chip.rt{background:#3d3d3d}
+html[data-theme="light"] .stat-card2,
+html[data-theme="light"] .profile-list-pair .hscroll-section,
+html[data-theme="light"] .feed-item,
+html[data-theme="light"] .season-panel,
+html[data-theme="light"] .upcoming-row,
+html[data-theme="light"] .card{box-shadow:0 1px 3px rgba(30,40,60,.07)}
+html[data-theme="light"] .profile-edit-overlay input[type=text]{background:var(--bg-elev);border-color:var(--border)}
+html[data-theme="light"] .hscroll-count{background:var(--bg-elev)}
 </style>
 </head>
 <body>
@@ -465,7 +600,8 @@ html[data-theme="light"] .rating-chip.rt{background:#3d3d3d}
 </div>
 <div id="toasts"></div>
 <script>
-const K={apikey:'nx.apikey',omdb:'nx.omdb',token:'nx.token',exp:'nx.exp',lib:'nx.lib',movieLib:'nx.movieLib',watched:'nx.watched',movieWatched:'nx.movieWatched',favShows:'nx.favShows',favMovies:'nx.favMovies',rewatch:'nx.rewatch',epRewatch:'nx.epRewatch',seasonRewatch:'nx.seasonRewatch',profile:'nx.profile',stopped:'nx.stopped',showReg:'nx.showReg',movieReg:'nx.movieReg'};
+const K={prog:'nx.prog',apikey:'nx.apikey',omdb:'nx.omdb',token:'nx.token',exp:'nx.exp',lib:'nx.lib',movieLib:'nx.movieLib',watched:'nx.watched',movieWatched:'nx.movieWatched',favShows:'nx.favShows',favMovies:'nx.favMovies',rewatch:'nx.rewatch',epRewatch:'nx.epRewatch',seasonRewatch:'nx.seasonRewatch',profile:'nx.profile',stopped:'nx.stopped',showReg:'nx.showReg',movieReg:'nx.movieReg'};
+let _progCache=null;
 function lget(k,f){const r=localStorage.getItem(k);if(r===null)return f;try{return JSON.parse(r)}catch{return f}}
 function lset(k,v){localStorage.setItem(k,JSON.stringify(v));scheduleSync()}
 
@@ -624,6 +760,8 @@ const Store={
   toggleFav:(kind,id,data)=>{const k=Store._favKey(kind);const f=lget(k,{});if(f[id])delete f[id];else f[id]={...data,favAt:Date.now()};lset(k,f);return Boolean(f[id])},
   rmFav:(kind,id)=>{const k=Store._favKey(kind);const f=lget(k,{});delete f[id];lset(k,f)},
 
+  // Per-show progress summary (see saveShowProgress). Cached in memory; the object is shared, so callers must not edit it directly.
+  prog:()=>{if(!_progCache)_progCache=lget(K.prog,{});return _progCache},
   watched:()=>lget(K.watched,{}),
   isWatched:id=>Boolean(Store.watched()[id]),
   // Old entries (from before per-episode metadata was tracked) are a plain
@@ -772,6 +910,8 @@ function exportShowsSection(){
     parts.push(`[tvdb:${show.id}]`);
     if(Store.inLib('show',show.id))parts.push(Store.isStopped('show',show.id)?'[stopped watching]':'[following]');
     parts.push(`[favorite:${Store.isFav('show',show.id)?1:0}]`);
+    const ps=Store.prog()[show.id];
+    if(ps)parts.push(`[progress:${ps.w}/${ps.t},${ps.x},${ps.lw},${ps.ra},${ps.nx||''}]`);
     parts.push(`[${episodes.length} eps watched]`);
     parts.push(`[${formatWatchedDuration(totalMin)} watched]`);
     lines.push(parts.join(' '));
@@ -875,6 +1015,24 @@ function exportRewatchedMoviesSection(){
 
 // Combines account info (username, API keys) and the Profile page's stat
 // cards (mirroring those numbers/formula exactly) into one section.
+// 1 year = 12 months of 30 days, matching how the Profile page counts months.
+function formatDurationFull(totalMinutes){
+  const t=Math.max(0,Math.round(totalMinutes||0));
+  const minutes=t%60;
+  const totalHours=Math.floor(t/60);
+  const hours=totalHours%24;
+  const totalDays=Math.floor(totalHours/24);
+  const years=Math.floor(totalDays/360);
+  const rem=totalDays%360;
+  const months=Math.floor(rem/30);
+  const days=rem%30;
+  return `${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes`;
+}
+function exportCountryLabel(){
+  const code=Store.profile().country;
+  const c=COUNTRIES.find(x=>x[0]===code);
+  return c?`${c[1]} (${c[0]})`:'';
+}
 function exportProfileSection(){
   const username=Store.profile().name||'';
   const apikey=Store.apikey()||'';
@@ -886,15 +1044,15 @@ function exportProfileSection(){
   const moviesWatchedCount=movieWatchedEntries.length;
   const showMins=watchedEpCount*42;
   const movieMins=movieWatchedEntries.reduce((sum,m)=>sum+(m.runtime||100),0);
-  const showTime=formatDurationParts(showMins);
-  const movieTime=formatDurationParts(movieMins);
   return [SEP,'PROFILE',SEP,
     `  Username: ${username}`,
+    `  Country: ${exportCountryLabel()}`,
+    `  Time zone: ${Store.profile().timezone||''}`,
     `  TVDB API Key: ${apikey}`,
     `  OMDB API Key: ${omdbkey}`,
-    `  TV time: ${showTime.months} months, ${showTime.days} days, ${showTime.hours} hours`,
+    `  TV time: ${formatDurationFull(showMins)}`,
     `  Episodes watched: ${watchedEpCount}`,
-    `  Movie time: ${movieTime.months} months, ${movieTime.days} days, ${movieTime.hours} hours`,
+    `  Movie time: ${formatDurationFull(movieMins)}`,
     `  Movies watched: ${moviesWatchedCount}`,
     ''];
 }
@@ -1053,7 +1211,8 @@ async function importDataText(text){
       alt:bracket(rest,'alt'),
       following:flag(rest,'following'),
       stoppedFlag:flag(rest,'stopped watching'),
-      favorite:parseFavoriteFlag(rest)
+      favorite:parseFavoriteFlag(rest),
+      progress:bracket(rest,'progress')
     };
   }
   function parseEpisodeLine(line){
@@ -1097,7 +1256,7 @@ async function importDataText(text){
   }
 
   // ---- Phase 1: parse the text into plain records (no network yet) ----
-  let importedUsername=null,importedApiKey=null,importedOmdbKey=null;
+  let importedUsername=null,importedApiKey=null,importedOmdbKey=null,importedCountry='',importedTz='';
   const showBlocks=[];       // {id,name,alt,following,stoppedFlag,favorite,episodes:[{s,e,epId,runtime,date}]}
   const movieWatchedRows=[]; // {id,name,alt,runtime,date}
   const watchlistRows=[];    // {id,name}
@@ -1115,6 +1274,10 @@ async function importDataText(text){
       while(i<lines.length&&!isSep(lines[i])){
         const u=/^\s*Username:\s?(.*)$/.exec(lines[i]);
         if(u)importedUsername=u[1].trim();
+        const co=/^\s*Country:\s?(.*)$/.exec(lines[i]);
+        if(co)importedCountry=co[1].trim();
+        const tzm=/^\s*Time zone:\s?(.*)$/.exec(lines[i]);
+        if(tzm)importedTz=tzm[1].trim();
         const k=/^\s*TVDB API Key:\s?(.*)$/.exec(lines[i]);
         if(k)importedApiKey=k[1].trim();
         const o=/^\s*OMDB API Key:\s?(.*)$/.exec(lines[i]);
@@ -1191,7 +1354,7 @@ async function importDataText(text){
   const newShowLib={},newMovieLib={},newWatched={},newMovieWatched={},
     newFavShows={},newFavMovies={},newStopped={},
     newShowReg={...Store.reg('show')},newMovieReg={...Store.reg('movie')},
-    newEpRewatch={},newMovieRewatch={};
+    newEpRewatch={},newMovieRewatch={},newProg={};
 
   function regItem(resolved,fallbackAlt){
     const item={id:resolved.id,name:resolved.name};
@@ -1211,6 +1374,9 @@ async function importDataText(text){
     if(b.following||b.stoppedFlag)newShowLib[r.id]={...item,addedAt:Date.now()};
     if(b.stoppedFlag)newStopped[`show:${r.id}`]=true;
     if(b.favorite)newFavShows[r.id]={...item,favAt:Date.now()};
+    // progress summary: shows whose line carries none are rebuilt the next time they're loaded
+    const pm=b.progress&&/^(\d+)\/(\d+),(\d),(\d+),(\d+),(.*)$/.exec(b.progress);
+    if(pm)newProg[r.id]={w:+pm[1],t:+pm[2],x:+pm[3],lw:+pm[4],ra:+pm[5],nx:pm[6].trim()};
     b.episodes.forEach(ep=>{
       newWatched[ep.epId]={at:parseYMD(ep.date)||Date.now(),s:ep.s,e:ep.e,r:ep.runtime,showId:r.id};
     });
@@ -1277,6 +1443,8 @@ async function importDataText(text){
   lset(K.lib,newShowLib);
   lset(K.movieLib,newMovieLib);
   lset(K.watched,newWatched);
+  _progCache=null;
+  lset(K.prog,newProg);
   lset(K.movieWatched,newMovieWatched);
   lset(K.favShows,newFavShows);
   lset(K.favMovies,newFavMovies);
@@ -1289,6 +1457,19 @@ async function importDataText(text){
   rw.movie=newMovieRewatch;
   lset(K.rewatch,rw);
   if(importedUsername!=null)Store.setProfile({name:importedUsername});
+  // Country ("Egypt (EG)") and time zone are only applied when the file actually has them.
+  if(importedCountry){
+    const codeM=/\(([A-Za-z]{2})\)\s*$/.exec(importedCountry);
+    const code=codeM?codeM[1].toUpperCase():(COUNTRIES.find(c=>c[1].toLowerCase()===importedCountry.toLowerCase())||[])[0];
+    if(code&&COUNTRIES.some(c=>c[0]===code))Store.setProfile({country:code});
+  }
+  if(importedTz){
+    let validTz=false;
+    try{new Intl.DateTimeFormat('en',{timeZone:importedTz});validTz=true}catch{}
+    if(validTz)Store.setProfile({timezone:importedTz});
+  }
+  bumpShowsCache();
+  bumpMoviesCache();
   if(importedOmdbKey)Store.setOmdb(importedOmdbKey);
   if(importedApiKey){
     Store.setApikey(importedApiKey);
@@ -1615,6 +1796,38 @@ function formatDurationParts(totalMinutes){
 }
 
 const epCache=new Map();
+/* Per-show progress summary. Instead of loading every episode of every show just to draw a progress bar,
+   each tracked show keeps one small record:  w = watched aired episodes, t = aired episodes in total,
+   x = show has ended, lw = last watched (ms), ra = most recent air date (ms), nx = next air date still to come.
+   It is rewritten from the show page (the one place episodes get marked, where the episode list is already
+   loaded) and whenever a show's episodes are loaded anyway. It is saved with the rest of the data and exported. */
+function computeProgSummary(eps,ended){
+  const counted=eps.filter(e=>e.seasonNumber>0&&!isFuture(e.aired));
+  let nx='';
+  eps.forEach(e=>{if(e.seasonNumber>0&&e.aired&&isFuture(e.aired)&&(!nx||e.aired<nx))nx=e.aired});
+  return{w:counted.filter(e=>Store.isWatched(e.id)).length,t:counted.length,x:ended?1:0,lw:calcLastWatchedAt(eps),ra:calcMostRecentAiredAt(eps),nx};
+}
+function saveShowProgress(id,eps,ended){
+  if(!eps||(!Store.inLib('show',id)&&!Store.isFav('show',id)))return;
+  const m=Store.prog(),next=computeProgSummary(eps,ended);
+  if(m[id]&&JSON.stringify(m[id])===JSON.stringify(next))return;
+  m[id]=next;
+  lset(K.prog,m);
+}
+// An episode has aired since the summary was written: its total is out of date until the show is next loaded.
+function progSummaryStale(sum){return !!(sum&&sum.nx&&!isFuture(sum.nx))}
+function progressFromSummary(sum){
+  let t=sum.t;
+  if(progSummaryStale(sum))t+=1;
+  if(!t)return{pct:0,complete:false,upToDate:false,watched:0,total:0};
+  const allWatched=sum.w>=t;
+  return{pct:Math.round(sum.w/t*100),complete:Boolean(sum.x)&&allWatched,upToDate:allWatched&&!sum.x,watched:sum.w,total:t};
+}
+// Progress for the show page's bar: stores the new numbers, then redraws the bar.
+function applyShowProgress(progressEl,id,eps,ended){
+  saveShowProgress(id,eps,ended);
+  updateShowProgressBar(progressEl,calcShowProgress(eps,ended));
+}
 async function getEpisodes(id){
   if(epCache.has(id))return epCache.get(id);
   let page=0,all=[],guard=0;
@@ -1800,14 +2013,6 @@ function detailHeroWrap({bannerUrl,backEl,heroEl,progressEl}){
   wrap.appendChild(inner);
   if(progressEl)wrap.appendChild(progressEl);
   return wrap;
-}
-async function loadPosterProgress(card,showId){
-  if(!Store.valid()||!Store.inLib('show',showId))return;
-  try{
-    const[eps,series]=await Promise.all([getEpisodes(showId),Api.seriesExtended(showId).catch(()=>null)]);
-    const ended=isEndedStatus(series);
-    updatePosterProgress(card,{...calcShowProgress(eps,ended),stopped:Store.isStopped('show',showId)});
-  }catch{}
 }
 function emptyState(msg,route,label){
   return `<div class="empty">${msg}${route?` <a data-link="${route}">${label||'Go there'}</a>`:''}</div>`;
@@ -2033,31 +2238,248 @@ function wireRewatchGroup(container,{inc,dec}){
 }
 document.addEventListener('click',e=>{const l=e.target.closest('[data-link]');if(l)nav(l.dataset.link)});
 
-const routes={explore:renderExplore,shows:renderShows,movies:renderMovies,stats:renderStats,show:renderShow,movie:renderMovie,favshows:renderFavShows,favmovies:renderFavMovies,libshows:renderLibShows,libmovies:renderLibMovies};
+const routes={explore:renderExplore,shows:renderShows,movies:renderMovies,stats:renderStats,show:renderShow,movie:renderMovie};
 let currentRoute='shows';
 let showBackRoute='shows';
 let movieBackRoute='movies';
 const SHOW_LIST_ROUTES=['shows','libshows','favshows','explore'];
 const MOVIE_LIST_ROUTES=['movies','libmovies','favmovies','explore'];
+const LIST_ROUTES=['libshows','libmovies','favshows','favmovies'];
+// The four profile lists open as overlays on top of the profile page. Only cheap data is read here
+// (the library entries themselves): no episodes, no per-show requests. Posters are empty frames until the
+// overlay has finished opening, then each image loads as its frame scrolls into view.
+const LIST_DEFS={
+  libshows:{title:'Shows',kind:'show',items:()=>Object.values(Store.lib('show')).sort((a,b)=>(b.addedAt||0)-(a.addedAt||0)),emptyMsg:'You are not tracking any shows yet.',emptyRoute:'explore',emptyLabel:'Explore shows'},
+  favshows:{title:'Favorite shows',kind:'show',items:()=>Object.values(Store.fav('show')),emptyMsg:"You haven't favorited any shows yet.",emptyRoute:'shows',emptyLabel:'Browse shows'},
+  libmovies:{title:'Movies',kind:'movie',items:()=>sortMoviesByWatchedDate(watchedMovieItems()),emptyMsg:"You haven't watched any movies yet.",emptyRoute:'explore',emptyLabel:'Explore movies'},
+  favmovies:{title:'Favorite movies',kind:'movie',items:()=>Object.values(Store.fav('movie')),emptyMsg:"You haven't favorited any movies yet.",emptyRoute:'movies',emptyLabel:'Browse movies'}
+};
+let _listOv=null;
+function listBoxRect(route){
+  const el=document.querySelector(`#outlet .hscroll-section[data-route="${route}"]`);
+  if(!el)return null;
+  el.scrollIntoView({block:'nearest'});
+  return el.getBoundingClientRect();
+}
+function flipTransform(panel,box){
+  const r=panel.getBoundingClientRect();
+  return `translate(${box.left-r.left}px,${box.top-r.top}px) scale(${box.width/r.width},${box.height/r.height})`;
+}
+function removeListOverlay(){
+  if(!_listOv)return;
+  _listOv.io?.disconnect();
+  clearTimeout(_listOv.loadTimer);
+  document.removeEventListener('keydown',_listOv.onKey);
+  window.removeEventListener('resize',_listOv.onResize);
+  _listOv.panel.remove();_listOv.backdrop.remove();
+  _listOv=null;
+}
+// The overlay covers the app's page area (not the whole window) with a 20px margin on every side.
+function sizeListOverlay(panel){
+  const m=20,main=document.getElementById('main').getBoundingClientRect();
+  const nav=document.getElementById('bottomnav');
+  const bottom=nav?Math.max(main.bottom,nav.getBoundingClientRect().bottom):main.bottom;
+  panel.style.left=(main.left+m)+'px';
+  panel.style.top=(main.top+m)+'px';
+  panel.style.width=Math.max(240,main.width-2*m)+'px';
+  panel.style.height=Math.max(240,bottom-main.top-2*m)+'px';
+}
+function openListOverlay(route){
+  const def=LIST_DEFS[route];
+  const items=def.items();
+  const isShow=def.kind==='show';
+  const catMode=route==='libshows';
+  const backdrop=document.createElement('div');
+  backdrop.className='list-backdrop';
+  const panel=document.createElement('div');
+  panel.className='list-overlay';
+  panel.setAttribute('role','dialog');
+  panel.setAttribute('aria-label',def.title);
+  const head=document.createElement('div');
+  head.className='list-ov-head';
+  head.innerHTML=`<div class="list-ov-title">${def.title}</div>`;
+  head.appendChild(backButton('stats'));
+  const sep=document.createElement('div');
+  sep.className='list-ov-sep';
+  const body=document.createElement('div');
+  body.className='list-ov-body';
+  const frames=[],frameById=new Map();
+  const secs={};
+  let emptyEl=null;
+  const makeFrame=item=>{
+    const f=document.createElement('div');
+    f.className='lp';
+    f.dataset.src=item.image||'';
+    const nm=document.createElement('div');
+    nm.className='lp-name';
+    nm.textContent=item.name||'Untitled';
+    f.appendChild(nm);
+    if(isShow)f.classList.add('has-prog');
+    if(isShow)f.insertAdjacentHTML('beforeend','<div class="poster-progress"><div class="poster-progress-fill" style="width:0%"></div></div>');
+    f.addEventListener('click',()=>nav(def.kind,{id:item.id}));
+    frames.push(f);frameById.set(item.id,f);
+    return f;
+  };
+  const insertByValue=(grid,f,sv)=>{
+    f.dataset.sv=sv;
+    const before=[...grid.children].find(el=>el!==f&&Number(el.dataset.sv||0)<sv);
+    if(before)grid.insertBefore(f,before);else grid.appendChild(f);
+  };
+  const refreshSections=()=>{
+    let any=false;
+    Object.values(secs).forEach(x=>{const has=x.grid.children.length>0;x.sec.style.display=has?'':'none';if(has)any=true});
+    if(emptyEl){emptyEl.style.display=any?'none':''}
+  };
+  const P=Store.prog();
+  const applyProgress=(f,item)=>{
+    const sum=P[item.id];
+    if(!sum)return;
+    updatePosterProgress(f,{...progressFromSummary(sum),stopped:Store.isStopped('show',item.id)});
+  };
+  // Shows list groups: WATCHING (started, not finished - this merges the old "Haven't watched for a while" and
+  // "Next to watch"), Up to date, Completed, Stopped watching. Shows you haven't started aren't listed.
+  const placeCat=(f,item)=>{
+    const sum=P[item.id];
+    if(!sum){secs.pending.grid.appendChild(f);return}
+    const progress=progressFromSummary(sum);
+    const stopped=Store.isStopped('show',item.id);
+    let key;
+    if(stopped)key='stopped';
+    else if(progress.watched===0){f.remove();return}
+    else if(progress.complete)key='completed';
+    else if(progress.upToDate)key='uptodate';
+    else key='watching';
+    updatePosterProgress(f,{...progress,stopped});
+    insertByValue(secs[key].grid,f,sum.ra||0);
+  };
+  if(!items.length){
+    body.innerHTML=emptyState(def.emptyMsg,def.emptyRoute,def.emptyLabel);
+  }else if(catMode){
+    [{key:'watching',title:'WATCHING'},{key:'uptodate',title:'Up to date'},{key:'completed',title:'Completed'},{key:'stopped',title:'Stopped watching'},{key:'pending',title:'LOADING'}].forEach(c=>{
+      const sec=document.createElement('div');
+      sec.className='cat-section';
+      sec.style.display='none';
+      sec.innerHTML=`<div class="cat-box-wrap"><div class="cat-box">${c.title}</div></div>`;
+      const grid=document.createElement('div');
+      grid.className='lp-grid';
+      sec.appendChild(grid);
+      body.appendChild(sec);
+      secs[c.key]={sec,grid};
+    });
+    body.insertAdjacentHTML('beforeend','<div class="empty" style="display:none">Nothing to show here yet.</div>');
+    emptyEl=body.lastElementChild;
+    items.forEach(item=>placeCat(makeFrame(item),item));
+    refreshSections();
+  }else{
+    const grid=document.createElement('div');
+    grid.className='lp-grid';
+    const frag=document.createDocumentFragment();
+    items.forEach(item=>{const f=makeFrame(item);frag.appendChild(f);if(isShow)applyProgress(f,item)});
+    grid.appendChild(frag);
+    body.appendChild(grid);
+  }
+  panel.append(head,sep,body);
+  sizeListOverlay(panel);
+  document.body.append(backdrop,panel);
+  backdrop.addEventListener('click',()=>nav('stats'));
+  const onKey=e=>{if(e.key==='Escape')nav('stats')};
+  const onResize=()=>sizeListOverlay(panel);
+  document.addEventListener('keydown',onKey);
+  window.addEventListener('resize',onResize);
+  const ov=_listOv={panel,backdrop,route,body,frames,onKey,onResize,io:null,loadTimer:0};
+  // After the overlay has opened: load posters for frames near the viewport, and (for shows) fill in any
+  // missing / out-of-date progress summaries a few at a time, moving each card into its category when ready.
+  const startLoading=()=>{
+    if(_listOv!==ov||ov.io||!frames.length)return;
+    ov.io=new IntersectionObserver(es=>es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const f=e.target;ov.io.unobserve(f);
+      if(!f.dataset.src)return;
+      const img=new Image();
+      img.alt='';img.decoding='async';
+      img.onload=()=>img.classList.add('loaded');
+      img.src=imgUrl(f.dataset.src,{thumb:true});
+      f.insertBefore(img,f.firstChild);
+    }),{root:body,rootMargin:'300px 0px'});
+    frames.forEach(f=>ov.io.observe(f));
+    if(!isShow)return;
+    // Only shows with no stored progress yet (or one an episode has since aired for) need their episodes loaded.
+    const todo=items.filter(it=>!P[it.id]||progSummaryStale(P[it.id]));
+    mapLimit(todo,3,async it=>{
+      if(_listOv!==ov)return;
+      const f=frameById.get(it.id);
+      try{
+        const[eps,series]=await Promise.all([getEpisodes(it.id),Api.seriesExtended(it.id).catch(()=>null)]);
+        saveShowProgress(it.id,eps,isEndedStatus(series));
+      }catch{
+        if(!P[it.id]&&catMode)f.remove();
+        return;
+      }
+      if(_listOv!==ov)return;
+      if(catMode)placeCat(f,it);else applyProgress(f,it);
+      if(catMode)refreshSections();
+    }).then(()=>{if(_listOv===ov&&catMode)refreshSections()});
+  };
+  const box=listBoxRect(route);
+  const ease='cubic-bezier(.2,.85,.25,1)',dur=520;
+  backdrop.animate([{opacity:0,backdropFilter:'blur(0px)',webkitBackdropFilter:'blur(0px)'},{opacity:1,backdropFilter:'blur(5px)',webkitBackdropFilter:'blur(5px)'}],{duration:dur*.8,easing:'ease'});
+  if(box&&panel.animate){
+    panel.style.transformOrigin='0 0';
+    const a=panel.animate([{transform:flipTransform(panel,box),borderRadius:'14px',opacity:.6},{transform:'none',borderRadius:'18px',opacity:1}],{duration:dur,easing:ease});
+    [head,sep,body].forEach(el=>el.animate([{opacity:0},{opacity:0,offset:.3},{opacity:1}],{duration:dur,easing:'linear'}));
+    a.onfinish=startLoading;a.oncancel=startLoading;
+  }else{
+    panel.animate?.([{opacity:0,transform:'scale(.94)'},{opacity:1,transform:'none'}],{duration:260,easing:ease});
+    ov.loadTimer=setTimeout(startLoading,300);
+  }
+  ov.loadTimer=ov.loadTimer||setTimeout(startLoading,dur+150);
+}
+function closeListOverlay(){
+  const ov=_listOv;
+  if(!ov)return;
+  _listOv=null;
+  ov.io?.disconnect();
+  document.removeEventListener('keydown',ov.onKey);
+  window.removeEventListener('resize',ov.onResize);
+  clearTimeout(ov.loadTimer);
+  const{panel,backdrop}=ov;
+  panel.style.pointerEvents='none';backdrop.style.pointerEvents='none';
+  const box=panel.animate?listBoxRect(ov.route):null;
+  const finish=()=>{panel.remove();backdrop.remove()};
+  if(!panel.animate){finish();return}
+  const dur=420,ease='cubic-bezier(.45,0,.2,1)';
+  backdrop.animate([{opacity:1,backdropFilter:'blur(5px)',webkitBackdropFilter:'blur(5px)'},{opacity:0,backdropFilter:'blur(0px)',webkitBackdropFilter:'blur(0px)'}],{duration:dur,easing:'ease',fill:'forwards'});
+  if(box){
+    panel.style.transformOrigin='0 0';
+    const to=flipTransform(panel,box);
+    [...panel.children].forEach(el=>el.animate([{opacity:1},{opacity:0,offset:.45},{opacity:0}],{duration:dur,easing:'linear',fill:'forwards'}));
+    const a=panel.animate([{transform:'none',borderRadius:'18px',opacity:1},{transform:to,borderRadius:'14px',opacity:.5}],{duration:dur,easing:ease,fill:'forwards'});
+    a.onfinish=finish;a.oncancel=finish;
+  }else{
+    const a=panel.animate([{opacity:1,transform:'none'},{opacity:0,transform:'scale(.94)'}],{duration:240,easing:ease,fill:'forwards'});
+    a.onfinish=finish;a.oncancel=finish;
+  }
+}
 function nav(route,params={}){
+  const prevRoute=currentRoute;
+  if(_listOv){
+    if(route==='stats'&&LIST_ROUTES.includes(prevRoute)){
+      closeListOverlay();
+      currentRoute='stats';
+      location.hash='stats';
+      return;
+    }
+    removeListOverlay();
+  }
+  if(LIST_ROUTES.includes(route)){
+    if(prevRoute!=='stats')nav('stats'); // the profile page sits underneath the overlay
+    openListOverlay(route);
+    location.hash=route;
+    currentRoute=route;
+    return;
+  }
   if(route==='show')showBackRoute=SHOW_LIST_ROUTES.includes(currentRoute)?currentRoute:'shows';
   if(route==='movie')movieBackRoute=MOVIE_LIST_ROUTES.includes(currentRoute)?currentRoute:'movies';
-  // Item 1.4: bound how much of a lazy-loaded tab a persistent pane
-  // holds onto once the user leaves it - keep only LAZY_CACHE_PACKS
-  // packs' worth of rendered cards, dropping the rest. A later return
-  // visit re-fetches past that point, but since the underlying network
-  // responses are cached in memory for the session, that's effectively
-  // instant rather than a real reload.
-  const inShowsRealm=r=>r==='shows'||r==='show';
-  const inMoviesRealm=r=>r==='movies'||r==='movie';
-  if(inShowsRealm(currentRoute)&&!inShowsRealm(route)){
-    if(showsTabState==='watchlist')trimPaneToPacks(watchlistPane,'watchlist',()=>{watchlistLoaded=false});
-    else trimPaneToPacks(upcomingPane,'upcoming:shows',()=>{upcomingLoaded=false});
-  }
-  if(inMoviesRealm(currentRoute)&&!inMoviesRealm(route)){
-    if(moviesTabState==='watchlist')trimPaneToPacks(movieWatchlistPane,'movies:watchlist',()=>{movieWatchlistLoaded=false});
-    else trimPaneToPacks(movieUpcomingPane,'upcoming:movies',()=>{movieUpcomingLoaded=false});
-  }
   document.getElementById('topbar').style.display=route==='explore'?'':'none';
   document.querySelectorAll('.nav-item').forEach(b=>{
     const r=b.dataset.route;
@@ -2172,8 +2594,6 @@ async function renderShows(o){
   updatePaneVisibility();
   o.querySelectorAll('.shows-tab').forEach(btn=>btn.addEventListener('click',()=>{
     if(showsTabState===btn.dataset.tab)return;
-    if(showsTabState==='watchlist')trimPaneToPacks(watchlistPane,'watchlist',()=>{watchlistLoaded=false});
-    else trimPaneToPacks(upcomingPane,'upcoming:shows',()=>{upcomingLoaded=false});
     showsTabState=btn.dataset.tab;
     document.getElementById('outlet').scrollTop=0;
     o.querySelectorAll('.shows-tab').forEach(b=>b.classList.toggle('active',b===btn));
@@ -2185,8 +2605,11 @@ async function renderShows(o){
   ensureShowsTabLoaded();
 }
 async function fetchShowWatchData(s){
+  const sum=Store.prog()[s.id];
+  if(sum&&!progSummaryStale(sum))return{progress:progressFromSummary(sum),lastWatchedAt:sum.lw,mostRecentAiredAt:sum.ra};
   const[eps,series]=await Promise.all([getEpisodes(s.id),Api.seriesExtended(s.id).catch(()=>null)]);
   const ended=isEndedStatus(series);
+  saveShowProgress(s.id,eps,ended);
   return{progress:calcShowProgress(eps,ended),lastWatchedAt:calcLastWatchedAt(eps),mostRecentAiredAt:calcMostRecentAiredAt(eps)};
 }
 function classifyForWatchlist(s,data,now){
@@ -2225,8 +2648,7 @@ async function renderWatchListTab(o){
   runCategorizedShowFeed(o,allLib,{
     fetchItemData:fetchShowWatchData,
     classify:(s,data)=>classifyForWatchlist(s,data,now),
-    categoryOrder:['next','stale','notstarted'],
-    grids,sections,cacheKey:'watchlist',
+        grids,sections,
     onEmpty:()=>o.insertAdjacentHTML('beforeend',emptyState('Nothing to show here yet.'))
   });
 }
@@ -2314,8 +2736,10 @@ async function renderUpcomingTab(o){
       listEl.appendChild(upcomingRow(s,ep,{channel,ts,timed}));
     });
   }
-  const batcher=createLazyBatcher(stubs,async s=>{
+  const fetchOne=async s=>{
     const[eps,series]=await Promise.all([getEpisodes(s.id),Api.seriesExtended(s.id).catch(()=>null)]);
+    // Shows you haven't started watching never appear in Upcoming.
+    if(!eps.some(e=>Store.isWatched(e.id)))return[];
     const airtime=series?.airsTime||null;
     const srcTz=seriesSourceTz(series);
     const channel=series?.originalNetwork?.name||series?.latestNetwork?.name||null;
@@ -2327,16 +2751,16 @@ async function renderUpcomingTab(o){
       const {ts,timed}=airInstant(e.aired,airtime,srcTz);
       return{ep:e,channel,ts,timed};
     }).filter(x=>x.timed?x.ts>=nowTs:dateKeyInTz(x.ts,getUserTimeZone())>=todayKey);
+  };
+  let done=false,redrawQueued=false;
+  const scheduleRedraw=()=>{if(redrawQueued)return;redrawQueued=true;setTimeout(()=>{redrawQueued=false;if(!done)redraw()},150)};
+  await loadAllItems(stubs,fetchOne,({stub:s,data})=>{
+    (data||[]).forEach(({ep,channel,ts,timed})=>insertSorted({show:s,ep,channel,ts,timed}));
+    scheduleRedraw();
   });
-  await runLazyBatches(o,batcher,results=>{
-    results.forEach(({stub:s,data})=>{
-      (data||[]).forEach(({ep,channel,ts,timed})=>insertSorted({show:s,ep,channel,ts,timed}));
-    });
-    redraw();
-    if(!batcher.hasMore()&&!sorted.length){
-      listEl.innerHTML=emptyState('No upcoming episodes for your tracked shows.');
-    }
-  },'upcoming:shows');
+  done=true;
+  redraw();
+  if(!sorted.length)listEl.appendChild(noUpcomingCard('No upcoming episodes at the moment'));
   o.querySelector('.loading-row')?.remove();
 }
 
@@ -2375,8 +2799,6 @@ async function renderMovies(o){
   updatePaneVisibility();
   o.querySelectorAll('.shows-tab').forEach(btn=>btn.addEventListener('click',()=>{
     if(moviesTabState===btn.dataset.tab)return;
-    if(moviesTabState==='watchlist')trimPaneToPacks(movieWatchlistPane,'movies:watchlist',()=>{movieWatchlistLoaded=false});
-    else trimPaneToPacks(movieUpcomingPane,'upcoming:movies',()=>{movieUpcomingLoaded=false});
     moviesTabState=btn.dataset.tab;
     document.getElementById('outlet').scrollTop=0;
     o.querySelectorAll('.shows-tab').forEach(b=>b.classList.toggle('active',b===btn));
@@ -2406,7 +2828,7 @@ async function renderMovieWatchlistTab(o){
       grid.appendChild(card);
     });
   }
-  const batcher=createLazyBatcher(stubs,async m=>{
+  const fetchOne=async m=>{
     const ext=await Api.movieExtended(m.id);
     const releaseDate=firstReleaseDate(ext);
     if(releaseDate)Store.upsertReg('movie',{id:m.id,releaseDate,year:ext.year});
@@ -2414,17 +2836,17 @@ async function renderMovieWatchlistTab(o){
     // don't hide it - only exclude a movie when we can concretely tell
     // it hasn't released yet.
     return{released:!releaseDate||!isFuture(releaseDate),m:{...m,releaseDate,year:ext.year??m.year}};
+  };
+  let done=false,redrawQueued=false;
+  const scheduleRedraw=()=>{if(redrawQueued)return;redrawQueued=true;setTimeout(()=>{redrawQueued=false;if(!done)redraw()},150)};
+  await loadAllItems(stubs,fetchOne,({stub:m,data})=>{
+    if(data&&data.released)released.push(data.m);
+    else if(!data)released.push(m); // fetch failed - fall back to trusting the library entry
+    scheduleRedraw();
   });
-  await runLazyBatches(o,batcher,results=>{
-    results.forEach(({stub:m,data})=>{
-      if(data&&data.released)released.push(data.m);
-      else if(!data)released.push(m); // fetch failed - fall back to trusting the library entry, as before
-    });
-    redraw();
-    if(!batcher.hasMore()&&!released.length){
-      gridHost.innerHTML=emptyState('You are not tracking any released movies.','explore','Explore movies');
-    }
-  },'movies:watchlist');
+  done=true;
+  redraw();
+  if(!released.length)gridHost.innerHTML=emptyState('You are not tracking any released movies.','explore','Explore movies');
   o.querySelector('.loading-row')?.remove();
 }
 // Item 6 equivalent for movies: patch just one movie's card in the
@@ -2477,22 +2899,22 @@ async function renderMovieUpcomingTab(o){
       listEl.appendChild(upcomingMovieRow(m,date,bannerUrl));
     });
   }
-  const batcher=createLazyBatcher(stubs,async m=>{
+  const fetchOne=async m=>{
     const ext=await Api.movieExtended(m.id);
     const releaseDate=userReleaseDate(ext);
     if(!releaseDate||releaseDate<dateKeyInTz(Date.now(),getUserTimeZone()))return null;
     const bannerUrl=await getBannerUrl('movie',m.id,ext).catch(()=>null);
     return{date:releaseDate,bannerUrl};
+  };
+  let done=false,redrawQueued=false;
+  const scheduleRedraw=()=>{if(redrawQueued)return;redrawQueued=true;setTimeout(()=>{redrawQueued=false;if(!done)redraw()},150)};
+  await loadAllItems(stubs,fetchOne,({stub:m,data})=>{
+    if(data)insertSorted({movie:m,date:data.date,bannerUrl:data.bannerUrl});
+    scheduleRedraw();
   });
-  await runLazyBatches(o,batcher,results=>{
-    results.forEach(({stub:m,data})=>{
-      if(data)insertSorted({movie:m,date:data.date,bannerUrl:data.bannerUrl});
-    });
-    redraw();
-    if(!batcher.hasMore()&&!sorted.length){
-      listEl.innerHTML=emptyState('No upcoming releases for your tracked movies.');
-    }
-  },'upcoming:movies');
+  done=true;
+  redraw();
+  if(!sorted.length)listEl.appendChild(noUpcomingCard('No upcoming movies at the moment'));
   o.querySelector('.loading-row')?.remove();
 }
 function upcomingMovieRow(m,date,bannerUrl){
@@ -2522,8 +2944,14 @@ function upcomingMovieRow(m,date,bannerUrl){
   return el;
 }
 
+// Every watched movie, whether or not it's in the library list (watching one doesn't add it).
+function watchedMovieItems(){
+  const reg=Store.reg('movie'),lib=Store.lib('movie');
+  return Object.keys(Store.movieWatched()).map(id=>reg[id]||lib[id]).filter(Boolean);
+}
 function renderStats(o,opts){
   opts=opts||{};
+  o.classList.add('profile-route');
   const baseWatchedEpCount=Object.keys(Store.watched()).length;
   const epRewatchTotal=Object.values(Store.epRewatch()).reduce((a,b)=>a+b,0);
   const watchedEpCount=baseWatchedEpCount+epRewatchTotal;
@@ -2551,11 +2979,12 @@ function renderStats(o,opts){
         </div>
       </div>
       <div class="profile-edit-overlay" id="profile-edit-overlay">
+        <div class="overlay-head"><div class="overlay-title">Settings</div><button type="button" class="back" id="settings-back">Back</button></div>
         <div class="setting-cat">User Information</div>
         <input type="text" id="profile-name" placeholder="Your name" value="${profile.name||''}" />
-        <div class="setting-pair">
-          <label class="field-btn" for="profile-avatar-input">Change photo</label>
-          <label class="field-btn" for="profile-banner-input">Change banner</label>
+        <div class="setting-pair seg">
+          <label class="field-btn fb-left" for="profile-avatar-input">Change photo</label>
+          <label class="field-btn fb-right" for="profile-banner-input">Change banner</label>
         </div>
         <div class="setting-cat">Personalization</div>
         <div class="setting-pair">
@@ -2569,22 +2998,21 @@ function renderStats(o,opts){
           </div>
         </div>
         <div class="setting-row">
-          <span class="setting-label">Light mode</span>
-          <label class="switch" title="Switch between dark and light mode"><input type="checkbox" id="theme-toggle" ${profile.theme==='light'?'checked':''} /><span class="slider"></span></label>
+          <label class="switch" title="Switch between dark and light mode"><input type="checkbox" id="theme-toggle" ${profile.theme==='light'?'checked':''} /><span class="slider"><span class="thumb"><svg class="ico-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span></span></label>
         </div>
         <div class="setting-cat">Connections</div>
     <form id="f">
-      <div class="field"><span>TVDB API Key — <a href="https://thetvdb.com/api-information" target="_blank">get one free</a></span>
+      <div class="field"><span>TVDB API Key — <a href="https://thetvdb.com/api-information" target="_blank">get one free</a><span class="help-tip" tabindex="0" role="img" aria-label="What is TVDB?" data-tip="TheTVDB is the database behind this app. It provides show and movie details, posters, episode lists, air dates and cast. A free key is required.">?</span></span>
         <div class="row conn-row"><input type="text" id="i-key" placeholder="e.g. 0a1b2c3d-..." /><button type="submit" id="tvdb-toggle" class="btn btn-accent">Connect</button></div>
       </div>
       <p id="msg" class="msg"></p>
-      <div class="field" style="margin-top:8px"><span>OMDb API Key — <a href="https://www.omdbapi.com/apikey.aspx" target="_blank">get one free</a></span>
+      <div class="field" style="margin-top:8px"><span>OMDb API Key — <a href="https://www.omdbapi.com/apikey.aspx" target="_blank">get one free</a><span class="help-tip" tabindex="0" role="img" aria-label="What is OMDb?" data-tip="OMDb provides the IMDb and Rotten Tomatoes ratings shown on show and movie pages. This key is optional; without it, ratings are hidden.">?</span></span>
         <div class="row conn-row"><input type="text" id="i-omdb" placeholder="OMDb API key" /><button type="button" id="omdb-toggle" class="btn btn-accent">Connect</button></div>
       </div>
           </form>
         <div class="setting-cat">Local Data</div>
     <div>
-      <div class="field"><span id="fs-status">${FileSync.supported?'No data file connected yet. Choose or create a .txt file to keep your data auto-saved on this device.':"Your browser can't auto-save to a file, but you can still export/import a backup .txt file below."}</span></div>
+      <div class="field"><span id="fs-status">${FileSync.supported?'No data file connected yet. Choose or create a .txt file to keep your data auto-saved on this device.':'You can still export/import a backup .txt file below.'}</span></div>
       <div class="data-row">
         ${FileSync.supported?`<button type="button" id="fs-choose" class="btn btn-accent">Choose / Create Data File</button><button type="button" id="fs-load" class="btn btn-ghost">Load From File</button>`:''}
         <button type="button" id="fs-download" class="btn">Export Backup</button>
@@ -2629,13 +3057,19 @@ function renderStats(o,opts){
 `;
   const listsHost=o.querySelector('#profile-lists');
   const showItems=Object.values(Store.lib('show'));
-  const movieItems=Object.values(Store.lib('movie')).filter(m=>Store.isMovieWatched(m.id));
+  const movieItems=watchedMovieItems();
   const favShowItems=Object.values(Store.fav('show'));
   const favMovieItems=Object.values(Store.fav('movie'));
-  listsHost.appendChild(hscrollSection({title:'Shows',items:showItems,kind:'show',onHeaderClick:()=>nav('libshows')}));
-  listsHost.appendChild(hscrollSection({title:'Favorite shows',heart:true,items:favShowItems,kind:'show',onHeaderClick:()=>nav('favshows')}));
-  listsHost.appendChild(hscrollSection({title:'Movies',items:movieItems,kind:'movie',onHeaderClick:()=>nav('libmovies')}));
-  listsHost.appendChild(hscrollSection({title:'Favorite movies',heart:true,items:favMovieItems,kind:'movie',onHeaderClick:()=>nav('favmovies')}));
+  const showsPair=document.createElement('div');
+  showsPair.className='profile-list-pair';
+  showsPair.appendChild(hscrollSection({route:'libshows',title:'Shows',icon:ICON_TV,items:showItems,kind:'show',onHeaderClick:()=>nav('libshows')}));
+  showsPair.appendChild(hscrollSection({route:'favshows',title:'Favorite shows',heart:true,items:favShowItems,kind:'show',onHeaderClick:()=>nav('favshows')}));
+  const moviesPair=document.createElement('div');
+  moviesPair.className='profile-list-pair';
+  moviesPair.appendChild(hscrollSection({route:'libmovies',title:'Movies',icon:ICON_FILM,items:movieItems,kind:'movie',onHeaderClick:()=>nav('libmovies')}));
+  moviesPair.appendChild(hscrollSection({route:'favmovies',title:'Favorite movies',heart:true,items:favMovieItems,kind:'movie',onHeaderClick:()=>nav('favmovies')}));
+  listsHost.appendChild(showsPair);
+  listsHost.appendChild(moviesPair);
   o.querySelector('#i-key').value=Store.apikey();
   o.querySelector('#i-omdb').value=Store.omdb();
   const tvdbToggle=o.querySelector('#tvdb-toggle');
@@ -2736,6 +3170,10 @@ function renderStats(o,opts){
   themeToggle.addEventListener('change',()=>{
     const t=themeToggle.checked?'light':'dark';
     Store.setProfile({theme:t});
+    const root=document.documentElement;
+    root.classList.add('theme-anim');
+    clearTimeout(window._themeAnimT);
+    window._themeAnimT=setTimeout(()=>root.classList.remove('theme-anim'),800);
     applyTheme(t);
   });
   const countrySel=o.querySelector('#profile-country');
@@ -2765,6 +3203,7 @@ function renderStats(o,opts){
   tzSel.addEventListener('change',()=>{Store.setProfile({timezone:tzSel.value});resetUpcomingPanes()});
   const editToggle=o.querySelector('#profile-edit-toggle');
   const editOverlay=o.querySelector('#profile-edit-overlay');
+  o.querySelector('#settings-back').addEventListener('click',()=>editOverlay.classList.remove('open'));
   editToggle.addEventListener('click',e=>{
     e.stopPropagation();
     editOverlay.classList.toggle('open');
@@ -2820,6 +3259,7 @@ function renderStats(o,opts){
       danger:true,
       onConfirm:()=>{
         Object.values(K).forEach(k=>localStorage.removeItem(k));
+        _progCache=null;
         bumpShowsCache();
         bumpMoviesCache();
         applyTheme('dark');
@@ -2853,6 +3293,23 @@ function renderStats(o,opts){
     while(overflows()&&sc>0.4){sc=Math.round((sc-0.03)*100)/100;statsGrid.style.setProperty('--sc',sc)}
   }
   fitStats();
+  // Count the numbers up from 0: fast at first, easing out to the real value over 1s.
+  if(!opts.msg){
+    o.querySelectorAll('.stat-part-num,.stat-single').forEach(el=>{
+      const target=parseInt(el.textContent.replace(/[^\d]/g,''),10)||0;
+      if(!target)return;
+      const grouped=el.classList.contains('stat-single');
+      const fmt=v=>grouped?v.toLocaleString():String(v);
+      el.textContent=fmt(0);
+      const t0=performance.now();
+      (function tick(now){
+        if(!el.isConnected)return;
+        const k=Math.min(1,(now-t0)/1000);
+        el.textContent=fmt(Math.round(target*(1-Math.pow(1-k,4))));
+        if(k<1)requestAnimationFrame(tick);
+      })(t0);
+    });
+  }
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitStats);
   window.addEventListener('resize',function onRs(){
     if(!statsGrid.isConnected){window.removeEventListener('resize',onRs);return}
@@ -2931,250 +3388,37 @@ function posterCard({id,name,image,sub,kind='series',showType=false}){
   return el;
 }
 
-// A page is re-rendered from scratch every time its route is visited (see
-// nav()), so without this, scrolling back into a big grid would re-render
-// every poster from item 1 again. This in-memory map (cleared only on a
-// full page reload, not on navigation) remembers how many items were
-// showing last time so re-opening the page can jump straight back there
-// instead of starting over. It's intentionally not persisted to
-// localStorage - it's just a "don't redo work this session" cache, not
-// data worth keeping across visits to the site.
-const _lazyGridState=new Map();
-const LAZY_GRID_BATCH=18;
-const LAZY_FETCH_CONCURRENCY=6;
-const LAZY_CACHE_PACKS=2;
-// ---------------------------------------------------------------------
-// True lazy loading framework
-// ---------------------------------------------------------------------
-// Some pages can't just batch the *rendering* of already-known items 20
-// at a time - which bucket a show belongs in (Next to watch / Stale /
-// Completed...) or where a movie falls in a release-date list depends on
-// data (episode lists, progress, release dates) that has to be fetched
-// per item first.
-//
-// createLazyBatcher only ever fetches LAZY_GRID_BATCH items' worth of
-// data at a time. runLazyBatches drives it for pages that don't need a
-// strict category order (the Upcoming tabs, the movie watchlist):
-// - it fetches pack 1 and reveals it immediately (no scroll needed for
-//   the very first pack, same as any other page loading);
-// - the moment a pack is revealed, it starts fetching the *next* pack
-//   in the background right away, without waiting for a scroll - but
-//   that next pack stays un-rendered until the user actually scrolls
-//   to the bottom of what's shown so far, at which point it appears
-//   instantly (it was already loaded) and the pack after that starts
-//   prefetching in turn;
-// - a small spinner only shows up if the user scrolls down faster than
-//   the background prefetch, i.e. there's genuinely nothing ready yet.
-//
-// runCategorizedShowFeed (below) is the equivalent for the Shows pages,
-// which additionally need their categories to fill in one at a time in
-// on-page order rather than interleaved.
-//
-// trimPaneToPacks bounds how much of this a page holds onto once the
-// user navigates away: panes that persist across navigation (Watchlist,
-// Upcoming, the movie tabs) get cut back down to LAZY_CACHE_PACKS packs
-// so they don't accumulate an ever-growing number of poster cards in
-// memory for a big library. A return visit re-fetches past that point,
-// but since the underlying API responses are cached in memory for the
-// session, that resume is effectively instant, not a real reload.
-function createLazyBatcher(stubs,fetchItemData){
-  let cursor=0;
-  return{
-    hasMore:()=>cursor<stubs.length,
-    async loadNext(){
-      if(cursor>=stubs.length)return[];
-      const batch=stubs.slice(cursor,cursor+LAZY_GRID_BATCH);
-      cursor+=batch.length;
-      return mapLimit(batch,LAZY_FETCH_CONCURRENCY,async stub=>{
-        try{return{stub,data:await fetchItemData(stub)}}
-        catch{return{stub,data:null}}
-      });
-    }
-  };
+const LOAD_CONCURRENCY=6;
+// Fetches data for every item (a few at a time) and hands each result to onResult as it arrives.
+async function loadAllItems(stubs,fetchItemData,onResult){
+  await mapLimit(stubs,LOAD_CONCURRENCY,async stub=>{
+    let data=null;
+    try{data=await fetchItemData(stub)}catch{data=null}
+    onResult({stub,data});
+  });
 }
-function trimPaneToPacks(paneEl,cacheKey,resetLoadedFlag){
-  const cap=LAZY_CACHE_PACKS*LAZY_GRID_BATCH;
-  if((_lazyGridState.get(cacheKey)||0)<=cap)return;
-  _lazyGridState.set(cacheKey,cap);
-  paneEl.innerHTML='';
-  resetLoadedFlag();
-}
-async function runLazyBatches(container,batcher,onBatch,cacheKey){
-  const sentinel=document.createElement('div');
-  sentinel.className='lazy-grid-sentinel';
-  const spinnerWrap=document.createElement('div');
-  spinnerWrap.innerHTML=loadingHtml('Loading…');
-  spinnerWrap.style.display='none';
-  let loaded=0;
-  const resumeAt=cacheKey?(_lazyGridState.get(cacheKey)||0):0;
-  let pending=null; // {done,promise} for a pack already being prefetched
-  function prefetchNext(){
-    if(pending||!batcher.hasMore())return;
-    const entry={done:false};
-    entry.promise=batcher.loadNext().then(r=>{entry.done=true;return r});
-    pending=entry;
-  }
-  async function revealNext(){
-    if(!pending&&!batcher.hasMore())return false;
-    const entry=pending||(()=>{const e={done:false};e.promise=batcher.loadNext().then(r=>{e.done=true;return r});return e})();
-    if(!entry.done)spinnerWrap.style.display='';
-    const results=await entry.promise;
-    pending=null;
-    spinnerWrap.style.display='none';
-    loaded+=results.length;
-    if(cacheKey)_lazyGridState.set(cacheKey,loaded);
-    onBatch(results);
-    prefetchNext();
-    if(!batcher.hasMore()){observer.disconnect();sentinel.remove();spinnerWrap.remove();return false}
-    return true;
-  }
-  const observer=new IntersectionObserver(entries=>{
-    if(entries.some(en=>en.isIntersecting))revealNext();
-  },{rootMargin:'150px'});
-  do{await revealNext()}while(loaded<resumeAt&&batcher.hasMore());
-  if(batcher.hasMore()){
-    container.appendChild(spinnerWrap);
-    container.appendChild(sentinel);
-    observer.observe(sentinel);
-  }
-}
-// Category-ordered feed for the Shows pages (Watchlist + Library).
-// Correctly knowing a category has no more members needs having looked
-// at every show, so the fetch trickles continuously through the *whole*
-// stub list in the background (packs of LAZY_GRID_BATCH, up to
-// LAZY_FETCH_CONCURRENCY in flight at once) rather than waiting on
-// scroll for each pack - gating it on scroll could stall a category
-// with few members forever behind everyone else. What scrolling DOES
-// gate is reveal: cards are added to the page a pack at a time, always
-// drawn from the earliest category (in `categoryOrder`) that currently
-// has fetched-but-unrevealed items, only moving on to the next category
-// once the current one's buffer is empty. Within a category, items are
-// sorted by `sortValue` (most-recently-aired-episode) each time more
-// arrive, so a category always reads top-to-bottom by recency once it's
-// settled.
-function runCategorizedShowFeed(container,stubs,{fetchItemData,classify,categoryOrder,grids,sections,onEmpty,cacheKey}){
-  const buffers={};
-  const revealCursor={};
-  categoryOrder.forEach(k=>{buffers[k]=[];revealCursor[k]=0});
-  let fetchCursor=0,fetchDone=false,firstRevealDone=false,waitingForData=false;
-  // Resume point is capped to LAZY_CACHE_PACKS packs even if the stored
-  // value is bigger (from a deeper scroll last time) - a page that fully
-  // rebuilds on every visit (like Library Shows) should only ever jump
-  // back 2 packs, not all the way to wherever the user had scrolled;
-  // pages with a persistent pane (like Watchlist) never actually reach
-  // this with a bigger stored value in the first place, since leaving
-  // them caps the stored value via trimPaneToPacks first.
-  const resumeAt=cacheKey?Math.min(_lazyGridState.get(cacheKey)||0,LAZY_CACHE_PACKS*LAZY_GRID_BATCH):0;
-
-  const sentinel=document.createElement('div');
-  sentinel.className='lazy-grid-sentinel';
+// Category-ordered feed for the Shows pages: every show is fetched, classified and dropped into its category as it arrives (newest-aired first).
+function runCategorizedShowFeed(container,stubs,{fetchItemData,classify,grids,sections,onEmpty}){
   const spinnerWrap=document.createElement('div');
   spinnerWrap.innerHTML=loadingHtml('Loading…');
   container.appendChild(spinnerWrap);
-  container.appendChild(sentinel);
-
-  const totalBuffered=()=>categoryOrder.reduce((s,k)=>s+buffers[k].length,0);
-  const totalRevealed=()=>categoryOrder.reduce((s,k)=>s+revealCursor[k],0);
-
-  function revealAvailable(){
-    let budget=LAZY_GRID_BATCH,revealedAny=false;
-    for(const key of categoryOrder){
-      if(budget<=0)break;
-      const buf=buffers[key];
-      const unrevealed=buf.slice(revealCursor[key]);
-      if(!unrevealed.length)continue;
-      unrevealed.sort((a,b)=>(b.sortValue||0)-(a.sortValue||0));
-      buf.splice(revealCursor[key],unrevealed.length,...unrevealed);
-      const take=unrevealed.slice(0,budget);
-      take.forEach(item=>{
-        sections[key].style.display='';
-        item.card.dataset.sortValue=item.sortValue||0;
-        grids[key].appendChild(item.card);
-      });
-      revealCursor[key]+=take.length;
-      budget-=take.length;
-      revealedAny=revealedAny||take.length>0;
-      if(take.length<unrevealed.length)break; // more buffered here - don't spill to the next category yet
-    }
-    return revealedAny;
-  }
-  function tryReveal(){
-    let got=revealAvailable();
-    // Catch back up to a previous resume point in one go, without
-    // waiting for extra scrolling to ask for each pack again.
-    while(totalRevealed()<resumeAt&&got)got=revealAvailable();
-    if(cacheKey)_lazyGridState.set(cacheKey,totalRevealed());
-    if(fetchDone&&totalRevealed()>=totalBuffered()){
-      spinnerWrap.remove();sentinel.remove();observer.disconnect();
-      if(totalBuffered()===0&&onEmpty)onEmpty();
-      return;
-    }
-    spinnerWrap.style.display=got?'none':'';
-    waitingForData=!got;
-  }
-  const observer=new IntersectionObserver(entries=>{
-    if(entries.some(en=>en.isIntersecting))tryReveal();
-  },{rootMargin:'150px'});
-  observer.observe(sentinel);
-
-  (async function fetchLoop(){
-    while(fetchCursor<stubs.length){
-      const batch=stubs.slice(fetchCursor,fetchCursor+LAZY_GRID_BATCH);
-      fetchCursor+=batch.length;
-      const results=await mapLimit(batch,LAZY_FETCH_CONCURRENCY,async stub=>{
-        try{return{stub,data:await fetchItemData(stub)}}
-        catch{return{stub,data:null}}
-      });
-      results.forEach(({stub,data})=>{
-        const c=classify(stub,data);
-        if(!c)return;
-        buffers[c.key].push({sortValue:c.sortValue,card:c.render()});
-      });
-      if(!firstRevealDone||waitingForData||totalRevealed()<resumeAt){firstRevealDone=true;waitingForData=false;tryReveal()}
-    }
-    fetchDone=true;
-    if(!firstRevealDone||waitingForData||totalRevealed()<resumeAt){firstRevealDone=true;waitingForData=false;tryReveal()}
-  })();
+  let count=0;
+  loadAllItems(stubs,fetchItemData,({stub,data})=>{
+    const c=classify(stub,data);
+    if(!c)return;
+    count++;
+    const card=c.render();
+    const sv=c.sortValue||0;
+    card.dataset.sortValue=sv;
+    const grid=grids[c.key];
+    const before=[...grid.children].find(el=>Number(el.dataset.sortValue||0)<sv);
+    if(before)grid.insertBefore(card,before);else grid.appendChild(card);
+    sections[c.key].style.display='';
+  }).then(()=>{
+    spinnerWrap.remove();
+    if(!count&&onEmpty)onEmpty();
+  });
 }
-// Renders `items` into `container` in batches of 18, appending the next 18
-// as the user scrolls near the bottom. `extra.sub` is passed through to
-// posterCard; `extra.onCard(card,item)` (optional) runs after each card is
-// added, e.g. to kick off a progress-bar fetch or apply precomputed
-// progress data.
-function renderLazyPosterGrid(container,items,kind,cacheKey,extra={}){
-  const grid=document.createElement('div');
-  grid.className='grid';
-  container.appendChild(grid);
-  const sentinel=document.createElement('div');
-  sentinel.className='lazy-grid-sentinel';
-  container.appendChild(sentinel);
-  let shown=0;
-  function loadMore(){
-    if(shown>=items.length)return;
-    items.slice(shown,shown+LAZY_GRID_BATCH).forEach(item=>{
-      const p=extra.mapItem?extra.mapItem(item):item;
-      const card=posterCard({id:p.id,name:p.name,image:p.image,sub:extra.sub,kind});
-      grid.appendChild(card);
-      extra.onCard?.(card,item);
-    });
-    shown=Math.min(shown+LAZY_GRID_BATCH,items.length);
-    if(cacheKey)_lazyGridState.set(cacheKey,shown);
-    if(shown>=items.length){observer.disconnect();sentinel.remove();}
-  }
-  const observer=new IntersectionObserver(entries=>{
-    if(entries.some(en=>en.isIntersecting))loadMore();
-  },{rootMargin:'150px'});
-  const resumeAt=cacheKey?Math.min(_lazyGridState.get(cacheKey)||0,items.length,LAZY_CACHE_PACKS*LAZY_GRID_BATCH):0;
-  if(resumeAt>0)while(shown<resumeAt)loadMore();
-  else loadMore();
-  if(shown<items.length)observer.observe(sentinel);
-  return grid;
-}
-// Best available sort key for "release date" ordering: an exact release
-// date if we have one, otherwise just the year, otherwise null (sorted to
-// the end). Only movies added/watched/imported after this feature was
-// added will have this data - older library entries fall back to null
-// until the movie page is revisited.
 function movieReleaseKey(item){
   if(item.releaseDate)return item.releaseDate;
   if(item.year)return `${item.year}-01-01`;
@@ -3198,14 +3442,17 @@ function sortMoviesByWatchedDate(items){
   return [...items].sort((a,b)=>(mw[b.id]?.watchedAt||0)-(mw[a.id]?.watchedAt||0));
 }
 
-function hscrollSection({title,heart,items,kind,onHeaderClick}){
+const ICON_TV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="m8 2 4 5 4-5"/></svg>';
+const ICON_FILM='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 4v16M17 4v16M2 9h5M2 15h5M17 9h5M17 15h5"/></svg>';
+function hscrollSection({title,heart,icon,items,kind,route,onHeaderClick}){
   const wrap=document.createElement('div');
   wrap.className='hscroll-section';
+  if(route)wrap.dataset.route=route;
   const chevron='<svg class="hscroll-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
   const head=document.createElement('button');
   head.type='button';
   head.className='hscroll-head';
-  head.innerHTML=`${heart?'<span class="hscroll-heart">♥</span>':''}<span class="hscroll-title">${title}</span>${chevron}`;
+  head.innerHTML=`${heart?'<span class="hscroll-heart">♥</span>':(icon?`<span class="hscroll-icon">${icon}</span>`:'')}<span class="hscroll-title">${title}</span><span class="hscroll-count">${items.length}</span>${chevron}`;
   head.addEventListener('click',onHeaderClick);
   wrap.appendChild(head);
   if(!items.length){
@@ -3227,98 +3474,12 @@ function hscrollSection({title,heart,items,kind,onHeaderClick}){
   wrap.appendChild(track);
   return wrap;
 }
-function renderGridPage(o,{title,items,kind,backRoute,emptyMsg,emptyRoute,emptyLabel,cacheKey}){
-  o.innerHTML='';
-  const titleRow=document.createElement('div');
-  titleRow.className='title-row';
-  const h=document.createElement('div');
-  h.className='section-h profile-title sub-page-title';
-  h.style.margin='0';
-  h.textContent=title;
-  titleRow.appendChild(h);
-  titleRow.appendChild(backButton(backRoute));
-  o.appendChild(titleRow);
-  if(!items.length){
-    o.insertAdjacentHTML('beforeend',emptyState(emptyMsg,emptyRoute,emptyLabel));
-    return;
-  }
-  const sorted=kind==='movie'?sortMoviesByWatchedDate(items):items;
-  renderLazyPosterGrid(o,sorted,kind,cacheKey,{
-    sub:kind==='movie'?'Tracking':undefined,
-    onCard:kind!=='movie'?(card,item)=>loadPosterProgress(card,item.id):undefined
-  });
+function noUpcomingCard(text){
+  const el=document.createElement('div');
+  el.className='upnext-caughtup';
+  el.innerHTML=`<div class="upnext-caughtup-text no-upcoming-text">${text}</div>`;
+  return el;
 }
-function renderFavShows(o){renderGridPage(o,{title:'Favorite shows',items:Object.values(Store.fav('show')),kind:'show',backRoute:'stats',emptyMsg:"You haven't favorited any shows yet.",emptyRoute:'shows',emptyLabel:'Browse shows',cacheKey:'favshows'})}
-function renderFavMovies(o){renderGridPage(o,{title:'Favorite movies',items:Object.values(Store.fav('movie')),kind:'movie',backRoute:'stats',emptyMsg:"You haven't favorited any movies yet.",emptyRoute:'movies',emptyLabel:'Browse movies',cacheKey:'favmovies'})}
-async function renderLibShows(o){
-  const allLib=Object.values(Store.lib('show'));
-  o.innerHTML='';
-  const titleRow=document.createElement('div');
-  titleRow.className='title-row';
-  const h=document.createElement('div');
-  h.className='section-h profile-title sub-page-title';
-  h.style.margin='0';
-  h.textContent='Shows';
-  titleRow.appendChild(h);
-  titleRow.appendChild(backButton('stats'));
-  o.appendChild(titleRow);
-  if(!allLib.length){
-    o.insertAdjacentHTML('beforeend',emptyState('You are not tracking any shows yet.','explore','Explore shows'));
-    return;
-  }
-  const cats=[
-    {key:'stale',title:"HAVEN'T WATCHED FOR A WHILE"},
-    {key:'uptodate',title:'Up to date'},
-    {key:'completed',title:'Completed'},
-    {key:'stopped',title:'Stopped watching'},
-    {key:'next',title:'Next to watch'}
-  ];
-  o.insertAdjacentHTML('beforeend',cats.map(c=>`<div class="cat-section" data-cat="${c.key}" style="display:none"><div class="cat-box-wrap"><div class="cat-box">${c.title}</div></div><div class="cat-grid-host" data-grid="${c.key}"></div></div>`).join(''));
-  const grids={},sections={};
-  cats.forEach(c=>{
-    sections[c.key]=o.querySelector(`[data-cat="${c.key}"]`);
-    const grid=document.createElement('div');
-    grid.className='grid';
-    o.querySelector(`[data-grid="${c.key}"]`).appendChild(grid);
-    grids[c.key]=grid;
-  });
-  const now=Date.now();
-  runCategorizedShowFeed(o,allLib,{
-    fetchItemData:async s=>{
-      const[eps,series]=await Promise.all([getEpisodes(s.id),Api.seriesExtended(s.id).catch(()=>null)]);
-      const ended=isEndedStatus(series);
-      return{progress:calcShowProgress(eps,ended),lastWatchedAt:calcLastWatchedAt(eps),mostRecentAiredAt:calcMostRecentAiredAt(eps)};
-    },
-    classify:(s,data)=>{
-      const stopped=Store.isStopped('show',s.id);
-      const progress=data?data.progress:{pct:0,complete:false,upToDate:false,watched:0,total:0};
-      const lastWatchedAt=data?data.lastWatchedAt:0;
-      const mostRecentAiredAt=data?data.mostRecentAiredAt:0;
-      let key=null;
-      if(stopped)key='stopped';
-      else if(progress.watched===0)key=null;
-      else if(progress.complete)key='completed';
-      else if(progress.upToDate)key='uptodate';
-      else if(now-lastWatchedAt>=STALE_MS)key='stale';
-      else key='next';
-      if(!key)return null;
-      return{
-        key,
-        sortValue:mostRecentAiredAt,
-        render:()=>{
-          const card=posterCard({id:s.id,name:s.name,image:s.image,sub:'Tracking',kind:'series'});
-          updatePosterProgress(card,{...progress,stopped});
-          return card;
-        }
-      };
-    },
-    categoryOrder:['stale','uptodate','completed','stopped','next'],
-    grids,sections,cacheKey:'libshows',
-    onEmpty:()=>o.insertAdjacentHTML('beforeend',emptyState('Nothing to show here yet.'))
-  });
-}
-function renderLibMovies(o){renderGridPage(o,{title:'Movies',items:Object.values(Store.lib('movie')).filter(m=>Store.isMovieWatched(m.id)),kind:'movie',backRoute:'stats',emptyMsg:"You haven't watched any tracked movies yet.",emptyRoute:'explore',emptyLabel:'Explore movies',cacheKey:'libmovies'})}
-
 function caughtUpCard(bannerUrl){
   const el=document.createElement('div');
   el.className='upnext-caughtup';
@@ -3428,6 +3589,9 @@ setInterval(()=>{
     el.textContent=countdownLabel(+el.dataset.cdTs,el.dataset.cdTimed==='1');
   });
 },60000);
+function resetUpcomingShows(){
+  upcomingPane.innerHTML='';upcomingLoaded=false;
+}
 function resetUpcomingPanes(){
   upcomingPane.innerHTML='';upcomingLoaded=false;
   movieUpcomingPane.innerHTML='';movieUpcomingLoaded=false;
@@ -3513,6 +3677,7 @@ function episodeRow(ep,onToggle,seriesImdbId,showItem,onRewatchChange){
       const favBtn=document.getElementById('fav-btn');
       if(favBtn)updateFavBtnUI(favBtn,'show',showItem.id);
     }
+    resetUpcomingShows();
     if(showItem)patchShowInWatchlistPane(showItem.id,showItem);
     onToggle?.();
   });
@@ -3531,6 +3696,7 @@ async function renderShow(o,{id}){
     const[series,eps]=await Promise.all([Api.seriesExtended(id),getEpisodes(id)]);
     const bannerUrl=await getBannerUrl('series',id,series);
     const ended=isEndedStatus(series);
+    saveShowProgress(id,eps,ended);
     const progress=calcShowProgress(eps,ended);
     const hero=showHero(series,progress);
     const progressEl=document.createElement('div');
@@ -3588,7 +3754,7 @@ async function renderShow(o,{id}){
           return;
         }
         const row=episodeRow(ep,()=>{
-          updateShowProgressBar(progressEl,calcShowProgress(eps,ended));
+          applyShowProgress(progressEl,series.id,eps,ended);
           const allRow=body.querySelector(`.season-episodes [data-ep-id="${ep.id}"]`);
           if(allRow){
             const watched=Store.isWatched(ep.id);
@@ -3604,7 +3770,7 @@ async function renderShow(o,{id}){
     }
     renderContinueWatching();
     body.appendChild(continueWrap);
-    body.appendChild(seasonEpisodesSection(eps,series.id,()=>{updateShowProgressBar(progressEl,calcShowProgress(eps,ended));renderContinueWatching();},getImdbId(series),showItem,seasonRefreshers));
+    body.appendChild(seasonEpisodesSection(eps,series.id,()=>{applyShowProgress(progressEl,series.id,eps,ended);renderContinueWatching();},getImdbId(series),showItem,seasonRefreshers));
     content.appendChild(body);
   }catch(err){
     o.className='';
@@ -3743,6 +3909,14 @@ function seasonEpisodesSection(eps,showId,onProgressChange,seriesImdbId,showItem
       list.querySelectorAll('.check').forEach(chk=>chk.classList.toggle('on',!allWatched));
       refreshEpisodeRewatchDisplay();
       refreshSeasonMeta();
+      if(!allWatched&&showItem&&!Store.inLib('show',showItem.id)){
+        Store.addLib('show',showItem);
+        const libBtn=document.getElementById('lib-btn');
+        if(libBtn)updateLibBtnUI(libBtn,'show',showItem.id);
+        const favBtn=document.getElementById('fav-btn');
+        if(favBtn)updateFavBtnUI(favBtn,'show',showItem.id);
+      }
+      resetUpcomingShows();
       if(showItem)patchShowInWatchlistPane(showItem.id,showItem);
       onProgressChange?.();
     });
@@ -3861,13 +4035,25 @@ async function renderMovie(o,{id}){
     body.className='detail-body';
     const cast=(movie.characters||[]).filter(c=>c.personName||c.name);
     if(cast.length){
-      const castH=document.createElement('div');
-      castH.className='section-h';
-      castH.textContent='Cast';
-      body.appendChild(castH);
+      const castGroup=document.createElement('div');
+      castGroup.className='season-group cast-group';
+      const castPanel=document.createElement('div');
+      castPanel.className='season-panel';
+      castPanel.innerHTML=`
+        <div class="season-toggle" role="button" tabindex="0" aria-expanded="false">
+          <span class="season-toggle-left">
+            <div class="season-toggle-title-row">
+              <div class="season-toggle-title">Cast</div>
+              <span class="season-count">${cast.length}</span>
+            </div>
+          </span>
+          <svg class="season-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </div>`;
+      const castBox=document.createElement('div');
+      castBox.className='season-episodes';
       const castTrack=document.createElement('div');
       castTrack.className='cast-track';
-      cast.slice(0,40).forEach(c=>{
+      cast.forEach(c=>{
         const item=document.createElement('div');
         item.className='cast-item';
         // Actors get their character name as the "role" line; crew (director,
@@ -3875,12 +4061,22 @@ async function renderMovie(o,{id}){
         // to their job title from TVDB instead of leaving it blank.
         const role=c.name||c.peopleType||'';
         item.innerHTML=`
-          <img class="cast-photo" src="${imgUrl(c.image||c.personImgURL,{thumb:true})}" alt="${c.personName||''}" />
+          <img class="cast-photo" loading="lazy" src="${imgUrl(c.image||c.personImgURL,{thumb:true})}" alt="${c.personName||''}" />
           <div class="cast-name">${c.personName||''}</div>
           <div class="cast-role">${role}</div>`;
         castTrack.appendChild(item);
       });
-      body.appendChild(castTrack);
+      castBox.appendChild(castTrack);
+      castGroup.appendChild(castPanel);
+      castGroup.appendChild(castBox);
+      const castToggle=castPanel.querySelector('.season-toggle');
+      const flipCast=()=>{
+        const open=castGroup.classList.toggle('open');
+        castToggle.setAttribute('aria-expanded',open);
+      };
+      castToggle.addEventListener('click',flipCast);
+      castToggle.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flipCast()}});
+      body.appendChild(castGroup);
     }
     const trailer=(movie.trailers||[])[0];
     if(trailer?.url){
